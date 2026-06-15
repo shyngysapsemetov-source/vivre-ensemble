@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivre Ensemble - Luxembourg Citizenship Exam Prep</title>
+    <style>
+        :root { --lux-red: #EF3340; --lux-blue: #00A3E0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
+            padding: 2rem;
+        }
+        .landing {
+            text-align: center;
+            max-width: 500px;
+        }
+        .flag {
+            width: 80px;
+            height: 48px;
+            border-radius: 6px;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .flag div { height: 33.33%; }
+        .flag .red { background: #EF3340; }
+        .flag .white { background: #ffffff; }
+        .flag .blue { background: #00A3E0; }
+        h1 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 0.5rem; }
+        p { color: #6b7280; margin-bottom: 2rem; font-size: 0.95rem; }
+        .buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1.5rem 2.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+        .btn-desktop { background: #ffffff; color: #1a1a2e; border: 2px solid #e5e7eb; }
+        .btn-mobile { background: var(--lux-blue); color: white; border: 2px solid var(--lux-blue); }
+        .btn .icon { font-size: 2rem; }
+        .auto-note {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+        .info {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #6b7280;
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+    <script>
+        // Auto-redirect based on device
+        (function() {
+            const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+                || (window.innerWidth <= 768 && 'ontouchstart' in window);
+            const override = new URLSearchParams(window.location.search).get('v');
+            if (override === 'desktop') { window.location.replace('desktop.html'); return; }
+            if (override === 'mobile') { window.location.replace('mobile.html'); return; }
+            if (isMobile) { window.location.replace('mobile.html'); return; }
+            else { window.location.replace('desktop.html'); return; }
+        })();
+    </script>
+</head>
+<body>
+    <div class="landing">
+        <div class="flag"><div class="red"></div><div class="white"></div><div class="blue"></div></div>
+        <h1>Vivre Ensemble</h1>
+        <p>Luxembourg Citizenship Exam Preparation<br>197 questions across all 3 modules</p>
+        <div class="buttons">
+            <a href="desktop.html" class="btn btn-desktop"><span class="icon">&#128187;</span>Desktop Version</a>
+            <a href="mobile.html" class="btn btn-mobile"><span class="icon">&#128241;</span>Mobile Version</a>
+        </div>
+        <p class="auto-note">If JavaScript is enabled, you'll be auto-redirected based on your device.</p>
+        <div class="info">
+            <strong>Real Exam:</strong> 40 multiple-choice questions (10 rights + 20 institutions + 10 history) &middot; 60 minutes &middot; Pass: 28/40 (70%) &middot; Computer-based at Esch-Belval &middot; Free
+        </div>
+    </div>
+</body>
+</html>
