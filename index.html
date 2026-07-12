@@ -2,97 +2,2069 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vivre Ensemble - Luxembourg Citizenship Exam Prep</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0d1b2a">
+    <title>Vivre Ensemble &mdash; Luxembourg Citizenship</title>
     <style>
-        :root { --lux-red: #EF3340; --lux-blue: #00A3E0; }
+        :root {
+            /* Luxembourg palette, muted for extended reading */
+            --lux-red: #e63946;
+            --lux-red-dark: #b8232f;
+            --lux-blue: #219ebc;
+            --lux-blue-dark: #126782;
+            --lux-cream: #fdfcf7;
+
+            /* Neutrals */
+            --bg: #f7f5f0;
+            --bg-alt: #efece5;
+            --surface: #ffffff;
+            --surface-alt: #faf8f3;
+            --border: #e5e0d5;
+            --border-strong: #cec7b6;
+            --text: #1a1a2e;
+            --text-secondary: #4a4a5e;
+            --text-muted: #8a8a9e;
+
+            --accent: #f4a261;
+            --success: #2a9d8f;
+            --error: #d62828;
+
+            /* Layout */
+            --radius: 18px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --sidebar-w: 260px;
+            --header-h: 64px;
+            --nav-h: 68px;
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --safe-top: env(safe-area-inset-top, 0px);
+
+            /* Motion */
+            --ease: cubic-bezier(0.22, 1, 0.36, 1);
+            --shadow: 0 2px 12px rgba(15, 15, 30, 0.05);
+            --shadow-lg: 0 12px 40px rgba(15, 15, 30, 0.08);
+            --shadow-focus: 0 0 0 3px rgba(230, 57, 70, 0.18);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0f1419;
+                --bg-alt: #161c22;
+                --surface: #1c232c;
+                --surface-alt: #232b34;
+                --border: #2c3542;
+                --border-strong: #3e4a58;
+                --text: #eef2f7;
+                --text-secondary: #c0c8d2;
+                --text-muted: #8590a0;
+                --lux-cream: #1c232c;
+                --shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+                --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5);
+            }
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', 'SF Pro Text', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+            font-size: 16px;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            padding-bottom: calc(var(--nav-h) + var(--safe-bottom));
             min-height: 100vh;
+        }
+
+        /* ============ HEADER ============ */
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 60%, #2a3f5f 100%);
+            color: white;
+            padding: calc(0.85rem + var(--safe-top)) 1.2rem 0.85rem;
+            box-shadow: 0 2px 20px rgba(13, 27, 42, 0.4);
+        }
+        .app-header::after {
+            content: '';
+            position: absolute; left: 0; right: 0; bottom: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--lux-red) 0%, #ffffff 50%, var(--lux-blue) 100%);
+        }
+        .header-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+        .brand { display: flex; align-items: center; gap: 0.75rem; min-width: 0; }
+        .brand-flag {
+            width: 28px; height: 20px; border-radius: 3px; overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+            flex-shrink: 0;
+        }
+        .brand-flag div { height: 33.33%; }
+        .brand-flag .r { background: var(--lux-red); }
+        .brand-flag .w { background: #ffffff; }
+        .brand-flag .b { background: var(--lux-blue); }
+        .brand-text { min-width: 0; }
+        .brand h1 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .brand .sub {
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.65);
+            margin-top: 0.1rem;
+            letter-spacing: 0.03em;
+        }
+        .exam-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            white-space: nowrap;
+        }
+        .exam-badge::before {
+            content: '';
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--lux-red);
+            box-shadow: 0 0 8px var(--lux-red);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
+        }
+
+        /* ============ LAYOUT ============ */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .side-nav { display: none; }
+
+        main {
+            padding: 1.25rem 1.15rem 2rem;
+            max-width: 780px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* ============ VIEW TRANSITIONS ============ */
+        .view {
+            animation: viewIn 0.35s var(--ease);
+        }
+        @keyframes viewIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ CARDS ============ */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.3rem;
+            margin-bottom: 1rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .card > h2 { font-size: 1.15rem; font-weight: 800; margin-bottom: 0.75rem; letter-spacing: -0.02em; color: var(--text); }
+        .card > h3 { font-size: 0.98rem; font-weight: 700; margin: 1rem 0 0.5rem; color: var(--text); }
+        .card p { font-size: 0.94rem; color: var(--text-secondary); }
+        .card ul { padding-left: 1.15rem; margin: 0.4rem 0; }
+        .card li { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 0.3rem; line-height: 1.6; }
+        .card h4 { font-size: 0.88rem; font-weight: 700; margin: 0.8rem 0 0.3rem; color: var(--text); }
+
+        .card-hero {
+            background: linear-gradient(150deg, var(--surface) 0%, var(--surface-alt) 100%);
+            border: 1px solid var(--border);
+        }
+
+        /* ============ SECTION LABELS ============ */
+        .section-label {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--text-muted);
+            margin: 1.5rem 0 0.7rem;
+            padding-left: 0.25rem;
+        }
+
+        /* ============ BUTTONS ============ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.8rem 1.25rem;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 700;
+            min-height: 46px;
+            transition: all 0.2s var(--ease);
+            -webkit-tap-highlight-color: transparent;
+            text-decoration: none;
+        }
+        .btn:active { transform: scale(0.97); }
+        .btn:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--lux-red), var(--lux-red-dark));
+            color: white;
+            box-shadow: 0 4px 14px rgba(230, 57, 70, 0.25);
+        }
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            border: 1px solid var(--border-strong);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--lux-blue-dark);
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .btn-full { width: 100%; }
+        .btn-sm { padding: 0.5rem 0.85rem; font-size: 0.82rem; min-height: 36px; border-radius: 10px; }
+
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 0.35rem;
+            background: none; border: none; cursor: pointer;
+            color: var(--lux-blue-dark);
+            font-family: inherit; font-weight: 700;
+            font-size: 0.85rem;
+            padding: 0.4rem 0;
+            margin-bottom: 0.6rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .btn-back:hover { color: var(--lux-red); }
+
+        /* ============ HOME / JOURNEY ============ */
+        .home-hero {
+            padding: 1.5rem 1.3rem;
+            background: linear-gradient(155deg, #fdfcf7 0%, #f4e4d7 60%, #f7d5c4 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            margin-bottom: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        @media (prefers-color-scheme: dark) {
+            .home-hero {
+                background: linear-gradient(155deg, #1c232c 0%, #2c1f22 60%, #3a2429 100%);
+            }
+        }
+        .home-hero::before {
+            content: '';
+            position: absolute;
+            top: -60px; right: -60px;
+            width: 220px; height: 220px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.12), transparent 70%);
+            border-radius: 50%;
+        }
+        .home-hero h2 {
+            font-size: 1.55rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 0.4rem;
+            line-height: 1.2;
+        }
+        .home-hero p {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            max-width: 40ch;
+        }
+        .home-hero .exam-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.55rem 0.6rem;
+            text-align: center;
+        }
+        @media (prefers-color-scheme: dark) {
+            .stat-pill { background: rgba(255, 255, 255, 0.04); }
+        }
+        .stat-pill .num {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--lux-red);
+            display: block;
+            line-height: 1;
+        }
+        .stat-pill .lbl {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.2rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .progress-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.15rem 1.2rem;
+            margin-bottom: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+        .progress-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; gap: 0.5rem; }
+        .progress-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+        }
+        .progress-title {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-top: 0.15rem;
+            background: linear-gradient(135deg, var(--lux-red), var(--lux-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .progress-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-top: 0.85rem;
+        }
+        @media (min-width: 500px) {
+            .progress-stats { grid-template-columns: repeat(4, 1fr); }
+        }
+        .pstat {
+            background: var(--surface-alt);
+            border-radius: var(--radius-sm);
+            padding: 0.6rem 0.5rem;
+            text-align: center;
+        }
+        .pstat .pval {
+            display: block;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: var(--text);
+            letter-spacing: -0.02em;
+        }
+        .pstat .plbl {
+            display: block;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+        .btn-tiny {
+            font-family: inherit;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.35rem 0.7rem;
+            border-radius: 8px;
+            background: none;
+            border: 1px solid var(--border-strong);
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s var(--ease);
+        }
+        .btn-tiny:hover { color: var(--lux-blue-dark); border-color: var(--lux-blue-dark); }
+        .btn-tiny-danger:hover { color: var(--lux-red); border-color: var(--lux-red); }
+        .progress-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+        .progress-note {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-top: 0.8rem;
+            padding-top: 0.7rem;
+            border-top: 1px dashed var(--border);
+            line-height: 1.5;
+        }
+        .progress-card-empty {
+            background: var(--surface-alt);
+            border-style: dashed;
+        }
+        .progress-empty-note {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        .chapter-card.is-read { opacity: 0.8; }
+        .chapter-card.is-read::before { opacity: 0.35; }
+        .read-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 800;
+            color: var(--success);
+            background: rgba(42, 157, 143, 0.1);
+            border: 1px solid rgba(42, 157, 143, 0.25);
+            border-radius: 999px;
+            padding: 0.1rem 0.5rem;
+            margin-left: 0.4rem;
+            letter-spacing: 0.02em;
+            text-transform: none;
+        }
+        .read-status {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--success);
+            padding: 0.5rem 0.9rem;
+            background: rgba(42, 157, 143, 0.08);
+            border-radius: 999px;
+            border: 1px solid rgba(42, 157, 143, 0.2);
+        }
+
+        .mode-picker {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.7rem;
+            margin-bottom: 1.5rem;
+        }
+        .mode-tile {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.1rem 1.2rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            font-family: inherit;
+            color: inherit;
+            transition: transform 0.2s var(--ease), border-color 0.2s, box-shadow 0.2s;
+            display: flex;
+            gap: 0.9rem;
+            align-items: flex-start;
+            position: relative;
+            overflow: hidden;
+        }
+        .mode-tile:hover, .mode-tile:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--lux-red);
+            box-shadow: var(--shadow-lg);
+            outline: none;
+        }
+        .mode-tile:active { transform: scale(0.99); }
+        .mode-tile .mode-icon {
+            font-size: 1.7rem;
+            line-height: 1;
+            flex-shrink: 0;
+            margin-top: 0.15rem;
+        }
+        .mode-tile .mode-body { min-width: 0; }
+        .mode-tile .mode-title {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.2rem;
+            letter-spacing: -0.015em;
+        }
+        .mode-tile .mode-desc {
+            font-size: 0.83rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        .mode-tile .mode-arrow {
+            margin-left: auto;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            align-self: center;
+        }
+
+        .journey-item {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 0.9rem;
+            box-shadow: var(--shadow);
+        }
+        .journey-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.85rem;
+        }
+        .journey-header .j-icon {
+            font-size: 1.5rem;
+            width: 42px; height: 42px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, rgba(230, 57, 70, 0.1), rgba(33, 158, 188, 0.1));
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+        .journey-header h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            line-height: 1.2;
+        }
+        .journey-header .j-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 0.1rem;
+        }
+        .journey-content p, .journey-content li {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        .journey-content ul { padding-left: 1rem; margin: 0.4rem 0; list-style: none; }
+        .journey-content ul li { padding-left: 0.9rem; position: relative; }
+        .journey-content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0.6rem;
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            background: var(--lux-red);
+        }
+        .fact-table { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1rem; margin-top: 0.5rem; }
+        .fact-table dt { font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .fact-table dd { font-size: 0.9rem; color: var(--text); }
+        .journey-followup {
+            margin-top: 0.9rem;
+            padding-top: 0.85rem;
+            border-top: 1px dashed var(--border);
+            font-size: 0.83rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        /* ============ CHAPTERS / STORY ============ */
+        .chapter-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.15rem 1.2rem;
+            border: 1px solid var(--border);
+            margin-bottom: 0.9rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            position: relative;
+            overflow: hidden;
+        }
+        .chapter-card::before {
+            content: '';
+            position: absolute; left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--lux-red), var(--lux-blue));
+            opacity: 0.65;
+        }
+        .chapter-card:hover, .chapter-card:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--lux-red);
+            box-shadow: var(--shadow-lg);
+            outline: none;
+        }
+        .chapter-num {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--lux-red);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 0.15rem;
+        }
+        .chapter-title {
+            font-size: 1.15rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            margin-bottom: 0.25rem;
+        }
+        .chapter-era {
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-size: 0.78rem;
+            color: var(--lux-blue-dark);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .chapter-subtitle { font-size: 0.85rem; color: var(--text-secondary); font-style: italic; }
+        .chapter-hook {
+            font-size: 0.98rem;
+            color: var(--text);
+            line-height: 1.75;
+            margin: 1.1rem 0;
+            padding: 1.1rem 1.2rem;
+            background: var(--surface-alt);
+            border-left: 3px solid var(--lux-red);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+        .cultural-note {
+            background: linear-gradient(150deg, rgba(244, 162, 97, 0.06), rgba(230, 57, 70, 0.03));
+            border: 1px solid rgba(244, 162, 97, 0.25);
+        }
+        .cultural-note-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.35rem;
+        }
+        .arc-list { list-style: none; padding-left: 0; margin: 0.5rem 0; }
+        .arc-list li {
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            font-size: 0.88rem;
+            border-bottom: 1px dashed var(--border);
+            position: relative;
+            color: var(--text-secondary);
+        }
+        .arc-list li:last-child { border-bottom: none; }
+        .arc-list li::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem; top: 1rem;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--lux-red);
+        }
+        .unlock-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.5rem 0; }
+        .unlock-chip {
+            padding: 0.3rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(33, 158, 188, 0.1);
+            color: var(--lux-blue-dark);
+            border: 1px solid rgba(33, 158, 188, 0.2);
+        }
+        .unlock-chip.rights { background: rgba(230, 57, 70, 0.08); color: var(--lux-red-dark); border-color: rgba(230, 57, 70, 0.18); }
+
+        .link-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.75rem 0.5rem;
+            background: none;
+            border: none;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-family: inherit;
+            color: inherit;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s var(--ease);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .link-row:last-child { border-bottom: none; }
+        .link-row:hover, .link-row:focus-visible { background: var(--surface-alt); outline: none; }
+        .link-row .link-icon { font-size: 1.15rem; flex-shrink: 0; }
+        .link-row .link-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 0.1rem; }
+        .link-row .link-title { font-size: 0.9rem; font-weight: 700; color: var(--text); letter-spacing: -0.01em; }
+        .link-row .link-sub { font-size: 0.75rem; color: var(--text-muted); font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace; }
+        .link-row .link-arrow { color: var(--text-muted); font-size: 1.2rem; }
+
+        .key-question {
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+            background: linear-gradient(135deg, rgba(244, 162, 97, 0.1), rgba(230, 57, 70, 0.06));
+            border: 1px solid rgba(244, 162, 97, 0.25);
+            border-radius: var(--radius-sm);
+        }
+        .key-question .kq-q {
+            font-size: 0.82rem;
+            font-weight: 800;
+            color: var(--lux-red-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.35rem;
+        }
+        .key-question .kq-a { font-size: 0.9rem; color: var(--text); line-height: 1.6; }
+
+        /* ============ FIGURES ============ */
+        .figure-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; }
+        .figure-card {
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 0.9rem 1rem;
+        }
+        .figure-card h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            margin-bottom: 0.15rem;
+        }
+        .figure-card .fig-role {
+            font-size: 0.78rem;
+            color: var(--lux-blue-dark);
+            font-weight: 600;
+            margin-bottom: 0.15rem;
+        }
+        .figure-card .fig-years {
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .figure-card .fig-summary { font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 0.4rem; line-height: 1.6; }
+        .figure-card .fig-matters {
+            font-size: 0.83rem;
+            color: var(--text);
+            padding: 0.55rem 0.75rem;
+            background: rgba(230, 57, 70, 0.06);
+            border-left: 3px solid var(--lux-red);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+        }
+        .figure-card .fig-matters::before {
+            content: 'Why it matters — ';
+            font-weight: 800;
+            color: var(--lux-red-dark);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ============ SCENARIO ============ */
+        .scenario-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 1.1rem 1.2rem;
+            margin-bottom: 0.9rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+        .scenario-card:hover, .scenario-card:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--lux-blue);
+            box-shadow: var(--shadow-lg);
+            outline: none;
+        }
+        .scenario-card.is-seen { opacity: 0.78; }
+        .scenario-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem; }
+        .scenario-head .s-icon {
+            font-size: 1.5rem;
+            width: 40px; height: 40px;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(33, 158, 188, 0.1);
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+        .scenario-head h3 { font-size: 1rem; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; }
+        .scenario-premise { font-size: 0.89rem; color: var(--text-secondary); line-height: 1.65; }
+
+        .beat {
+            padding: 0.9rem 1rem;
+            margin: 0.75rem 0;
+            border-left: 3px solid var(--lux-blue);
+            background: var(--surface-alt);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+        .beat .beat-q {
+            font-size: 0.88rem;
+            font-weight: 800;
+            color: var(--lux-blue-dark);
+            margin-bottom: 0.35rem;
+            letter-spacing: -0.01em;
+        }
+        .beat .beat-a { font-size: 0.92rem; color: var(--text); line-height: 1.7; }
+
+        /* ============ TIMELINE ============ */
+        .timeline-list { position: relative; padding-left: 1.4rem; }
+        .timeline-list::before {
+            content: '';
+            position: absolute;
+            left: 0.4rem; top: 0.5rem; bottom: 0.5rem;
+            width: 2px;
+            background: linear-gradient(180deg, var(--lux-red), var(--lux-blue));
+        }
+        .tl-item { padding: 0.55rem 0; position: relative; }
+        .tl-item::before {
+            content: '';
+            position: absolute;
+            left: -1.15rem; top: 0.95rem;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--surface);
+            border: 2px solid var(--lux-red);
+        }
+        .tl-year {
+            display: inline-block;
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-weight: 800;
+            font-size: 0.82rem;
+            color: var(--lux-red);
+            min-width: 3.5rem;
+            margin-right: 0.75rem;
+        }
+        .tl-event { font-size: 0.88rem; color: var(--text-secondary); }
+
+        /* ============ STUDY REFERENCE ============ */
+        .module-header {
+            display: flex; align-items: center; gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .module-badge {
+            display: inline-block;
+            padding: 0.28rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+        .module-1 { background: rgba(230, 57, 70, 0.12); color: var(--lux-red-dark); }
+        .module-2 { background: rgba(33, 158, 188, 0.12); color: var(--lux-blue-dark); }
+        .module-3 { background: rgba(42, 157, 143, 0.12); color: var(--success); }
+        .study-section {
+            border-bottom: 1px solid var(--border);
+        }
+        .study-section:last-of-type { border-bottom: none; }
+        .study-section summary {
+            cursor: pointer;
+            list-style: none;
+            padding: 0.85rem 0;
+            font-weight: 700;
+            font-size: 0.92rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .study-section summary::-webkit-details-marker { display: none; }
+        .study-section summary::after {
+            content: '';
+            width: 20px; height: 20px;
+            background:
+                linear-gradient(currentColor, currentColor) center/2px 10px no-repeat,
+                linear-gradient(currentColor, currentColor) center/10px 2px no-repeat;
+            color: var(--text-muted);
+            border-radius: 50%;
+            transition: transform 0.25s var(--ease);
+            flex-shrink: 0;
+        }
+        .study-section[open] > summary::after {
+            transform: rotate(45deg);
+            background: linear-gradient(currentColor, currentColor) center/10px 2px no-repeat;
+            color: var(--lux-red);
+        }
+        .study-section .content { padding: 0 0 1rem; font-size: 0.9rem; color: var(--text-secondary); }
+        .study-section .content ul { margin: 0.4rem 0; padding-left: 1.2rem; }
+        .study-section .content h4 { color: var(--text); }
+        .study-section .content strong { color: var(--text); }
+
+        /* ============ QUIZ / FLASHCARDS ============ */
+        .practice-hub {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.7rem;
+        }
+        .practice-tile {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 1.1rem 1rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            font-family: inherit;
+            color: inherit;
+            text-align: left;
+            transition: all 0.2s var(--ease);
+            box-shadow: var(--shadow);
+        }
+        .practice-tile:hover, .practice-tile:focus-visible {
+            transform: translateY(-2px);
+            border-color: var(--lux-red);
+            outline: none;
+            box-shadow: var(--shadow-lg);
+        }
+        .practice-tile .p-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
+        .practice-tile .p-title { font-size: 0.92rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.15rem; }
+        .practice-tile .p-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        .quiz-meta { font-size: 0.82rem; color: var(--text-muted); font-weight: 700; }
+        .progress-bar {
+            width: 100%; height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            overflow: hidden;
+            margin: 0.7rem 0 1rem;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--lux-red), var(--lux-blue));
+            border-radius: 3px;
+            transition: width 0.4s var(--ease);
+            position: relative;
+        }
+        .progress-fill::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shimmer 2.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .quiz-question { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.45; letter-spacing: -0.01em; }
+        .quiz-options { display: flex; flex-direction: column; gap: 0.55rem; }
+        .quiz-option {
+            padding: 0.9rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            transition: all 0.2s var(--ease);
+            background: var(--surface);
+            -webkit-tap-highlight-color: transparent;
+        }
+        .quiz-option:hover:not(.disabled) { border-color: var(--lux-blue); background: rgba(33, 158, 188, 0.05); }
+        .quiz-option:active { transform: scale(0.99); }
+        .quiz-option .key-hint {
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-size: 0.72rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            color: var(--text-muted);
+            flex-shrink: 0;
+        }
+        .quiz-option.correct {
+            border-color: var(--success);
+            background: rgba(42, 157, 143, 0.08);
+            animation: pulse 0.35s ease;
+        }
+        .quiz-option.incorrect {
+            border-color: var(--error);
+            background: rgba(214, 40, 40, 0.06);
+            animation: shake 0.35s ease;
+        }
+        .quiz-option.disabled { pointer-events: none; }
+        .quiz-option.disabled:not(.correct):not(.incorrect) { opacity: 0.55; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } 100% { transform: scale(1); } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20% { transform: translateX(-4px); }
+            40% { transform: translateX(4px); }
+            60% { transform: translateX(-3px); }
+            80% { transform: translateX(3px); }
+        }
+        .quiz-explanation {
+            margin-top: 1rem;
+            padding: 0.9rem 1rem;
+            background: var(--surface-alt);
+            border-left: 3px solid var(--lux-blue);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+        }
+        .quiz-actions { display: flex; gap: 0.6rem; margin-top: 1rem; }
+
+        .score-card { text-align: center; padding: 2rem 1rem; }
+        .score-num {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            animation: bounceIn 0.6s var(--ease);
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.4); opacity: 0; }
+            60% { transform: scale(1.08); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .score-label { color: var(--text-muted); font-size: 1rem; margin-top: 0.4rem; font-weight: 600; }
+        .score-verdict { margin-top: 1rem; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+        .score-note { color: var(--text-muted); font-size: 0.83rem; margin-top: 0.3rem; }
+
+        .flashcard-wrap { margin: 0.85rem 0; }
+        .flashcard {
+            min-height: 220px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ee 100%);
-            padding: 2rem;
-        }
-        .landing {
             text-align: center;
-            max-width: 500px;
+            cursor: pointer;
+            background: linear-gradient(150deg, var(--surface) 0%, var(--surface-alt) 100%);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem 1.5rem;
+            transition: all 0.35s var(--ease);
+            -webkit-tap-highlight-color: transparent;
+            box-shadow: var(--shadow);
+            user-select: none;
         }
-        .flag {
-            width: 80px;
-            height: 48px;
-            border-radius: 6px;
-            margin: 0 auto 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .flashcard:hover { border-color: var(--lux-red); }
+        .flashcard:active { transform: scale(0.99); box-shadow: var(--shadow-lg); }
+        .flashcard-front { font-size: 1.2rem; font-weight: 700; line-height: 1.4; }
+        .flashcard-back { font-size: 1.1rem; color: var(--lux-red); font-weight: 700; line-height: 1.5; }
+        .flashcard-counter { text-align: center; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 700; }
+        .flashcard-controls { display: flex; gap: 0.5rem; margin-top: 0.85rem; }
+        .flashcard-controls .btn { flex: 1; }
+
+        .kbd-hint {
+            margin-top: 1rem;
+            padding: 0.6rem 0.8rem;
+            background: var(--surface-alt);
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
         }
-        .flag div { height: 33.33%; }
-        .flag .red { background: #EF3340; }
-        .flag .white { background: #ffffff; }
-        .flag .blue { background: #00A3E0; }
-        h1 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 0.5rem; }
-        p { color: #6b7280; margin-bottom: 2rem; font-size: 0.95rem; }
-        .buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .btn {
+        .kbd-hint kbd {
+            display: inline-block;
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-size: 0.72rem;
+            margin: 0 0.1rem;
+        }
+
+        /* ============ BOTTOM NAV (mobile) ============ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0.5rem 0.5rem calc(0.5rem + var(--safe-bottom));
+            background: rgba(255, 255, 255, 0.9);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+        }
+        @media (prefers-color-scheme: dark) {
+            .bottom-nav { background: rgba(15, 20, 25, 0.9); }
+        }
+        .nav-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1.5rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: transform 0.15s, box-shadow 0.15s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            gap: 0.15rem;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.35rem 0.6rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+            -webkit-tap-highlight-color: transparent;
+            min-width: 58px;
+            position: relative;
         }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
-        .btn-desktop { background: #ffffff; color: #1a1a2e; border: 2px solid #e5e7eb; }
-        .btn-mobile { background: var(--lux-blue); color: white; border: 2px solid var(--lux-blue); }
-        .btn .icon { font-size: 2rem; }
-        .auto-note {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: #9ca3af;
+        .nav-item.active {
+            color: var(--lux-red);
+            background: rgba(230, 57, 70, 0.08);
         }
-        .info {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background: white;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            color: #6b7280;
-            border: 1px solid #e5e7eb;
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            top: -0.5rem; left: 50%;
+            transform: translateX(-50%);
+            width: 20px; height: 3px;
+            border-radius: 2px;
+            background: var(--lux-red);
+        }
+        .nav-item .nav-icon { font-size: 1.35rem; line-height: 1; }
+
+        /* ============ DESKTOP LAYOUT ============ */
+        @media (min-width: 1024px) {
+            body { padding-bottom: 0; }
+            .layout {
+                grid-template-columns: var(--sidebar-w) 1fr;
+                gap: 2rem;
+                padding: 0 2rem;
+            }
+            .side-nav {
+                display: block;
+                position: sticky;
+                top: calc(var(--header-h) + 1.5rem);
+                align-self: start;
+                padding: 1.5rem 0;
+                height: calc(100vh - var(--header-h) - 3rem);
+                overflow-y: auto;
+            }
+            .side-nav-title {
+                font-size: 0.7rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                color: var(--text-muted);
+                padding: 0 0.9rem 0.5rem;
+            }
+            .side-nav nav { display: flex; flex-direction: column; gap: 0.2rem; }
+            .side-nav nav button {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                width: 100%;
+                padding: 0.7rem 0.9rem;
+                border: none;
+                border-radius: 10px;
+                background: none;
+                font-family: inherit;
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--text-secondary);
+                text-align: left;
+                cursor: pointer;
+                transition: all 0.15s var(--ease);
+            }
+            .side-nav nav button:hover { background: var(--surface); color: var(--text); }
+            .side-nav nav button.active {
+                background: linear-gradient(135deg, var(--lux-red), var(--lux-red-dark));
+                color: white;
+                box-shadow: 0 4px 14px rgba(230, 57, 70, 0.25);
+            }
+            .side-nav nav button .nav-icon { font-size: 1.15rem; width: 1.3rem; text-align: center; }
+            .side-nav nav button .shortcut {
+                margin-left: auto;
+                font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+                font-size: 0.7rem;
+                background: rgba(0,0,0,0.06);
+                padding: 0.15rem 0.4rem;
+                border-radius: 4px;
+                opacity: 0.7;
+            }
+            .side-nav nav button.active .shortcut { background: rgba(255,255,255,0.2); opacity: 0.95; }
+            .side-nav-footer {
+                margin-top: 1.5rem;
+                padding: 1rem 0.9rem;
+                border-top: 1px solid var(--border);
+                font-size: 0.75rem;
+                color: var(--text-muted);
+                line-height: 1.6;
+            }
+            .bottom-nav { display: none; }
+            main { padding: 2rem 0; max-width: 820px; }
+            .home-hero { padding: 2rem 2rem; }
+            .home-hero h2 { font-size: 1.9rem; }
+            .practice-hub { grid-template-columns: repeat(4, 1fr); }
+            .mode-picker { grid-template-columns: repeat(3, 1fr); }
+            .mode-tile { flex-direction: column; text-align: left; }
+            .mode-tile .mode-arrow { display: none; }
+        }
+
+        @media (min-width: 1280px) {
+            .figure-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
-    <script>
-        // Auto-redirect based on device
-        (function() {
-            const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-                || (window.innerWidth <= 768 && 'ontouchstart' in window);
-            const override = new URLSearchParams(window.location.search).get('v');
-            if (override === 'desktop') { window.location.replace('desktop.html'); return; }
-            if (override === 'mobile') { window.location.replace('mobile.html'); return; }
-            if (isMobile) { window.location.replace('mobile.html'); return; }
-            else { window.location.replace('desktop.html'); return; }
-        })();
-    </script>
 </head>
 <body>
-    <div class="landing">
-        <div class="flag"><div class="red"></div><div class="white"></div><div class="blue"></div></div>
-        <h1>Vivre Ensemble</h1>
-        <p>Luxembourg Citizenship Exam Preparation<br>197 questions across all 3 modules</p>
-        <div class="buttons">
-            <a href="desktop.html" class="btn btn-desktop"><span class="icon">&#128187;</span>Desktop Version</a>
-            <a href="mobile.html" class="btn btn-mobile"><span class="icon">&#128241;</span>Mobile Version</a>
+    <header class="app-header">
+        <div class="header-row">
+            <div class="brand">
+                <div class="brand-flag" aria-hidden="true"><div class="r"></div><div class="w"></div><div class="b"></div></div>
+                <div class="brand-text">
+                    <h1>Vivre Ensemble</h1>
+                    <div class="sub">Luxembourg Citizenship Prep</div>
+                </div>
+            </div>
+            <div class="exam-badge"><span>40Q · 60min · pass 28</span></div>
         </div>
-        <p class="auto-note">If JavaScript is enabled, you'll be auto-redirected based on your device.</p>
-        <div class="info">
-            <strong>Real Exam:</strong> 40 multiple-choice questions (10 rights + 20 institutions + 10 history) &middot; 60 minutes &middot; Pass: 28/40 (70%) &middot; Computer-based at Esch-Belval &middot; Free
-        </div>
+    </header>
+
+    <div class="layout">
+        <aside class="side-nav" aria-label="Primary navigation">
+            <div class="side-nav-title">Navigate</div>
+            <nav>
+                <button onclick="showView('home')" data-view="home"><span class="nav-icon">&#127968;</span><span>Home</span><span class="shortcut">1</span></button>
+                <button onclick="showView('story')" data-view="story"><span class="nav-icon">&#128213;</span><span>The Story</span><span class="shortcut">2</span></button>
+                <button onclick="showView('scenarios')" data-view="scenarios"><span class="nav-icon">&#127919;</span><span>Scenarios</span><span class="shortcut">3</span></button>
+                <button onclick="showView('practice')" data-view="practice"><span class="nav-icon">&#9889;</span><span>Practice</span><span class="shortcut">4</span></button>
+                <button onclick="showView('reference')" data-view="reference"><span class="nav-icon">&#128218;</span><span>Reference</span><span class="shortcut">5</span></button>
+            </nav>
+            <div class="side-nav-footer">
+                <div><strong>Real exam:</strong> 40 MCQs</div>
+                <div>10 Rights + 20 Institutions + 10 History</div>
+                <div>60 minutes · Pass 28/40</div>
+                <div>Free · Esch-Belval</div>
+            </div>
+        </aside>
+
+        <main id="app"></main>
     </div>
+
+    <nav class="bottom-nav" aria-label="Primary navigation">
+        <button class="nav-item" onclick="showView('home')" data-view="home"><span class="nav-icon">&#127968;</span>Home</button>
+        <button class="nav-item" onclick="showView('story')" data-view="story"><span class="nav-icon">&#128213;</span>Story</button>
+        <button class="nav-item" onclick="showView('scenarios')" data-view="scenarios"><span class="nav-icon">&#127919;</span>Scenarios</button>
+        <button class="nav-item" onclick="showView('practice')" data-view="practice"><span class="nav-icon">&#9889;</span>Practice</button>
+        <button class="nav-item" onclick="showView('reference')" data-view="reference"><span class="nav-icon">&#128218;</span>Reference</button>
+    </nav>
+
+    <script src="data.js"></script>
+    <script>
+    // ================== STATE ==================
+    const meta = APP_CONTENT.meta;
+
+    // Persistent progress — stored in localStorage under a single versioned key.
+    const PROGRESS_KEY = 'vivre-ensemble-progress-v1';
+    const emptyProgress = () => ({
+        version: 1,
+        chaptersRead: {},         // { ch1: true, ... }
+        scenariosSeen: {},        // { sc_arrest: true, ... }
+        flashStats: {},           // { <cardIndex>: { right: n, wrong: n } }
+        quizAttempts: [],         // [{ ts, module, score, total, isExam }]
+        bestByModule: { 0: 0, 1: 0, 2: 0, 3: 0 },  // best pct per module (0 = all)
+        bestExam: null            // { ts, score, pct }
+    });
+    function loadProgress() {
+        try {
+            const raw = localStorage.getItem(PROGRESS_KEY);
+            if (!raw) return emptyProgress();
+            const p = JSON.parse(raw);
+            if (p.version !== 1) return emptyProgress();
+            return { ...emptyProgress(), ...p };
+        } catch (e) { return emptyProgress(); }
+    }
+    function saveProgress() {
+        try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch (e) { /* quota, ignored */ }
+    }
+    function resetProgress() {
+        if (!confirm('Reset all progress? This clears read chapters, quiz history, and flashcard stats.')) return;
+        progress = emptyProgress();
+        saveProgress();
+        render();
+    }
+
+    function exportProgress() {
+        const payload = { app: 'vivre-ensemble', exportedAt: new Date().toISOString(), progress };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        const stamp = new Date().toISOString().slice(0, 10);
+        a.href = url;
+        a.download = `vivre-ensemble-progress-${stamp}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    function importProgress() {
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'application/json,.json';
+        input.onchange = (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = () => {
+                try {
+                    const payload = JSON.parse(reader.result);
+                    const incoming = payload.progress || payload; // accept raw or wrapped
+                    if (!incoming || typeof incoming !== 'object') throw new Error('Invalid file');
+                    if (incoming.version !== 1) throw new Error('Unsupported file version');
+                    const doMerge = confirm('MERGE with existing progress?\n\nOK = Merge (keep the better of each stat)\nCancel = Replace all existing progress');
+                    if (doMerge) {
+                        progress.chaptersRead = { ...progress.chaptersRead, ...incoming.chaptersRead };
+                        progress.scenariosSeen = { ...progress.scenariosSeen, ...incoming.scenariosSeen };
+                        // Flash stats: sum
+                        Object.entries(incoming.flashStats || {}).forEach(([k, v]) => {
+                            const cur = progress.flashStats[k] || { right: 0, wrong: 0 };
+                            progress.flashStats[k] = { right: cur.right + (v.right || 0), wrong: cur.wrong + (v.wrong || 0) };
+                        });
+                        // Quiz attempts: concat, keep last 50
+                        progress.quizAttempts = [...(progress.quizAttempts || []), ...(incoming.quizAttempts || [])].slice(-50);
+                        // Best by module: max
+                        Object.entries(incoming.bestByModule || {}).forEach(([k, v]) => {
+                            progress.bestByModule[k] = Math.max(progress.bestByModule[k] || 0, v || 0);
+                        });
+                        // Best exam: max pct
+                        if (incoming.bestExam && (!progress.bestExam || incoming.bestExam.pct > progress.bestExam.pct)) {
+                            progress.bestExam = incoming.bestExam;
+                        }
+                    } else {
+                        progress = { ...emptyProgress(), ...incoming };
+                    }
+                    saveProgress();
+                    render();
+                    alert('Progress imported.');
+                } catch (err) {
+                    alert('Could not read that file: ' + err.message);
+                }
+            };
+            reader.readAsText(file);
+        };
+        input.click();
+    }
+
+    let progress = loadProgress();
+
+    const state = {
+        view: 'home',
+        chapterId: null,
+        scenarioId: null,
+        quiz: { qs: [], current: 0, score: 0, answered: false, selected: null, isExam: false, module: 0 },
+        flash: { current: 0, flipped: false, deck: [], indices: [] }
+    };
+
+    // ================== PROGRESS HELPERS ==================
+    function markChapterRead(chId) {
+        progress.chaptersRead[chId] = true;
+        saveProgress();
+        render();
+    }
+    function recordQuizResult() {
+        const q = state.quiz;
+        const pct = Math.round(q.score / q.qs.length * 100);
+        progress.quizAttempts.push({ ts: Date.now(), module: q.module, score: q.score, total: q.qs.length, pct, isExam: q.isExam });
+        if (q.isExam) {
+            if (!progress.bestExam || pct > progress.bestExam.pct) {
+                progress.bestExam = { ts: Date.now(), score: q.score, pct };
+            }
+        } else {
+            const cur = progress.bestByModule[q.module] || 0;
+            if (pct > cur) progress.bestByModule[q.module] = pct;
+        }
+        // Keep only last 50 attempts
+        if (progress.quizAttempts.length > 50) progress.quizAttempts = progress.quizAttempts.slice(-50);
+        saveProgress();
+    }
+    function recordFlash(idx, correct) {
+        const s = progress.flashStats[idx] || { right: 0, wrong: 0 };
+        if (correct) s.right++; else s.wrong++;
+        progress.flashStats[idx] = s;
+        saveProgress();
+    }
+    function chapterReadCount() { return Object.keys(progress.chaptersRead).length; }
+    function progressPct() {
+        // rough combined score: chapters read × 40 pts, scenarios × 15 pts, best exam pct × 45 pts
+        const chScore = (chapterReadCount() / chapters.length) * 40;
+        const scScore = (Object.keys(progress.scenariosSeen).length / scenarios.length) * 15;
+        const exScore = progress.bestExam ? (progress.bestExam.pct / 100) * 45 : 0;
+        return Math.round(chScore + scScore + exScore);
+    }
+
+    // ================== ROUTER ==================
+    function showView(view, arg) {
+        state.view = view;
+        if (view === 'chapter') state.chapterId = arg;
+        if (view === 'scenario') {
+            state.scenarioId = arg;
+            if (arg && !progress.scenariosSeen[arg]) {
+                progress.scenariosSeen[arg] = true;
+                saveProgress();
+            }
+        }
+        updateNav();
+        render();
+        window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+    }
+
+    function updateNav() {
+        // Map deep views back to their parent tab
+        const parent = { chapter: 'story', scenario: 'scenarios', quiz: 'practice', quizActive: 'practice', quizResults: 'practice', flashcards: 'practice', timeline: 'practice', exam: 'practice' }[state.view] || state.view;
+        document.querySelectorAll('[data-view]').forEach(b => {
+            b.classList.toggle('active', b.dataset.view === parent);
+        });
+    }
+
+    function render() {
+        const app = document.getElementById('app');
+        const html = (function() {
+            switch (state.view) {
+                case 'home':       return renderHome();
+                case 'story':      return renderStory();
+                case 'chapter':    return renderChapter();
+                case 'scenarios':  return renderScenarios();
+                case 'scenario':   return renderScenario();
+                case 'practice':   return renderPractice();
+                case 'quiz':       return renderQuizSetup();
+                case 'quizActive': return renderQuiz();
+                case 'quizResults':return renderResults();
+                case 'flashcards': return renderFlashcards();
+                case 'timeline':   return renderTimelineView();
+                case 'reference':  return renderReference();
+                default:           return renderHome();
+            }
+        })();
+        app.innerHTML = `<div class="view">${html}</div>`;
+    }
+
+    // ================== HOME ==================
+    function renderHome() {
+        const modeTiles = [
+            { view: 'story',     icon: '📖', title: 'Read as a story',   desc: 'Six chronological chapters, from a hilltop castle in 963 to the EU capital of today.' },
+            { view: 'scenarios', icon: '🎯', title: 'Learn by scenario', desc: 'Real citizen cases: an arrest, a new law, voting rights, dual citizenship.' },
+            { view: 'reference', icon: '📚', title: 'Just the facts',    desc: 'The classic module-by-module reference. Rights, Institutions, History.' }
+        ];
+        return `
+            <section class="home-hero">
+                <h2>The country you're joining.</h2>
+                <p>${meta.totalQuestions} exam facts across three modules — arranged as a story you'll actually remember. Pick a lens.</p>
+                <div class="exam-stats">
+                    <div class="stat-pill"><span class="num">${meta.exam.questionsOnExam}</span><span class="lbl">Questions</span></div>
+                    <div class="stat-pill"><span class="num">${meta.exam.durationMinutes}m</span><span class="lbl">Duration</span></div>
+                    <div class="stat-pill"><span class="num">${meta.exam.passMark}/${meta.exam.questionsOnExam}</span><span class="lbl">To pass</span></div>
+                </div>
+            </section>
+
+            ${(function() {
+                const anyProgress = chapterReadCount() || progress.quizAttempts.length || Object.keys(progress.scenariosSeen).length;
+                if (!anyProgress) {
+                    return `
+                        <section class="progress-card progress-card-empty">
+                            <div class="progress-head">
+                                <div>
+                                    <div class="progress-label">Continue from another device?</div>
+                                    <div class="progress-empty-note">If you exported your progress elsewhere, import it here.</div>
+                                </div>
+                                <button class="btn-tiny" onclick="importProgress()">Import backup</button>
+                            </div>
+                        </section>
+                    `;
+                }
+                const pct = progressPct();
+                return `
+                    <section class="progress-card">
+                        <div class="progress-head">
+                            <div>
+                                <div class="progress-label">Your progress</div>
+                                <div class="progress-title">${pct}% ready</div>
+                            </div>
+                            <div class="progress-actions">
+                                <button class="btn-tiny" onclick="exportProgress()" title="Download a backup file of your progress">Export</button>
+                                <button class="btn-tiny" onclick="importProgress()" title="Restore progress from a backup file">Import</button>
+                                <button class="btn-tiny btn-tiny-danger" onclick="resetProgress()" title="Reset progress">Reset</button>
+                            </div>
+                        </div>
+                        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                        <div class="progress-stats">
+                            <div class="pstat"><span class="pval">${chapterReadCount()}/${chapters.length}</span><span class="plbl">Chapters read</span></div>
+                            <div class="pstat"><span class="pval">${Object.keys(progress.scenariosSeen).length}/${scenarios.length}</span><span class="plbl">Scenarios seen</span></div>
+                            <div class="pstat"><span class="pval">${progress.bestExam ? progress.bestExam.pct + '%' : '—'}</span><span class="plbl">Best mock exam</span></div>
+                            <div class="pstat"><span class="pval">${progress.quizAttempts.length}</span><span class="plbl">Quizzes taken</span></div>
+                        </div>
+                        <p class="progress-note">Your progress is saved to this browser only. Export to move it to another device.</p>
+                    </section>
+                `;
+            })()}
+
+            <div class="section-label">Choose your lens</div>
+            <div class="mode-picker">
+                ${modeTiles.map(t => `
+                    <button class="mode-tile" onclick="showView('${t.view}')">
+                        <span class="mode-icon">${t.icon}</span>
+                        <span class="mode-body">
+                            <span class="mode-title">${t.title}</span>
+                            <span class="mode-desc">${t.desc}</span>
+                        </span>
+                        <span class="mode-arrow">&rsaquo;</span>
+                    </button>
+                `).join('')}
+            </div>
+
+            <div class="section-label">Your journey</div>
+            ${journey.map(j => `
+                <article class="journey-item">
+                    <header class="journey-header">
+                        <div class="j-icon">${j.icon}</div>
+                        <div>
+                            <h3>${j.title}</h3>
+                            <div class="j-sub">${j.subtitle}</div>
+                        </div>
+                    </header>
+                    <div class="journey-content">
+                        ${renderJourneyContent(j)}
+                        <div class="journey-followup">${j.followUp}</div>
+                    </div>
+                </article>
+            `).join('')}
+
+            <div class="section-label">Jump into practice</div>
+            <div class="practice-hub">
+                <button class="practice-tile" onclick="showView('quiz')"><span class="p-icon">🎓</span><span class="p-title">Quick Quiz</span><span class="p-desc">10–20 Qs, any module</span></button>
+                <button class="practice-tile" onclick="startFlashcards()"><span class="p-icon">🃏</span><span class="p-title">Flashcards</span><span class="p-desc">${flashcards.length} cards</span></button>
+                <button class="practice-tile" onclick="showView('timeline')"><span class="p-icon">🕰️</span><span class="p-title">Timeline</span><span class="p-desc">${timeline.length} key dates</span></button>
+                <button class="practice-tile" onclick="startExam()"><span class="p-icon">🏆</span><span class="p-title">Mock Exam</span><span class="p-desc">Full 40-question sim</span></button>
+            </div>
+        `;
+    }
+
+    function renderJourneyContent(j) {
+        if (j.id === 'j1') {
+            // Fact table
+            return `<dl class="fact-table">${j.content.map(item => `<dt>${item.label}</dt><dd>${item.value}</dd>`).join('')}</dl>`;
+        }
+        if (j.id === 'j2') {
+            return `<p>${j.content[0]}</p>`;
+        }
+        // j3 and j4: bullet list (simple **bold** formatting)
+        return `<ul>${j.content.map(line => `<li>${formatInline(line)}</li>`).join('')}</ul>`;
+    }
+
+    function formatInline(s) {
+        return s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    }
+
+    // ================== STORY ==================
+    function renderStory() {
+        return `
+            <div class="section-label">The Story of Luxembourg</div>
+            <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">Six chapters. 1,062 years. Tap a chapter to open its arc.</p>
+            ${chapters.map(ch => {
+                const read = !!progress.chaptersRead[ch.id];
+                return `
+                    <button class="chapter-card ${read ? 'is-read' : ''}" onclick="showView('chapter', '${ch.id}')" aria-label="Open chapter ${ch.number}${read ? ', already read' : ''}">
+                        <div class="chapter-num">Chapter ${ch.number} ${read ? '<span class="read-badge">✓ Read</span>' : ''}</div>
+                        <div class="chapter-title">${ch.title}</div>
+                        <div class="chapter-era">${ch.era}</div>
+                        <div class="chapter-subtitle">${ch.subtitle}</div>
+                    </button>
+                `;
+            }).join('')}
+        `;
+    }
+
+    function renderChapter() {
+        const ch = chapters.find(c => c.id === state.chapterId);
+        if (!ch) return renderStory();
+        const idx = chapters.findIndex(c => c.id === ch.id);
+        const prev = chapters[idx - 1];
+        const next = chapters[idx + 1];
+
+        const figureCards = (ch.figures || []).map(fid => {
+            const f = figures[fid];
+            if (!f) return '';
+            return `
+                <div class="figure-card">
+                    <h4>${f.name}</h4>
+                    <div class="fig-role">${f.role}</div>
+                    <div class="fig-years">${f.years}</div>
+                    <div class="fig-summary">${f.summary}</div>
+                    <div class="fig-matters">${f.matters}</div>
+                </div>
+            `;
+        }).join('');
+
+        const chapterTimeline = timeline.filter(t => (ch.timelineYears || []).includes(t.year));
+
+        // Pull referenced study sections
+        const relatedSections = (ch.studySections || []).map(ref => {
+            const mod = studyContent[ref.module];
+            if (!mod) return '';
+            const sec = mod.sections[ref.index];
+            if (!sec) return '';
+            return `
+                <details class="study-section">
+                    <summary>${sec.title} <span style="color:var(--text-muted);font-weight:500;font-size:0.78rem;margin-left:0.4rem">${mod.badge.replace('module-','M')}</span></summary>
+                    <div class="content">${sec.content}</div>
+                </details>
+            `;
+        }).join('');
+
+        return `
+            <button class="btn-back" onclick="showView('story')">&larr; All chapters</button>
+            <article class="card card-hero">
+                <div class="chapter-num">Chapter ${ch.number} of ${chapters.length}</div>
+                <h2 style="font-size:1.6rem;letter-spacing:-0.025em;line-height:1.15;margin-bottom:0.3rem">${ch.title}</h2>
+                <div class="chapter-era">${ch.era}</div>
+                <div class="chapter-subtitle" style="margin-top:0.4rem">${ch.subtitle}</div>
+                <div class="chapter-hook">${ch.hook}</div>
+
+                <h3>The arc</h3>
+                <ul class="arc-list">${ch.arc.map(a => `<li>${a}</li>`).join('')}</ul>
+
+                ${ch.rightsUnlocked?.length ? `
+                    <h3>Rights that emerge</h3>
+                    <div class="unlock-row">${ch.rightsUnlocked.map(r => `<span class="unlock-chip rights">${r}</span>`).join('')}</div>
+                ` : ''}
+
+                ${ch.institutionsUnlocked?.length ? `
+                    <h3>Institutions that emerge</h3>
+                    <div class="unlock-row">${ch.institutionsUnlocked.map(r => `<span class="unlock-chip">${r}</span>`).join('')}</div>
+                ` : ''}
+
+                <div class="key-question">
+                    <div class="kq-q">Key question</div>
+                    <div style="font-size:0.95rem;font-weight:700;margin-bottom:0.35rem;color:var(--text)">${ch.keyQuestion}</div>
+                    <div class="kq-a">${ch.keyQuestionAnswer}</div>
+                </div>
+            </article>
+
+            ${ch.culturalNote ? `
+                <article class="card cultural-note">
+                    <div class="cultural-note-label">Cultural note</div>
+                    <h3 style="font-size:1.05rem;margin-bottom:0.5rem">${ch.culturalNote.title}</h3>
+                    <p style="font-size:0.92rem;line-height:1.75;color:var(--text)">${ch.culturalNote.text}</p>
+                </article>
+            ` : ''}
+
+            ${figureCards ? `
+                <div class="section-label">Key figures</div>
+                <div class="figure-grid">${figureCards}</div>
+            ` : ''}
+
+            ${chapterTimeline.length ? `
+                <div class="section-label">On the timeline</div>
+                <div class="card">
+                    <div class="timeline-list">
+                        ${chapterTimeline.map(t => `<div class="tl-item"><span class="tl-year">${t.year}</span><span class="tl-event">${t.event}</span></div>`).join('')}
+                    </div>
+                </div>
+            ` : ''}
+
+            ${relatedSections ? `
+                <div class="section-label">Exam facts from this chapter</div>
+                <div class="card">${relatedSections}</div>
+            ` : ''}
+
+            ${(function() {
+                const related = scenarios.filter(s => (s.relatedChapters || []).includes(ch.id));
+                if (!related.length) return '';
+                return `
+                    <div class="section-label">Explore as scenarios</div>
+                    <div class="card"><p style="font-size:0.87rem;color:var(--text-secondary);margin-bottom:0.75rem">These case studies build on ideas from this chapter.</p>
+                        ${related.map(s => `
+                            <button class="link-row" onclick="showView('scenario','${s.id}')">
+                                <span class="link-icon">${s.icon}</span>
+                                <span class="link-body"><span class="link-title">${s.title}</span><span class="link-sub">Module ${s.module}</span></span>
+                                <span class="link-arrow">&rsaquo;</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            })()}
+
+            ${(function() {
+                const isRead = !!progress.chaptersRead[ch.id];
+                return `
+                    <div style="margin-top:1.5rem;text-align:center">
+                        ${isRead
+                            ? `<span class="read-status">✓ You've marked this chapter as read</span>`
+                            : `<button class="btn btn-secondary" onclick="markChapterRead('${ch.id}')">Mark chapter as read</button>`}
+                    </div>
+                `;
+            })()}
+
+            <div class="quiz-actions" style="margin-top:1.2rem">
+                ${prev ? `<button class="btn btn-secondary" onclick="showView('chapter','${prev.id}')">&larr; Ch. ${prev.number}</button>` : ''}
+                <div style="flex:1"></div>
+                ${next ? `<button class="btn btn-primary" onclick="showView('chapter','${next.id}')">Ch. ${next.number} &rarr;</button>` : `<button class="btn btn-primary" onclick="showView('practice')">Practice quiz &rarr;</button>`}
+            </div>
+        `;
+    }
+
+    // ================== SCENARIOS ==================
+    function renderScenarios() {
+        const moduleGroups = [
+            { module: 1, title: "Rights", desc: "How the Constitution, the European Convention, and the EU Charter protect you in daily life." },
+            { module: 2, title: "Institutions", desc: "How Luxembourg's government, parliament, and courts actually work." },
+            { module: 3, title: "History & Europe", desc: "Turning points from the medieval castle to today's EU institutions." }
+        ];
+        return `
+            <div class="section-label">Scenario Mode</div>
+            <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">${scenarios.length} real citizen cases across the three modules. Each scenario walks through what happens step by step — and where every rule comes from.</p>
+            ${moduleGroups.map(g => {
+                const items = scenarios.filter(s => s.module === g.module);
+                if (!items.length) return '';
+                const seenCount = items.filter(s => progress.scenariosSeen[s.id]).length;
+                return `
+                    <div class="section-label" style="margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between;gap:0.5rem">
+                        <span><span class="module-badge module-${g.module}">Module ${g.module}</span> ${g.title}</span>
+                        <span style="font-weight:600;color:var(--text-muted);text-transform:none;letter-spacing:0.02em">${seenCount}/${items.length}</span>
+                    </div>
+                    <p style="color:var(--text-secondary);font-size:0.82rem;margin-bottom:0.75rem;line-height:1.55">${g.desc}</p>
+                    ${items.map(s => {
+                        const seen = !!progress.scenariosSeen[s.id];
+                        return `
+                            <button class="scenario-card ${seen ? 'is-seen' : ''}" onclick="showView('scenario', '${s.id}')" style="width:100%;text-align:left;font-family:inherit;color:inherit">
+                                <div class="scenario-head">
+                                    <div class="s-icon">${s.icon}</div>
+                                    <h3>${s.title} ${seen ? '<span class="read-badge">✓</span>' : ''}</h3>
+                                </div>
+                                <p class="scenario-premise">${s.premise}</p>
+                            </button>
+                        `;
+                    }).join('')}
+                `;
+            }).join('')}
+        `;
+    }
+
+    function renderScenario() {
+        const s = scenarios.find(x => x.id === state.scenarioId);
+        if (!s) return renderScenarios();
+        return `
+            <button class="btn-back" onclick="showView('scenarios')">&larr; All scenarios</button>
+            <article class="card card-hero">
+                <div class="scenario-head">
+                    <div class="s-icon">${s.icon}</div>
+                    <h2 style="font-size:1.3rem">${s.title}</h2>
+                </div>
+                <p style="font-size:0.98rem;color:var(--text);line-height:1.7;margin-top:0.5rem">${s.premise}</p>
+                <div style="margin-top:0.8rem"><span class="module-badge module-${s.module}">Module ${s.module}</span></div>
+            </article>
+
+            <div class="card">
+                ${s.beats.map(b => `
+                    <div class="beat">
+                        <div class="beat-q">${b.q}</div>
+                        <div class="beat-a">${b.a}</div>
+                    </div>
+                `).join('')}
+            </div>
+
+            ${(function() {
+                const rel = (s.relatedChapters || []).map(id => chapters.find(c => c.id === id)).filter(Boolean);
+                if (!rel.length) return '';
+                return `
+                    <div class="section-label">Historical context</div>
+                    <div class="card"><p style="font-size:0.87rem;color:var(--text-secondary);margin-bottom:0.75rem">Where this scenario fits in the story.</p>
+                        ${rel.map(c => `
+                            <button class="link-row" onclick="showView('chapter','${c.id}')">
+                                <span class="link-icon">📖</span>
+                                <span class="link-body"><span class="link-title">Chapter ${c.number}: ${c.title}</span><span class="link-sub">${c.era}</span></span>
+                                <span class="link-arrow">&rsaquo;</span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            })()}
+
+            <div class="quiz-actions" style="margin-top:1.2rem">
+                <button class="btn btn-secondary" onclick="showView('scenarios')">More scenarios</button>
+                <button class="btn btn-primary" onclick="startQuiz(${s.links.questionsModule})">Test yourself &rarr;</button>
+            </div>
+        `;
+    }
+
+    // ================== PRACTICE HUB ==================
+    function renderPractice() {
+        const wrongCount = Object.values(progress.flashStats).filter(s => s.wrong > s.right).length;
+        return `
+            <div class="section-label">Practice</div>
+            <div class="practice-hub">
+                <button class="practice-tile" onclick="showView('quiz')"><span class="p-icon">🎓</span><span class="p-title">Quiz</span><span class="p-desc">Practice by module</span></button>
+                <button class="practice-tile" onclick="startFlashcards(false)"><span class="p-icon">🃏</span><span class="p-title">Flashcards</span><span class="p-desc">${flashcards.length} cards, shuffled</span></button>
+                <button class="practice-tile" onclick="showView('timeline')"><span class="p-icon">🕰️</span><span class="p-title">Timeline</span><span class="p-desc">${timeline.length} dates</span></button>
+                <button class="practice-tile" onclick="startExam()"><span class="p-icon">🏆</span><span class="p-title">Mock Exam</span><span class="p-desc">40 Qs, full sim</span></button>
+            </div>
+            ${wrongCount ? `
+                <div class="section-label">Review</div>
+                <button class="practice-tile" style="width:100%" onclick="startFlashcards(true)">
+                    <span class="p-icon">🎯</span>
+                    <span class="p-title">Review ${wrongCount} weak card${wrongCount === 1 ? '' : 's'}</span>
+                    <span class="p-desc">Flashcards you've gotten wrong more than right — sorted by weakness first</span>
+                </button>
+            ` : ''}
+            <div class="section-label">How the real exam works</div>
+            <div class="card">
+                <ul>
+                    <li><strong>${meta.exam.questionsOnExam} multiple-choice questions</strong> in ${meta.exam.durationMinutes} minutes</li>
+                    <li>Mix: ${meta.exam.mix.module1} Rights + ${meta.exam.mix.module2} Institutions + ${meta.exam.mix.module3} History</li>
+                    <li>Pass mark: <strong>${meta.exam.passMark}/${meta.exam.questionsOnExam} (${meta.exam.passPct}%)</strong></li>
+                    <li>Computer-based at <strong>${meta.exam.venue}</strong></li>
+                    <li>Cost: <strong>${meta.exam.cost}</strong></li>
+                </ul>
+            </div>
+        `;
+    }
+
+    function renderQuizSetup() {
+        const m1 = questions.filter(q => q.module === 1).length;
+        const m2 = questions.filter(q => q.module === 2).length;
+        const m3 = questions.filter(q => q.module === 3).length;
+        return `
+            <button class="btn-back" onclick="showView('practice')">&larr; Practice</button>
+            <div class="card">
+                <h2>Practice Quiz</h2>
+                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:0.9rem">Pick a module or mix them all.</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.8rem">
+                    <button class="btn btn-primary" onclick="startQuiz(0)">All modules · 20 Qs</button>
+                    <button class="btn btn-secondary" onclick="startQuiz(1)">Rights (${m1})</button>
+                    <button class="btn btn-secondary" onclick="startQuiz(2)">Institutions (${m2})</button>
+                    <button class="btn btn-secondary" onclick="startQuiz(3)">History (${m3})</button>
+                </div>
+                <div class="kbd-hint">Use <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> to answer · <kbd>Enter</kbd> to advance</div>
+            </div>
+        `;
+    }
+
+    function startQuiz(module) {
+        let qs = module === 0 ? [...questions] : questions.filter(q => q.module === module);
+        shuffle(qs);
+        const count = module === 0 ? 20 : Math.min(15, qs.length);
+        state.quiz = { qs: qs.slice(0, count), current: 0, score: 0, answered: false, selected: null, isExam: false, module };
+        state.view = 'quizActive';
+        updateNav(); render();
+    }
+
+    function startExam() {
+        const m1 = questions.filter(q => q.module === 1); shuffle(m1);
+        const m2 = questions.filter(q => q.module === 2); shuffle(m2);
+        const m3 = questions.filter(q => q.module === 3); shuffle(m3);
+        const qs = [...m1.slice(0, meta.exam.mix.module1), ...m2.slice(0, meta.exam.mix.module2), ...m3.slice(0, meta.exam.mix.module3)];
+        shuffle(qs);
+        state.quiz = { qs, current: 0, score: 0, answered: false, selected: null, isExam: true, module: 0 };
+        state.view = 'quizActive';
+        updateNav(); render();
+    }
+
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    function renderQuiz() {
+        const { qs, current, score, answered, selected, isExam } = state.quiz;
+        if (current >= qs.length) return renderResults();
+        const q = qs[current];
+        const progress = (current / qs.length * 100).toFixed(0);
+        const moduleLabels = ['', 'Rights', 'Institutions', 'History'];
+        const keys = ['1', '2', '3', '4'];
+        return `
+            <div class="card">
+                <div class="quiz-header">
+                    <span class="module-badge module-${q.module}">Module ${q.module}: ${moduleLabels[q.module]}</span>
+                    <span class="quiz-meta">${current + 1} / ${qs.length} · Score: ${score}</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+                <p class="quiz-question">${q.q}</p>
+                <div class="quiz-options">
+                    ${q.options.map((opt, i) => {
+                        let cls = 'quiz-option';
+                        if (answered) {
+                            cls += ' disabled';
+                            if (i === q.correct) cls += ' correct';
+                            else if (i === selected && i !== q.correct) cls += ' incorrect';
+                        }
+                        return `<div class="${cls}" onclick="selectAnswer(${i})"><span class="key-hint">${keys[i]}</span><span>${opt}</span></div>`;
+                    }).join('')}
+                </div>
+                ${answered ? `
+                    <div class="quiz-explanation"><strong>${q.correct === selected ? '✓ Correct.' : '✗ Not quite.'}</strong> ${q.explanation}</div>
+                    <div class="quiz-actions"><button class="btn btn-primary btn-full" onclick="nextQuestion()">${current + 1 === qs.length ? 'See results' : 'Next question'} (Enter)</button></div>
+                ` : `<div class="kbd-hint">Press <kbd>1</kbd>–<kbd>4</kbd> to answer</div>`}
+                ${isExam ? `<p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem">Mock Exam — 40 questions, no timer in this practice mode</p>` : ''}
+            </div>
+        `;
+    }
+
+    function selectAnswer(i) {
+        if (state.quiz.answered) return;
+        state.quiz.answered = true;
+        state.quiz.selected = i;
+        if (i === state.quiz.qs[state.quiz.current].correct) state.quiz.score++;
+        render();
+    }
+
+    function nextQuestion() {
+        state.quiz.current++;
+        state.quiz.answered = false;
+        state.quiz.selected = null;
+        if (state.quiz.current >= state.quiz.qs.length) {
+            recordQuizResult();
+            state.view = 'quizResults';
+            updateNav();
+        }
+        render();
+    }
+
+    function renderResults() {
+        const { qs, score, isExam } = state.quiz;
+        const pct = Math.round(score / qs.length * 100);
+        const passThreshold = isExam ? meta.exam.passPct : 60;
+        const passed = pct >= passThreshold;
+        return `
+            <div class="card score-card">
+                <h2 style="font-size:1.2rem;margin-bottom:0.75rem">${isExam ? 'Mock Exam Results' : 'Quiz Results'}</h2>
+                <div class="score-num" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${pct}%</div>
+                <div class="score-label">${score} / ${qs.length} correct${isExam ? ` (need ${meta.exam.passMark} of ${meta.exam.questionsOnExam} to pass)` : ''}</div>
+                <div class="score-verdict" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${passed ? '✓ PASSED' : '✗ NEEDS MORE STUDY'}</div>
+                <div class="score-note">Pass mark: ${passThreshold}%</div>
+                <div class="quiz-actions" style="justify-content:center;margin-top:1.5rem">
+                    <button class="btn btn-secondary" onclick="showView('${isExam ? 'practice' : 'quiz'}')">${isExam ? 'Back to practice' : 'Another quiz'}</button>
+                    <button class="btn btn-primary" onclick="${isExam ? 'startExam()' : 'startQuiz(' + state.quiz.module + ')'}">${isExam ? 'Retry exam' : 'Retry'}</button>
+                </div>
+            </div>
+        `;
+    }
+
+    // ================== FLASHCARDS ==================
+    // Deck holds { card, originalIndex } — the originalIndex is used to persist per-card stats.
+    function buildFlashDeck(prioritizeWrong) {
+        const indexed = flashcards.map((card, i) => ({ card, originalIndex: i }));
+        if (prioritizeWrong) {
+            // Sort by (wrong - right) descending so cards you've flunked come first.
+            indexed.sort((a, b) => {
+                const sa = progress.flashStats[a.originalIndex] || { right: 0, wrong: 0 };
+                const sb = progress.flashStats[b.originalIndex] || { right: 0, wrong: 0 };
+                return (sb.wrong - sb.right) - (sa.wrong - sa.right);
+            });
+        } else {
+            shuffle(indexed);
+        }
+        return indexed;
+    }
+    function startFlashcards(prioritizeWrong) {
+        state.flash = { current: 0, flipped: false, deck: buildFlashDeck(prioritizeWrong), prioritized: !!prioritizeWrong };
+        state.view = 'flashcards';
+        updateNav(); render();
+    }
+
+    function renderFlashcards() {
+        if (!state.flash.deck.length) return startFlashcards(false), '';
+        const entry = state.flash.deck[state.flash.current];
+        const c = entry.card;
+        const stats = progress.flashStats[entry.originalIndex] || { right: 0, wrong: 0 };
+        return `
+            <button class="btn-back" onclick="showView('practice')">&larr; Practice</button>
+            <div class="card">
+                <div class="flashcard-counter">
+                    Card ${state.flash.current + 1} of ${state.flash.deck.length}
+                    ${state.flash.prioritized ? '<span style="color:var(--lux-red);margin-left:0.5rem">· Review mode</span>' : ''}
+                    ${(stats.right || stats.wrong) ? `<span style="color:var(--text-muted);margin-left:0.5rem">· ${stats.right}✓ ${stats.wrong}✗</span>` : ''}
+                </div>
+                <div class="flashcard-wrap">
+                    <div class="flashcard" onclick="flipCard()">
+                        ${state.flash.flipped
+                            ? `<div class="flashcard-back">${c.back}</div>`
+                            : `<div class="flashcard-front">${c.front}</div>`}
+                    </div>
+                </div>
+                ${state.flash.flipped ? `
+                    <div class="flashcard-controls">
+                        <button class="btn btn-secondary" onclick="rateCard(false)" style="color:var(--error);border-color:rgba(214,40,40,0.3)">✗ Got it wrong</button>
+                        <button class="btn btn-primary" onclick="rateCard(true)" style="background:linear-gradient(135deg,var(--success),#218075)">✓ Got it right</button>
+                    </div>
+                ` : `
+                    <div class="flashcard-controls">
+                        <button class="btn btn-secondary" onclick="prevCard()">&larr; Prev</button>
+                        <button class="btn btn-primary" onclick="flipCard()">Reveal</button>
+                        <button class="btn btn-secondary" onclick="nextCard()">Next &rarr;</button>
+                    </div>
+                `}
+                <div class="kbd-hint"><kbd>Space</kbd> flip · <kbd>←</kbd> <kbd>→</kbd> nav · <kbd>J</kbd> wrong · <kbd>K</kbd> right</div>
+            </div>
+        `;
+    }
+    function flipCard() { state.flash.flipped = !state.flash.flipped; render(); }
+    function nextCard() { state.flash.current = (state.flash.current + 1) % state.flash.deck.length; state.flash.flipped = false; render(); }
+    function prevCard() { state.flash.current = (state.flash.current - 1 + state.flash.deck.length) % state.flash.deck.length; state.flash.flipped = false; render(); }
+    function shuffleCards() { shuffle(state.flash.deck); state.flash.current = 0; state.flash.flipped = false; render(); }
+    function rateCard(correct) {
+        const entry = state.flash.deck[state.flash.current];
+        if (!entry) return;
+        recordFlash(entry.originalIndex, correct);
+        // Auto-advance
+        state.flash.flipped = false;
+        state.flash.current = (state.flash.current + 1) % state.flash.deck.length;
+        render();
+    }
+
+    // ================== TIMELINE ==================
+    function renderTimelineView() {
+        return `
+            <button class="btn-back" onclick="showView('practice')">&larr; Practice</button>
+            <div class="card">
+                <h2>Timeline of Luxembourg</h2>
+                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1rem">${timeline.length} key dates &mdash; from Siegfried's castle to the present day.</p>
+                <div class="timeline-list">
+                    ${timeline.map(t => `<div class="tl-item"><span class="tl-year">${t.year}</span><span class="tl-event">${t.event}</span></div>`).join('')}
+                </div>
+            </div>
+        `;
+    }
+
+    // ================== REFERENCE ==================
+    function renderReference() {
+        let html = `<div class="section-label">Study Reference</div>
+        <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">The three official modules, section by section. Every fact the exam can ask.</p>`;
+        for (const key of ['module1', 'module2', 'module3']) {
+            const m = studyContent[key];
+            html += `<article class="card">
+                <div class="module-header">
+                    <span class="module-badge ${m.badge}">${m.badge.replace('module-','Module ')}</span>
+                </div>
+                <h2>${m.title}</h2>
+                ${m.sections.map(s => `
+                    <details class="study-section">
+                        <summary>${s.title}</summary>
+                        <div class="content">${s.content}</div>
+                    </details>
+                `).join('')}
+            </article>`;
+        }
+        return html;
+    }
+
+    // ================== KEYBOARD ==================
+    document.addEventListener('keydown', e => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        const k = e.key;
+        // Global nav
+        if (!e.ctrlKey && !e.metaKey && !e.altKey) {
+            const shortcutMap = { '1': 'home', '2': 'story', '3': 'scenarios', '4': 'practice', '5': 'reference' };
+            if (shortcutMap[k] && state.view !== 'quizActive') { showView(shortcutMap[k]); return; }
+        }
+        // Flashcards
+        if (state.view === 'flashcards') {
+            if (k === ' ' || k === 'Enter') { e.preventDefault(); flipCard(); }
+            if (k === 'ArrowRight' || k === 'l') nextCard();
+            if (k === 'ArrowLeft' || k === 'h') prevCard();
+            if (k === 's' || k === 'S') shuffleCards();
+            if (state.flash.flipped) {
+                if (k === 'j' || k === 'J') rateCard(false);
+                if (k === 'k' || k === 'K') rateCard(true);
+            }
+        }
+        // Quiz
+        if (state.view === 'quizActive') {
+            if (!state.quiz.answered) {
+                if (['1','2','3','4'].includes(k)) selectAnswer(parseInt(k) - 1);
+            } else {
+                if (k === 'Enter' || k === 'n' || k === ' ') { e.preventDefault(); nextQuestion(); }
+            }
+        }
+    });
+
+    // ================== INIT ==================
+    render();
+    updateNav();
+    </script>
 </body>
 </html>

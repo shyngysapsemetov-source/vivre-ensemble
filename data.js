@@ -752,3 +752,953 @@ const timeline = [
     {year: "2003", event: "University of Luxembourg founded"},
     {year: "2008", event: "Dual citizenship permitted"},
 ];
+
+// ==========================================================================
+// NARRATIVE LAYER (v2) — three lenses over the same underlying content.
+//   • chapters  → chronological Story view
+//   • figures   → biographical cards referenced from chapters
+//   • scenarios → case-based Scenario view
+//   • journey   → 4-part personal framing for the Home / intro
+// All narrative items reference existing studyContent, timeline, and questions
+// by key so a single fact never lives in two places.
+// ==========================================================================
+
+const figures = {
+    siegfried: {
+        name: "Count Siegfried",
+        years: "c. 922 – 998",
+        role: "Founder of Luxembourg",
+        summary: "In 963 he swapped land with the Abbey of St Maximin to acquire a small Roman-era fortification on the Bock promontory. He called it Lucilinburhuc — 'small castle' — and from that rock the Duchy would grow.",
+        matters: "Every Luxembourger dates the country from Siegfried's deed of exchange. 963 is Luxembourg's year zero."
+    },
+    henry_vii: {
+        name: "Henry VII",
+        years: "c. 1275 – 1313",
+        role: "Count of Luxembourg, Holy Roman Emperor",
+        summary: "In 1308 the German electors chose Count Henry of Luxembourg as their king. Four years later he was crowned Emperor in Rome — the first of four Luxembourg emperors.",
+        matters: "For a century the small castle on the Bock produced European emperors. This is why Charles IV, an emperor, was able to raise the county to a Duchy in 1354."
+    },
+    john_the_blind: {
+        name: "John the Blind",
+        years: "1296 – 1346",
+        role: "King of Bohemia, Count of Luxembourg",
+        summary: "Henry VII's son. Went blind late in life yet insisted on charging into the Battle of Crécy (1346), where he was killed. Buried in Luxembourg City.",
+        matters: "Luxembourg's most famous medieval figure. His tomb is still in Notre-Dame Cathedral."
+    },
+    marie_adelaide: {
+        name: "Grand Duchess Marie-Adélaïde",
+        years: "1894 – 1924",
+        role: "Grand Duchess 1912–1919",
+        summary: "Reigned when Germany invaded in 1914. Her decision to meet Emperor Wilhelm II was later called collaboration. When revolution threatened the monarchy after WWI, she abdicated in favour of her sister.",
+        matters: "The 1919 crisis nearly ended the monarchy. A referendum kept it (78% for). Marie-Adélaïde is the reason the House of Nassau still reigns today."
+    },
+    charlotte: {
+        name: "Grand Duchess Charlotte",
+        years: "1896 – 1985",
+        role: "Grand Duchess 1919–1964",
+        summary: "Took the throne from her sister at 23. Led the country in exile during WWII, broadcasting to occupied Luxembourg on BBC radio. Returned in 1945 to a hero's welcome.",
+        matters: "Charlotte is the national symbol of resistance. Ask an older Luxembourger who they mean by 'the Grand Duchess' and this is who they mean."
+    },
+    henri: {
+        name: "Grand Duke Henri",
+        years: "1955 – present",
+        role: "Grand Duke since 2000",
+        summary: "Son of Grand Duke Jean. Acceded to the throne on 7 October 2000. Married to María Teresa Mestre (Cuban-born). Announced in 2024 that Prince Guillaume will take over.",
+        matters: "The Grand Duke you'll sing the anthem for. Inviolable — cannot be prosecuted — but every act must be countersigned by a minister."
+    },
+    juncker: {
+        name: "Jean-Claude Juncker",
+        years: "1954 – present",
+        role: "PM 1995–2013, EC President 2014–2019",
+        summary: "Longest-serving Luxembourg PM. The third Luxembourger to lead the European Commission, after Gaston Thorn (1981–85) and Jacques Santer (1995–99).",
+        matters: "Three EC presidents from a country of ~640,000. This is Luxembourg's outsize European weight in one statistic."
+    },
+    siegfried_castle_dance: {
+        name: "Melusina",
+        years: "legendary",
+        role: "The mermaid of the Alzette",
+        summary: "Legend says Siegfried married a mysterious woman on condition he never watch her bathe on Saturdays. When he did, he saw she was half fish. She dove into the Alzette and Luxembourg was left with a fortress but no queen.",
+        matters: "Cultural detail. Every Luxembourg schoolchild learns this. It's the story behind Siegfried's founding of the castle."
+    },
+    charles_iv: {
+        name: "Charles IV",
+        years: "1316 – 1378",
+        role: "Holy Roman Emperor, King of Bohemia",
+        summary: "Grandson of Henry VII, son of John the Blind. As Emperor in 1354 he raised his family's homeland from a County to a Duchy — one of his last acts for Luxembourg before focusing his reign on Prague, which he made his imperial capital.",
+        matters: "The reason Luxembourg is called a Duchy and not a County. His signature elevated the territory's rank in the medieval European hierarchy."
+    },
+    william_i: {
+        name: "William I of Orange-Nassau",
+        years: "1772 – 1843",
+        role: "King of the Netherlands, first Grand Duke",
+        summary: "The Congress of Vienna gave him the Netherlands in 1815 and threw in Luxembourg as a personal possession. He treated it as a Dutch province, not a Duchy. When the Belgians revolted in 1830, most of Luxembourg tried to join them — the 1839 Treaty of London ended that by splitting the country in half.",
+        matters: "Explains why Luxembourg's 'personal union with the Netherlands' lasted 75 years despite being independent on paper from 1839."
+    },
+    adolphe: {
+        name: "Adolphe of Nassau",
+        years: "1817 – 1905",
+        role: "First Grand Duke of the national dynasty (1890–1905)",
+        summary: "When Dutch King William III died in 1890 without a male heir, Luxembourg's crown couldn't pass to his daughter (the Nassau family compact forbade female succession at the time). It jumped to a distant cousin — Adolphe — who became the first Grand Duke to actually live in Luxembourg.",
+        matters: "1890 = the year Luxembourg stopped sharing its monarch with the Netherlands. The current royal family descends from Adolphe."
+    },
+    dicks_lentz: {
+        name: "Michel Lentz",
+        years: "1820 – 1893",
+        role: "Poet, author of 'Ons Heemecht'",
+        summary: "Bank clerk turned Luxembourgish-language poet. Wrote the national anthem 'Ons Heemecht' (Our Homeland) in 1859. Also wrote 'De Feierwon' — an unofficial second anthem about Luxembourg's first railway line.",
+        matters: "One of the reasons Luxembourgish exists as a written language. His generation (with 'Dicks' Edmond de la Fontaine) invented modern Luxembourgish literature."
+    },
+    schuman: {
+        name: "Robert Schuman",
+        years: "1886 – 1963",
+        role: "French statesman, born in Luxembourg",
+        summary: "Born in Clausen (Luxembourg City) to a Luxembourg-born father who acquired French citizenship. Became French Foreign Minister and delivered the 9 May 1950 declaration that proposed pooling French and German coal and steel — the seed of the European Union.",
+        matters: "'Europe Day' (9 May) commemorates his declaration. Luxembourg is proud to claim him even though he served France."
+    },
+    grand_duke_jean: {
+        name: "Grand Duke Jean",
+        years: "1921 – 2019",
+        role: "Grand Duke 1964 – 2000",
+        summary: "Charlotte's son. Fought as a volunteer with the Irish Guards during WWII and landed in Normandy in 1944. Reigned for 36 years, then abdicated in favour of his son Henri in October 2000.",
+        matters: "Bridge between wartime and modern Luxembourg. Under Jean, the country transitioned from a steel economy to a financial centre."
+    }
+};
+
+const chapters = [
+    {
+        id: "ch1",
+        number: 1,
+        title: "Birth of a Fortress",
+        era: "963 – 1443",
+        subtitle: "How a rock in the woods became a European power",
+        hook: "It began with a swap. In 963 a count named Siegfried traded some land with the Abbey of St Maximin in Trier for a hilltop ruin above the Alzette river — a Roman-era fortification his contemporaries called Lucilinburhuc, 'small castle'. It was strategically useless in the abbey's eyes and cheap to give up. Within four hundred years, Siegfried's descendants would wear the imperial crown, place four emperors on the throne of the Holy Roman Empire, and have their small castle promoted from a County to a full Duchy. Then, in 1443, they lost it all to Burgundy. The name Lucilinburhuc had by then simplified in local speech to Lëtzebuerg — Luxembourg.",
+        arc: [
+            "Siegfried's exchange (963) — the Duchy's zero point",
+            "The medieval Counts (963 – 1308) — expansion from a single tower",
+            "Four emperors from the House of Luxembourg (1308 – 1437)",
+            "John the Blind dies at Crécy (1346) — Luxembourg's most legendary king",
+            "Charles IV elevates the County to a Duchy (1354)",
+            "Wenceslas I — first titular Duke",
+            "Burgundy conquers Luxembourg (1443) — end of self-rule"
+        ],
+        studySections: [
+            { module: "module3", index: 0 }
+        ],
+        timelineYears: ["963", "1308", "1354", "1443"],
+        figures: ["siegfried", "henry_vii", "john_the_blind", "charles_iv", "siegfried_castle_dance"],
+        rightsUnlocked: [],
+        institutionsUnlocked: ["The count / duke as personal ruler"],
+        keyQuestion: "Why is 963 the founding date?",
+        keyQuestionAnswer: "Because that's the year the deed of exchange gave Siegfried the fortification he called Lucilinburhuc — the name that eventually became Luxembourg. There was no formal 'founding'; historians treat the deed as the earliest documented moment when 'Luxembourg' existed as a place with a lord.",
+        culturalNote: {
+            title: "The legend of Melusina",
+            text: "Local legend says Siegfried married a mysterious woman on the condition he would never watch her bathe on Saturdays. Curiosity won. When he peeked, he saw she was half fish. She dove into the Alzette river and was never seen again. The story is a Luxembourgish variant of a widespread European folk motif — but every child in the country grows up with it, and Melusina is the unofficial patron of Luxembourg City. You'll see her statue on the riverbank below the Bock."
+        },
+        modules: [3]
+    },
+    {
+        id: "ch2",
+        number: 2,
+        title: "Ruled by Foreigners",
+        era: "1443 – 1815",
+        subtitle: "372 years without sovereignty",
+        hook: "For nearly four centuries no one asked Luxembourgers who should govern them. The Duchy passed through Burgundian, Spanish, French, and Austrian hands like a chess piece on the European board — the price of sitting between France and the German lands. The fortress got bigger with each occupier: Spanish engineers layered onto Burgundian walls, French designers added Vauban's star bastions in 1684, the Austrians reinforced it again after 1714. By 1795, when Revolutionary France dissolved the Duchy and turned it into the 'Département des Forêts', Luxembourg City had become one of the strongest fortresses in Europe — the 'Gibraltar of the North'. Its own people had almost no say in any of it.",
+        arc: [
+            "Burgundian rule (1443 – 1477) — Philip the Good's conquest",
+            "Habsburg inheritance through marriage (1477) — Mary of Burgundy weds Maximilian",
+            "Charles V splits the empire (1556) — Luxembourg goes to Spanish Habsburgs",
+            "Treaty of the Pyrenees (1659) — Thionville and southern territory to France",
+            "Louis XIV briefly conquers (1684 – 1697) — Vauban rebuilds the fortress",
+            "Austrian Habsburgs (1714 – 1795) — via the Treaty of Utrecht",
+            "French Republic abolishes the Duchy (1795 – 1814) — 'Département des Forêts'"
+        ],
+        studySections: [
+            { module: "module3", index: 1 }
+        ],
+        timelineYears: ["1795"],
+        figures: [],
+        rightsUnlocked: [],
+        institutionsUnlocked: [],
+        keyQuestion: "Did Luxembourg ever get to choose its ruler in this period?",
+        keyQuestionAnswer: "Never. Sovereignty passed through inheritance, marriage, and conquest. The 1795 French annexation dissolved the Duchy entirely — Luxembourg became the 'Département des Forêts' and Luxembourgers officially became French citizens for 19 years, until Napoleon's fall in 1814.",
+        culturalNote: {
+            title: "The fortress that outgrew the country",
+            text: "Successive occupiers made the Luxembourg City fortress so formidable that by the 18th century it had three concentric rings of defences, 24 forts, and 23 km of underground casemates (tunnels) carved into the sandstone. Those tunnels are now a UNESCO World Heritage site (inscribed 1994). When you tour the Bock casemates today, most of what you see is Spanish, French, or Austrian engineering — not Luxembourgish."
+        },
+        modules: [3]
+    },
+    {
+        id: "ch3",
+        number: 3,
+        title: "Becoming a Nation",
+        era: "1815 – 1890",
+        subtitle: "Independence, constitutions, and a dynasty of one's own",
+        hook: "In 1815 the Congress of Vienna drew a new country onto the map — the Grand Duchy of Luxembourg, elevated from a mere Duchy so its Dutch king could match Prussia and Austria in rank. But it was still owned by someone else. Nine years of Belgian revolution followed, then a 1839 Treaty of London that cut two-thirds of the territory to Belgium in exchange for actual independence for what remained. From that shrunken core Luxembourg wrote its first constitutions (1841, 1848, 1856, 1868 — the current one), started building railways and steel mills, dismantled its famous fortress under international pressure in 1867, and finally acquired its own royal family in 1890 when a distant Nassau cousin was called in to succeed a Dutch king who had left no male heir. In 75 years the country went from Dutch province to European steel power with its own monarch.",
+        arc: [
+            "Congress of Vienna creates the Grand Duchy (1815) — under Dutch personal union",
+            "Belgian Revolution (1830) — most of Luxembourg tries to join Belgium",
+            "Treaty of London — official birthday (19 April 1839)",
+            "First constitutional charter (1841) — granted, not agreed",
+            "First liberal Constitution (1848) — modelled on Belgium's",
+            "Zollverein membership (1842) — economic integration with Germany",
+            "The Luxembourg Crisis and permanent neutrality (1867)",
+            "Current Constitution adopted (1868) — still in force",
+            "Steel industry begins (1879) — Emile Metz and the Thomas process",
+            "Adolphe of Nassau starts the national dynasty (1890)"
+        ],
+        studySections: [
+            { module: "module3", index: 2 },
+            { module: "module2", index: 0 }
+        ],
+        timelineYears: ["1815", "1839", "1842", "1848", "1867", "1868", "1879", "1890"],
+        figures: ["william_i", "adolphe", "dicks_lentz"],
+        rightsUnlocked: [
+            "First-generation civil & political rights (1848 constitution)",
+            "Freedom of press and assembly (1848)"
+        ],
+        institutionsUnlocked: [
+            "Grand Duke as head of state",
+            "Chamber of Deputies (parliament)",
+            "Council of State",
+            "Current 1868 Constitution"
+        ],
+        keyQuestion: "Why is 19 April 1839 the 'birthday'?",
+        keyQuestionAnswer: "Because the Treaty of London on that date recognised the Grand Duchy as an independent state — smaller than before (Belgium took two-thirds of the territory, including the French-speaking western half), but sovereign for the first time in 372 years. The remaining territory is roughly today's Luxembourg.",
+        culturalNote: {
+            title: "Ons Heemecht — the anthem born in a coffee house",
+            text: "In 1859 Michel Lentz, a Luxembourg City bank clerk, wrote the poem 'Ons Heemecht' ('Our Homeland') at a table in a café. Composer Jean-Antoine Zinnen set it to music. It was first performed publicly in 1864 in Ettelbruck, at a music festival meant to celebrate Luxembourgish identity. The song became so beloved that the constitution now recognises it as the national anthem — but only the first and fourth stanzas are sung on official occasions. On National Day (23 June), you'll hear both. The rest is worth reading for the imagery: rivers, oak trees, and vineyards."
+        },
+        modules: [3, 1, 2]
+    },
+    {
+        id: "ch4",
+        number: 4,
+        title: "Two Wars, Two Invasions",
+        era: "1914 – 1945",
+        subtitle: "How a neutral country survived being conquered twice in thirty years",
+        hook: "Neutrality — guaranteed by treaty since 1867 — was supposed to keep Luxembourg out of European wars. Instead the country was invaded on the first day of both world wars. In August 1914 Germany rolled through on its way to France; the young Grand Duchess Marie-Adélaïde received the Kaiser at her palace, an act that would eventually cost her the throne. In May 1940 Germany came again, this time to stay — and this time Grand Duchess Charlotte and her government escaped to London, where she broadcast to occupied Luxembourg on the BBC through the entire war. 11,000 young Luxembourgish men were conscripted into the Wehrmacht by force. 800 of the country's Jewish residents were deported and murdered. When the Americans arrived on 9 September 1944, Luxembourg had lost 2% of its total population — and its neutrality was over.",
+        arc: [
+            "Germany violates neutrality (2 August 1914) — the Schlieffen Plan through Luxembourg",
+            "Marie-Adélaïde meets the Kaiser — the collaboration accusation",
+            "Grand Duchess Marie-Adélaïde abdicates (January 1919)",
+            "Charlotte succeeds her sister; a republic movement briefly threatens the monarchy",
+            "September 1919 referendum: 78% keep the monarchy, 80% keep the customs union with Belgium",
+            "Universal suffrage introduced (1919) — women vote for the first time",
+            "Belgium-Luxembourg Economic Union (BLEU, 1921) — replacing the German Zollverein",
+            "1937 'Muzzle Law' referendum: 50.7% reject banning the Communist Party",
+            "Nazi invasion (10 May 1940)",
+            "Charlotte and government in exile in London, then Montreal; radio broadcasts to the resistance",
+            "Forced conscription: ~11,000 young men drafted into the Wehrmacht",
+            "General strike (August 1942) against Germanisation policies",
+            "Liberation (9 September 1944) & Battle of the Bulge (December 1944)",
+            "Full liberation (22 February 1945)"
+        ],
+        studySections: [
+            { module: "module3", index: 4 },
+            { module: "module3", index: 5 },
+            { module: "module3", index: 6 }
+        ],
+        timelineYears: ["1914", "1919", "1921", "1929", "1937", "1940", "1944", "1945"],
+        figures: ["marie_adelaide", "charlotte"],
+        rightsUnlocked: [
+            "Universal suffrage (1919) — men and women, no property qualification",
+            "Compulsory voting (1919)"
+        ],
+        institutionsUnlocked: [
+            "Government-in-exile as a model of legitimate authority under occupation"
+        ],
+        keyQuestion: "Why did the monarchy survive 1919?",
+        keyQuestionAnswer: "A referendum. After Marie-Adélaïde was blamed for the 1914 invasion, revolutionary movements briefly pushed for a republic. When the country was asked directly on 28 September 1919, 78% voted to keep the monarchy — with her sister Charlotte on the throne. A separate question on the same ballot rejected a customs union with France by 73%; voters chose Belgium instead, which became the BLEU in 1921.",
+        culturalNote: {
+            title: "The general strike of 1942",
+            text: "On 31 August 1942, in response to Nazi Germany's decree conscripting young Luxembourgers into the Wehrmacht, workers and students launched a spontaneous general strike — the only one in occupied Western Europe. Nazi reprisals were severe: 21 strikers were shot, hundreds deported. The strike is commemorated every year and is a foundational memory of the Luxembourgish resistance. If you visit the National Museum of the Resistance in Esch-sur-Alzette, this is the story it centres."
+        },
+        modules: [3]
+    },
+    {
+        id: "ch5",
+        number: 5,
+        title: "Building Europe",
+        era: "1945 – 2000",
+        subtitle: "From steel to Schengen: how a small country founded a continent",
+        hook: "In 1945 Luxembourg made two irreversible choices. It gave up the neutrality that had failed to protect it twice. And it decided that a country of half a million people between France and Germany could only be safe inside a larger structure. Over the next fifty years the country founded, or joined at founding, every major European institution: the UN (1945), NATO and the Council of Europe (1949), the ECSC (1951 — with Luxembourg as headquarters), the EEC (1957), Schengen (signed on a Luxembourg riverboat in 1985), and the euro (1999). Along the way its steel industry — 25,000 jobs and a third of GDP in 1970 — collapsed and reinvented itself as a financial centre. By 2000 the country was the world's second-largest investment fund market. Three Luxembourgers had served as presidents of the European Commission.",
+        arc: [
+            "UN founding member (1945)",
+            "Neutrality renounced (1948) — Marshall Plan aid follows",
+            "NATO and Council of Europe founding member (1949)",
+            "European Coal and Steel Community founded, Luxembourg = HQ (1951)",
+            "Treaties of Rome create the EEC (1957) — Luxembourg founding member",
+            "1970s peak steel production: ~30% of GDP, ~17% of workforce",
+            "Steel crisis begins (1974) — jobs shed for two decades",
+            "Language law (1984) — Luxembourgish becomes the national language",
+            "Schengen Agreement signed in Schengen village (1985) — force 1995",
+            "Gaston Thorn (1981-85), then Jacques Santer (1995-99), lead the European Commission",
+            "Maastricht Treaty creates the EU (1992)",
+            "ARBED steel giant survives via merger — becomes Arcelor (2002), then ArcelorMittal (2006)",
+            "Last blast furnace closed (1997)",
+            "Euro adopted (1999 electronic, 2002 cash)"
+        ],
+        studySections: [
+            { module: "module3", index: 7 },
+            { module: "module3", index: 8 }
+        ],
+        timelineYears: ["1948", "1949", "1951", "1957", "1974", "1984", "1985", "1992", "1999"],
+        figures: ["schuman", "grand_duke_jean", "juncker"],
+        rightsUnlocked: [
+            "Free movement of workers within the EEC (from 1968)",
+            "Freedom to work in any Schengen state without border checks (from 1995)"
+        ],
+        institutionsUnlocked: [
+            "EU institutions in Kirchberg (CJEU, EIB, Eurostat, Court of Auditors, Publications Office...)",
+            "Luxembourgish as the national language"
+        ],
+        keyQuestion: "Why does Luxembourg host so many EU bodies?",
+        keyQuestionAnswer: "Because it founded them. Being at the table in 1951 (ECSC) and 1957 (EEC) meant that when institutions were placed geographically, Luxembourg got its share alongside Brussels and Strasbourg — and it never let them go. Today Kirchberg (a plateau on the northeast edge of the city) is essentially an EU district: Court of Justice, European Investment Bank, Court of Auditors, Eurostat, General Secretariat of the European Parliament, and the Publications Office all sit there.",
+        culturalNote: {
+            title: "Schengen: the village that named a treaty",
+            text: "The 1985 Schengen Agreement — the treaty that eventually abolished passport checks across most of continental Europe — was signed on the MS Princesse Marie-Astrid, a boat moored on the Moselle river next to the tiny wine-growing village of Schengen (population ~500). The venue mattered: the boat was in international water where France, Germany, and Luxembourg meet. Today Schengen has a small European Museum where you can see the signing table. The village name is now a metonym for open borders in about 26 languages."
+        },
+        modules: [3, 2]
+    },
+    {
+        id: "ch6",
+        number: 6,
+        title: "Modern Luxembourg",
+        era: "2000 – today",
+        subtitle: "A country of many nationalities, three languages, and outsize influence",
+        hook: "Today 47% of Luxembourg's residents are foreign nationals — from more than 160 countries — and every working day another 200,000 cross-border commuters arrive from France, Belgium, and Germany. Three languages are official: Luxembourgish (national), French (legislation), and German (administrative and media). The financial sector produces around a quarter of GDP, making Luxembourg the world's second-largest investment fund centre after the United States. A 2023 constitutional revision modernised the fundamental text for the first time in 75 years. Dual citizenship has been permitted since 2008 — meaning you can keep your current passport when you naturalise. In 2024, Grand Duke Henri announced that his son Prince Guillaume will take over as regent, then Grand Duke — the country's next generation of monarchy.",
+        arc: [
+            "Grand Duke Henri accedes (7 October 2000)",
+            "University of Luxembourg founded (2003) — the country finally has its own university",
+            "Nationality law reformed (2008) — dual citizenship permitted",
+            "Same-sex marriage legalised (2014) — PM Xavier Bettel later marries his partner",
+            "2015 referendum: voting rights for foreign residents rejected (~80% against)",
+            "Constitutional revision (2023) — first major overhaul of the 1868 Constitution",
+            "Free public transport nationwide (2020) — first country in the world",
+            "Guillaume named regent (2024) — heir apparent takes over official duties",
+            "47% foreign residents today — over 160 nationalities"
+        ],
+        studySections: [
+            { module: "module2", index: 0 },
+            { module: "module3", index: 9 }
+        ],
+        timelineYears: ["2000", "2003", "2008"],
+        figures: ["henri"],
+        rightsUnlocked: [
+            "Dual citizenship (2008)",
+            "Same-sex marriage and adoption (2014)",
+            "Right to gender identity self-determination (progressive reforms 2018)"
+        ],
+        institutionsUnlocked: [
+            "Modern Luxembourg polity: 47% foreign, 3 official languages, free public transport",
+            "Post-2023 constitutional framework"
+        ],
+        keyQuestion: "Can I keep my current citizenship if I naturalise?",
+        keyQuestionAnswer: "Yes — Luxembourg has permitted dual citizenship since 2008. Whether your other country lets you keep its passport is a separate question (their law, not Luxembourg's). Some countries — Germany, historically, and Japan — automatically strip citizenship when their nationals naturalise elsewhere. Check yours.",
+        culturalNote: {
+            title: "The country that speaks three languages, badly",
+            text: "Luxembourg's trilingual system works surprisingly well but produces strange edge cases. Laws are written only in French — even for laws about the Luxembourgish language. Schools teach in German at first, add French later, and use Luxembourgish for oral instruction. Newspapers print in a mix of all three, sometimes on the same page. Cross-border commuters make everything more complicated: a French speaker from Metz, a German from Trier, and a Belgian from Arlon may all be in the same office, using French as the compromise. This is why you're only being tested on A2 Luxembourgish speaking + B1 listening for naturalisation, not full fluency."
+        },
+        modules: [3, 2]
+    }
+];
+
+const scenarios = [
+    {
+        id: "sc_arrest",
+        title: "You are detained at 3 a.m.",
+        icon: "⚖️",
+        module: 1,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "Police pick you up outside a bar at 3 a.m. You are held in custody. What protects you, and where do those protections come from?",
+        beats: [
+            {
+                q: "What happens next legally?",
+                a: "Within 24 hours you must be presented to an investigating judge (juge d'instruction). This is a constitutional guarantee — the state cannot hold you indefinitely."
+            },
+            {
+                q: "What rights kick in immediately?",
+                a: "Presumption of innocence. Right to a lawyer. Right to be informed of the accusation in a language you understand. Right to remain silent. These are 'first-generation' civil rights — defendant's rights."
+            },
+            {
+                q: "Where do these rights come from?",
+                a: "Three overlapping sources: the Luxembourg Constitution (1868, heavily amended), the European Convention on Human Rights (Council of Europe, 1951 — Articles 5 and 6), and the EU Charter of Fundamental Rights (2000)."
+            },
+            {
+                q: "If Luxembourg violates these rights, where can you go?",
+                a: "After exhausting domestic remedies, you can apply to the European Court of Human Rights in Strasbourg. For EU-law questions, national courts can refer to the Court of Justice of the EU in Luxembourg City."
+            }
+        ],
+        links: {
+            studySections: [{ module: "module1", index: 0 }, { module: "module1", index: 1 }, { module: "module1", index: 3 }],
+            questionsModule: 1
+        }
+    },
+    {
+        id: "sc_new_law",
+        title: "A minister proposes a new law",
+        icon: "📜",
+        module: 2,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "The Minister for Housing wants to cap rent increases. What actually happens between 'idea' and 'law of the land'?",
+        beats: [
+            {
+                q: "Who can initiate the bill?",
+                a: "A government minister files a projet de loi. An MP could alternatively file a proposition de loi. Ministers do the vast majority in practice."
+            },
+            {
+                q: "Who reviews it first?",
+                a: "The Council of State (21 members, appointed by the Grand Duke). It must give an opinion on all legislation before Parliament votes. Its opinion is advisory — but it holds a suspensive veto."
+            },
+            {
+                q: "How many votes in Parliament?",
+                a: "Two. A first vote, then a second at least 3 months later — unless the Council of State grants a dispensation. Chamber of Deputies has 60 MPs elected for 5-year terms."
+            },
+            {
+                q: "How does it become law?",
+                a: "The Grand Duke sanctions and promulgates the law. It is then published in the Mémorial (official gazette). Only after publication does it take legal effect."
+            },
+            {
+                q: "Can citizens block it?",
+                a: "Not directly. There is no direct public recourse to the Constitutional Court. Only a court hearing a case can refer a constitutional question."
+            }
+        ],
+        links: {
+            studySections: [{ module: "module2", index: 8 }, { module: "module2", index: 3 }, { module: "module2", index: 4 }],
+            questionsModule: 2
+        }
+    },
+    {
+        id: "sc_vote",
+        title: "You want to vote",
+        icon: "🗳️",
+        module: 2,
+        relatedChapters: ["ch4", "ch6"],
+        premise: "You've lived in Luxembourg for six years. Which elections can you vote in, and when do the rules change?",
+        beats: [
+            {
+                q: "National elections?",
+                a: "Only if you are a Luxembourg national, at least 18, and enjoy civic rights. This is the strictest threshold — nationality-based."
+            },
+            {
+                q: "European Parliament?",
+                a: "Any EU national who has been domiciled in Luxembourg for 5+ years can vote (Luxembourg elects 6 MEPs). Non-EU nationals cannot vote in European elections."
+            },
+            {
+                q: "Municipal elections?",
+                a: "Any foreign national — EU or not — can vote if domiciled 5+ years. This was expanded to be more inclusive at municipal level than national level."
+            },
+            {
+                q: "Is voting compulsory?",
+                a: "Yes. For registered voters, voting is COMPULSORY. This is unusual in Europe and is one of the exam's favourite questions."
+            },
+            {
+                q: "So when does the answer change to 'yes, national too'?",
+                a: "The day you naturalise. Which is why you are studying for this exam."
+            }
+        ],
+        links: {
+            studySections: [{ module: "module2", index: 5 }, { module: "module2", index: 7 }],
+            questionsModule: 2
+        }
+    },
+    {
+        id: "sc_fortress_1867",
+        title: "The 1867 crisis that dismantled a fortress",
+        icon: "🏰",
+        module: 3,
+        relatedChapters: ["ch3"],
+        premise: "In 1867 the Prussian king wants to keep his garrison in Luxembourg. Napoleon III of France wants to buy the country from the Dutch king. Neither is going to happen — but the fortress has to go.",
+        beats: [
+            {
+                q: "What was Luxembourg's status before 1867?",
+                a: "Independent since 1839 but in personal union with the Netherlands, in the German Confederation, with a Prussian garrison in the fortress on the Bock. A tangle."
+            },
+            {
+                q: "What triggered the crisis?",
+                a: "Napoleon III secretly negotiated to buy Luxembourg from William III of the Netherlands. Prussia (Bismarck) refused. Europe faced war over Luxembourg."
+            },
+            {
+                q: "How was it resolved?",
+                a: "The Second Treaty of London (1867). Luxembourg would be permanently neutral. The fortress — 'Gibraltar of the North' — would be dismantled stone by stone. The Prussian garrison withdrew. Luxembourg left the German Confederation."
+            },
+            {
+                q: "Why does this still matter?",
+                a: "It is the foundation of Luxembourg's small-country diplomacy: neutrality until 1948, then multilateralism. And the fortress ruins are still visible in the city — a UNESCO World Heritage site since 1994."
+            }
+        ],
+        links: {
+            studySections: [{ module: "module3", index: 2 }],
+            questionsModule: 3
+        }
+    },
+    {
+        id: "sc_dual_citizen",
+        title: "Should I give up my current passport?",
+        icon: "🛂",
+        module: 3,
+        relatedChapters: ["ch6"],
+        premise: "You're about to naturalise. Does Luxembourg force you to renounce your current citizenship?",
+        beats: [
+            {
+                q: "The short answer",
+                a: "No. Since 2008, Luxembourg permits dual citizenship. You do not have to renounce your current nationality."
+            },
+            {
+                q: "Was it always so?",
+                a: "No. Before 2008 you had to renounce. The 2008 nationality law was part of a broader modernisation of Luxembourgish identity — acknowledging the reality that ~47% of residents are foreign nationals."
+            },
+            {
+                q: "What about your other country?",
+                a: "That's a question for your other country's law, not Luxembourg's. Some countries automatically strip citizenship on naturalisation elsewhere — check yours."
+            },
+            {
+                q: "Residency requirement?",
+                a: "7 consecutive years of legal residence in Luxembourg — and passing this exam (Vivre Ensemble) plus the language test (Sproochentest, A2 speaking / B1 listening)."
+            }
+        ],
+        links: {
+            studySections: [{ module: "module3", index: 9 }],
+            questionsModule: 3
+        }
+    },
+    // ================================================================
+    // MODULE 1 — RIGHTS (7 additional scenarios)
+    // ================================================================
+    {
+        id: "sc_fired_pregnant",
+        title: "Fired while pregnant",
+        icon: "🤰",
+        module: 1,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "You tell your employer you're pregnant on a Monday. On Friday, you're 'restructured out'. What protects you?",
+        beats: [
+            { q: "What kind of right is this?", a: "This sits at the intersection of a second-generation social right (right to work, social security) and a first-generation civil right (protection from discrimination). Luxembourg's Constitution and the EU Charter both protect it." },
+            { q: "Where is it explicitly protected?", a: "Article 33 of the EU Charter of Fundamental Rights (2000) — 'legal, economic and social protection of the family'. The EU Pregnant Workers Directive (92/85/EEC). Luxembourg's Labour Code prohibits dismissal from the moment the employer knows about the pregnancy until 12 weeks after giving birth." },
+            { q: "Where do you go?", a: "First: the Labour Court (Tribunal du travail). It handles individual employment disputes and can order reinstatement plus damages. If the ruling is wrong on a point of EU law, an appeal can eventually reach the Court of Justice of the EU in Luxembourg City itself." },
+            { q: "Does the ECHR help?", a: "Yes — indirectly. Article 8 (private and family life) and Article 14 (non-discrimination) of the European Convention have been used by the Strasbourg court to condemn discriminatory dismissals. Applicable only after you've exhausted domestic remedies." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }, { module: "module1", index: 3 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_press_privacy",
+        title: "A newspaper wants to publish your leaked medical records",
+        icon: "📰",
+        module: 1,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "A journalist obtained your hospital file from a hacked server. They plan to publish. What weighs against what?",
+        beats: [
+            { q: "Two rights collide", a: "Freedom of the press (Article 24 of Luxembourg's Constitution; Article 10 ECHR) versus your right to privacy (Article 8 ECHR; Article 7 EU Charter). Both are first-generation civil rights. Neither wins automatically." },
+            { q: "How is the balance struck?", a: "Courts weigh public interest against private harm. A politician's health that affects their fitness to serve = public interest. A private citizen's medical records = almost never public interest. The ECHR case law is dense but consistent on this point." },
+            { q: "What about GDPR?", a: "Health data is a 'special category' under Article 9 of GDPR — processing is prohibited except in narrow cases. A leaked file being published triggers additional liability for the newspaper and the source." },
+            { q: "Can you stop publication?", a: "In Luxembourg, prior restraint is disfavoured. You'd typically sue after the fact for damages, ask for a right of reply, and demand takedown. Emergency injunctions exist but the bar is very high — freedom of the press is jealously guarded." },
+            { q: "Where else can you go?", a: "The CNPD (Commission nationale pour la protection des données) — Luxembourg's data protection authority. It can fine the newspaper independently of any court action." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }, { module: "module1", index: 3 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_protest",
+        title: "You want to protest at Place Clairefontaine",
+        icon: "📣",
+        module: 1,
+        relatedChapters: ["ch3", "ch4"],
+        premise: "You want to demonstrate outside the Prime Minister's building on Place Clairefontaine. Do you need permission? Can the police shut you down?",
+        beats: [
+            { q: "What right is at stake?", a: "Freedom of assembly — a first-generation civil and political right. Guaranteed by Luxembourg's Constitution, Article 11 of the European Convention on Human Rights, and Article 12 of the EU Charter." },
+            { q: "Do you need a permit?", a: "For a spontaneous small gathering on foot, generally no. For a marching demonstration or a static rally with equipment (loudspeakers, stages) in Luxembourg City, you notify the police at least 72 hours in advance. This is a notification, not a request for permission." },
+            { q: "Can the police forbid it?", a: "Only for specific reasons: national security, public safety, prevention of disorder, protection of the rights of others. Political inconvenience is NOT a valid reason. Any ban must be proportionate and can be challenged in the Administrative Court." },
+            { q: "What can they do during the protest?", a: "Kettle, disperse, or arrest only if there's actual disorder — property damage, incitement to violence. Peaceful protest is protected even if it's disruptive. Recording the police is legal." },
+            { q: "If they overreach?", a: "You can sue in Luxembourg's courts, and after exhausting remedies, apply to the European Court of Human Rights in Strasbourg. The ECHR has repeatedly condemned member states for cracking down on peaceful protest." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }, { module: "module1", index: 3 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_trilingual_school",
+        title: "Your child speaks 3 languages badly",
+        icon: "🏫",
+        module: 1,
+        relatedChapters: ["ch6"],
+        premise: "Your 8-year-old learns to read in German, gets French from year 2, and speaks Luxembourgish in the playground. Is this a right — or an obstacle?",
+        beats: [
+            { q: "The right", a: "The right to education is a second-generation social right (Luxembourg Constitution and EU Charter Article 14). It guarantees free public education. It does NOT guarantee education in the language of your choice." },
+            { q: "The system", a: "Public primary school teaches literacy in German first (grade 1). French is added from grade 2. Luxembourgish is the oral language of instruction and playground life. English arrives in secondary school. This is a deliberate national policy — not something you can opt out of in the public system." },
+            { q: "What if my child is falling behind?", a: "Luxembourg has recognised the strain this puts on children who speak neither German nor French at home. State-supported alternatives exist: international schools (Anglophone, Francophone), the European School system, and 'plurilingual' primary schools launched in recent reforms." },
+            { q: "Is this discrimination?", a: "No court has ruled it so. The system is uniform and open to all residents regardless of nationality — non-discriminatory by design, even if the outcomes correlate with home language. Article 14 of the EU Charter only requires access, not linguistic accommodation." },
+            { q: "Can you homeschool?", a: "Luxembourg permits homeschooling under conditions: annual inspection by MENJE (education ministry), a curriculum comparable to the public one, and specific competence in the languages of instruction. It's rare and heavily supervised." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_denied_healthcare",
+        title: "You're refused urgent medical care",
+        icon: "🏥",
+        module: 1,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "You arrive at the CHL emergency room. Reception says your health insurance isn't active. They ask you to pay upfront or leave. What are your rights?",
+        beats: [
+            { q: "The constitutional guarantee", a: "The right to health protection is a second-generation social right in Luxembourg's Constitution. The state has a positive duty to organise a health system, but the right does not translate into 'any care, any time, free at the point of use'." },
+            { q: "Emergency care is different", a: "Under Luxembourg law and medical ethics (deontological code of the Collège médical), a hospital must provide life-saving emergency care regardless of insurance status or ability to pay. Refusing emergency care is a criminal offence for the doctor and a civil violation for the institution." },
+            { q: "Who pays?", a: "If you're insured under CNS (Caisse nationale de santé) but paperwork is stale, the CNS will still reimburse when it's sorted out. If you're uninsured, you'll be billed — but only after receiving care. Emergency triage cannot be conditioned on payment." },
+            { q: "If you have no money at all?", a: "The Office social of your commune can cover urgent care for indigent residents. Foreign residents including undocumented ones have access to emergency care and, since Luxembourg's implementation of EU directive 2011/24, minimum guarantees for cross-border care too." },
+            { q: "If refused anyway?", a: "Complain to the Ministère de la Santé (health ministry), Ombudsman (Médiateur de la Grande-Duché), or file a criminal complaint for non-assistance to a person in danger (Article 410-1 Penal Code)." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_religious_symbols",
+        title: "Can you wear a religious symbol at work?",
+        icon: "☪️",
+        module: 1,
+        relatedChapters: ["ch6"],
+        premise: "You start a new job. Your employer says visible religious symbols aren't allowed in customer-facing roles. Legal?",
+        beats: [
+            { q: "The right", a: "Freedom of religion — Article 19 of Luxembourg's Constitution, Article 9 ECHR, Article 10 EU Charter. It includes the right to manifest religion in public, which covers wearing religious dress or symbols." },
+            { q: "But limits exist", a: "The right can be restricted for reasons prescribed by law: public safety, public order, health, morals, or the rights of others. An employer's blanket ban is not automatically legal but can be justified in narrow cases." },
+            { q: "The CJEU cases", a: "In G4S Secure Solutions (2017), the Court of Justice of the EU ruled that a private company's neutral dress code banning all visible political/religious/philosophical signs can be lawful if applied consistently and pursued a genuine business need. A ban targeting only religious symbols would be discriminatory." },
+            { q: "Public sector?", a: "Higher scrutiny. Luxembourg's public administration operates under strict neutrality but has not gone as far as France in banning religious dress. Individual restrictions have to be justified by the specific function." },
+            { q: "Where do you go?", a: "Labour Court first. Then Court of Appeal. Ultimately the ECHR (Strasbourg) or CJEU (Luxembourg City) via preliminary reference. Both courts have full jurisdiction to review such cases." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }, { module: "module1", index: 3 }], questionsModule: 1 }
+    },
+    {
+        id: "sc_data_deletion",
+        title: "You want your data erased from a website",
+        icon: "🗑️",
+        module: 1,
+        relatedChapters: ["ch6"],
+        premise: "A news site's old article about you appears when anyone Googles your name. You want it gone. Can you force it?",
+        beats: [
+            { q: "The right to be forgotten", a: "Established by the CJEU (Court of Justice of the EU in Luxembourg City) in the 2014 Google Spain case, and now codified in Article 17 of the GDPR — the 'right to erasure'. Luxembourg residents can use it." },
+            { q: "Does it always work?", a: "No. It's balanced against freedom of information (ECHR Article 10). Public interest, the accuracy of the information, whether the person is a public figure, and how old the article is all factor in. Politicians rarely win. Private individuals often do — especially for old, minor matters." },
+            { q: "How do you exercise it?", a: "Contact the data controller (the website or Google) directly with a written request citing GDPR Article 17. They have 30 days to respond (extendable to 90). If they refuse or ignore, escalate." },
+            { q: "Escalation route", a: "CNPD (Luxembourg data protection authority) can investigate and fine. National courts can order takedown. The CJEU can be asked to interpret GDPR through preliminary reference." },
+            { q: "De-indexing vs deletion", a: "Google removing a URL from search results (de-indexing) is easier than getting the original publisher to delete. Most 'right to be forgotten' cases end with de-indexing but the article stays online." }
+        ],
+        links: { studySections: [{ module: "module1", index: 1 }, { module: "module1", index: 3 }], questionsModule: 1 }
+    },
+    // ================================================================
+    // MODULE 2 — INSTITUTIONS (7 additional scenarios)
+    // ================================================================
+    {
+        id: "sc_run_for_office",
+        title: "You want to run for the Chamber of Deputies",
+        icon: "🎪",
+        module: 2,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "You've naturalised. It's an election year. You want a seat in Parliament. What does it take?",
+        beats: [
+            { q: "Eligibility", a: "You must be a Luxembourg national, at least 18, domiciled in Luxembourg, and enjoying full civic and political rights (not stripped by a criminal conviction). Nationality is non-negotiable — no shortcuts." },
+            { q: "Which constituency?", a: "Luxembourg has four: South (23 seats), Centre (21), North (9), East (7). You run in the one where you live. Each constituency elects its own MPs by proportional representation." },
+            { q: "Who can't run?", a: "Judges, members of the Council of State, and civil servants in certain sensitive roles cannot hold a parliamentary seat simultaneously. This is called 'incompatibility'. You must resign one to take the other." },
+            { q: "How do voters vote?", a: "Each voter gets as many votes as there are seats in their constituency (23 in the South, etc.). They can distribute those votes across candidates from multiple parties — this is called 'panachage' and is central to Luxembourgish politics." },
+            { q: "How seats get allocated", a: "By proportional representation using the smallest electoral quotient method (Hagenbach-Bischoff). Small parties can win seats — the threshold is effectively 1/(seats+1) of the vote in a constituency." },
+            { q: "What's the term?", a: "5 years. Voting is compulsory for registered voters. If elected, you're paid, get an office, and can propose bills ('proposition de loi') but the government's own bills ('projet de loi') dominate the legislative calendar." }
+        ],
+        links: { studySections: [{ module: "module2", index: 5 }, { module: "module2", index: 3 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_grand_duke_refuses",
+        title: "The Grand Duke refuses to sign a law (real event)",
+        icon: "👑",
+        module: 2,
+        relatedChapters: ["ch6"],
+        premise: "December 2008. Parliament passes a law legalising euthanasia. Grand Duke Henri, on grounds of conscience, refuses to sign it. What happens next?",
+        beats: [
+            { q: "Constitutional crisis", a: "Under the pre-2008 Constitution, the Grand Duke had to 'sanction and promulgate' every law before it could take effect. Henri's refusal was the first such veto in modern Luxembourgish history. If honoured literally, it would give one unelected person a permanent veto over democratic legislation." },
+            { q: "How was it resolved?", a: "Speed-run constitutional reform. Within weeks Parliament amended Article 34 of the Constitution: the Grand Duke now only 'promulgates' laws (announces them publicly). The 'sanctioning' step — which implied approval — was removed. Henri's role became purely ceremonial." },
+            { q: "Did the euthanasia law take effect?", a: "Yes, on 1 April 2009, after the constitutional amendment. Luxembourg became the third EU country to permit euthanasia (after the Netherlands and Belgium)." },
+            { q: "What's left of the Grand Duke's power?", a: "The Grand Duke is inviolable (immune from prosecution) and still formally appoints/dismisses the government, dissolves Parliament, and represents the state internationally. But every act must be countersigned by a minister who takes political responsibility. Real power lies with the government." },
+            { q: "Why does this matter for the exam?", a: "The 2008 amendment is fresh enough that older textbooks still say the Grand Duke 'sanctions' laws — wrong. He only promulgates them. This is a common trick question." }
+        ],
+        links: { studySections: [{ module: "module2", index: 2 }, { module: "module2", index: 8 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_municipal_challenge",
+        title: "You challenge a municipal decision",
+        icon: "🏛️",
+        module: 2,
+        relatedChapters: ["ch6"],
+        premise: "Your commune refuses to grant you a building permit for a modest extension. You think the decision is wrong. Where do you go?",
+        beats: [
+            { q: "First step: internal appeal", a: "Every municipal decision comes with an information notice explaining how to challenge it. You typically have 3 months to file an appeal with the mayor or municipal council for reconsideration. This is often faster than going to court." },
+            { q: "The tutelle", a: "Luxembourg's central government has 'tutelle' (supervisory oversight) over communes. Certain classes of municipal decisions (budget, major zoning changes) require ministerial approval. If your issue involves a decision that needed ministerial sign-off, you can also address the Ministry of Home Affairs." },
+            { q: "Administrative Tribunal", a: "For contested administrative decisions, you file with the Administrative Tribunal (Tribunal administratif). It handles disputes between individuals and the state or communes. The tribunal can annul the decision or require the commune to reconsider." },
+            { q: "Administrative Court on appeal", a: "If the Tribunal rules against you, appeal to the Administrative Court (Cour administrative). This is the top of the administrative branch — separate from the 'ordinary' courts that handle civil and criminal cases." },
+            { q: "Which order of courts is which?", a: "Luxembourg's judiciary has two branches. Ordinary: Magistrates → District → Court of Appeal → Court of Cassation, for civil/commercial/criminal. Administrative: Tribunal → Court, for state and commune disputes. Constitutional questions go to the 9-member Constitutional Court, but only via referral from another court." }
+        ],
+        links: { studySections: [{ module: "module2", index: 7 }, { module: "module2", index: 8 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_government_falls",
+        title: "The government loses a vote of confidence",
+        icon: "💼",
+        module: 2,
+        relatedChapters: ["ch6"],
+        premise: "A key minister is caught in a scandal. The opposition tables a motion of censure. Parliament votes against the government. Now what?",
+        beats: [
+            { q: "The motion", a: "A motion of censure (motion de censure) is a formal vote by which Parliament withdraws its confidence in the government. In Luxembourg's system, the government is politically answerable to Parliament — it must resign if it loses such a vote." },
+            { q: "Automatic resignation", a: "Yes — ministers must resign after a negative confidence vote. This is enforced by constitutional convention, not by force. No one has ever tried to hold onto power after losing such a vote in modern Luxembourg." },
+            { q: "What does the Grand Duke do?", a: "He accepts the resignation and appoints a 'formateur' — usually the leader of the largest party in Parliament, or someone who can build a new coalition. The formateur consults, forms a coalition, and becomes Prime Minister when the new government is sworn in." },
+            { q: "Can the Grand Duke dissolve Parliament instead?", a: "Yes, formally. In practice this is done on the advice of the government — a last-resort move when no coalition can be formed. It triggers early elections." },
+            { q: "Real example?", a: "The 2013 SREL affair (intelligence-service scandal) forced PM Juncker's government to fall. Rather than a censure vote, Juncker resigned and called early elections, which he lost. This is closer to how Luxembourg governments actually change hands." }
+        ],
+        links: { studySections: [{ module: "module2", index: 4 }, { module: "module2", index: 8 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_chamber_process",
+        title: "How does a bill actually pass?",
+        icon: "🧾",
+        module: 2,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "The government has just filed a 'projet de loi' on housing. Walk through what happens between filing and publication in the Mémorial.",
+        beats: [
+            { q: "Step 1: filing", a: "The government tables its 'projet de loi' with the Chamber of Deputies. If an MP had filed a private member's bill, it would be a 'proposition de loi'. Same process afterwards — different origin." },
+            { q: "Step 2: Council of State opinion", a: "The 21-member Council of State issues a mandatory advisory opinion (avis) on the bill. It reviews for constitutional and legal problems. Its opinion is advisory but weighty — Parliament rarely ignores serious warnings." },
+            { q: "Step 3: parliamentary committee", a: "A specialised committee of MPs examines the bill line by line, hears witnesses, and may propose amendments. Real drafting happens here." },
+            { q: "Step 4: first vote", a: "The full Chamber (60 MPs) votes on the amended bill. Simple majority required." },
+            { q: "Step 5: second vote?", a: "The Constitution normally requires a second vote at least 3 months later — to allow reflection. BUT the Council of State can grant a dispensation from this second vote, and usually does. If the Council refuses (its 'suspensive veto'), the second vote is mandatory." },
+            { q: "Step 6: Grand Duke and Mémorial", a: "After Parliament approves (once or twice), the Grand Duke promulgates the law. It is then published in the Mémorial (official gazette). Only after publication does it take legal effect. Every citizen is deemed to know the law from that date — no personal notification required." }
+        ],
+        links: { studySections: [{ module: "module2", index: 8 }, { module: "module2", index: 3 }, { module: "module2", index: 4 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_council_of_state",
+        title: "What actually is the Council of State?",
+        icon: "🏦",
+        module: 2,
+        relatedChapters: ["ch3"],
+        premise: "You keep hearing about the 'Council of State' in legal discussions. It has 21 members, appointed by the Grand Duke. It's not a court. It's not part of the government. What does it do?",
+        beats: [
+            { q: "Origin", a: "Luxembourg is unicameral — only one legislative chamber. The Council of State was created to fill the role that a second chamber (like the French Senate or British House of Lords) plays elsewhere: reflection, review, restraint." },
+            { q: "The two main jobs", a: "First, it issues mandatory advisory opinions on all legislation before Parliament votes. Second, it exercises the 'suspensive veto' — it can refuse the dispensation from the mandatory second vote, forcing Parliament to wait at least 3 months." },
+            { q: "Who's on it?", a: "21 members appointed by the Grand Duke. Historically they are senior lawyers, retired politicians, former judges, academics. Appointments are for 15 years (renewable). Not elected — deliberately independent from party politics." },
+            { q: "Can it block a law forever?", a: "No — its veto is suspensive, not absolute. It can delay a law by 3 months. Parliament can always override by voting a second time. The Council's real power is moral authority: if it says a law violates the Constitution or an international treaty, ignoring it looks reckless." },
+            { q: "What it's NOT", a: "Not a court (that's the Constitutional Court, 9 members). Not part of the government (ministers). Not the same as the Council of Europe (that's the 46-country international organisation in Strasbourg). Confusing names — the exam plays on this." }
+        ],
+        links: { studySections: [{ module: "module2", index: 3 }, { module: "module2", index: 8 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_constitutional_court",
+        title: "How the Constitutional Court works",
+        icon: "⚖️",
+        module: 2,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "Someone tells you: 'That law is unconstitutional!' You can't just sue over it. Then how do constitutional questions actually reach the Constitutional Court?",
+        beats: [
+            { q: "No direct petition", a: "Unlike Germany's Bundesverfassungsgericht, Luxembourg's Constitutional Court does NOT accept direct petitions from citizens. You cannot walk up and say 'this law violates my rights, strike it down'. There is one filter: an ordinary court hearing your case must refer the constitutional question." },
+            { q: "The referral mechanism", a: "In the middle of any lawsuit — civil, criminal, administrative — if a judge suspects that the applicable law violates the Constitution, they can (and sometimes must) refer the question to the Constitutional Court. The judge suspends the case until the Constitutional Court answers." },
+            { q: "Who sits on the Court?", a: "9 members. President, Vice-President, and Presidents of the Supreme Court of Justice and Administrative Court are members ex officio. Others are appointed by the Grand Duke. Judges keep their day jobs — the court is not full-time." },
+            { q: "What can they rule on?", a: "Only whether a law (act of parliament) conforms to the Constitution. They CANNOT rule on treaties, on government decrees, or on individual government actions. Those are handled by ordinary and administrative courts." },
+            { q: "What if the law is unconstitutional?", a: "The Court declares it non-conforming. The referring court then decides the underlying case without applying that law. Parliament typically amends the law afterwards to fix the constitutional defect. The Court does not have the power to 'strike down' laws erga omnes in one act — the effect ripples through the case law." }
+        ],
+        links: { studySections: [{ module: "module1", index: 3 }, { module: "module2", index: 7 }], questionsModule: 2 }
+    },
+    // ================================================================
+    // MODULE 3 — HISTORY & EUROPEAN INTEGRATION (7 additional scenarios)
+    // ================================================================
+    {
+        id: "sc_1942_strike",
+        title: "The general strike of 31 August 1942",
+        icon: "✊",
+        module: 3,
+        relatedChapters: ["ch4"],
+        premise: "Nazi occupation. Yesterday, the Gauleiter decreed forced conscription of young Luxembourgish men into the Wehrmacht. Today, workers stop working across the country. Why does this matter?",
+        beats: [
+            { q: "The trigger", a: "On 30 August 1942, Gauleiter Gustav Simon decreed compulsory military service for Luxembourgers born 1920-1924. This wasn't voluntary conscription — it was a forced draft into the army of the invader. Around 11,000 young men would eventually be conscripted this way. About 2,800 would die." },
+            { q: "The reaction", a: "The next morning, 31 August 1942, workers walked off the job. It began in Wiltz and spread to Schifflange, Differdange, Dudelange, then the capital. Teachers refused to teach. Postal workers refused to sort mail. It was Western Europe's only general strike against Nazi occupation." },
+            { q: "The reprisal", a: "Swift and brutal. 21 strike leaders were tried by a special court and shot within days. Hundreds were deported to concentration camps. Ettelbruck and other municipalities were placed under emergency rule. The forced conscription proceeded regardless." },
+            { q: "Was it worth it?", a: "In pure military terms, no — it didn't stop the draft. But it became the foundational act of Luxembourg's resistance narrative. It proved to occupiers and post-war courts alike that the population had NOT consented to Germanisation. It is why post-war Luxembourg was treated as a resistant occupied country, not a collaborator state." },
+            { q: "Today", a: "Every 31 August, wreaths are laid at memorials in Wiltz and Luxembourg City. The National Museum of the Resistance in Esch-sur-Alzette is centred on this event. Ask any Luxembourger about their grandparents and you will hear about 'de Streik'." }
+        ],
+        links: { studySections: [{ module: "module3", index: 6 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_border_commuter",
+        title: "You work in Luxembourg but live in Metz",
+        icon: "🚆",
+        module: 3,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "You accept a Luxembourg job but keep your apartment in Metz, France. 200,000 other people do the same thing every day. How does that work?",
+        beats: [
+            { q: "The Schengen guarantee", a: "The 1985 Schengen Agreement (in force 1995) abolished passport checks at Luxembourg's borders with France, Germany, and Belgium. All four are in the Schengen area. Combined with EU free movement of workers (Article 45 TFEU), you can commute daily with no immigration barrier." },
+            { q: "Where do you pay income tax?", a: "In the country where you WORK, not where you live. Luxembourg-France, Luxembourg-Germany, and Luxembourg-Belgium bilateral tax treaties clarify this. Luxembourg wages get Luxembourg taxes withheld. Your home country credits you for that." },
+            { q: "Where do you pay social security?", a: "Also Luxembourg. EU coordination rules (Regulation 883/2004) ensure your Luxembourg contributions count for pension in France when you retire — no double payment, no lost credits." },
+            { q: "Where does your family use healthcare?", a: "You're insured through Luxembourg's CNS. Your family in Metz can use the French system with EHIC or the S1 form for cross-border coverage. Reimbursements flow between the two social security systems." },
+            { q: "What about telework?", a: "This got complicated during COVID. Working from home in France more than 34 days a year could shift your social security to France under EU rules — bad for both employer and employee. Luxembourg negotiated bilateral tolerances and, since 2023, a permanent 34-day/year telework threshold with France." },
+            { q: "How big is this?", a: "About 46% of Luxembourg's workforce is cross-border commuters — 217,000 people in 2024 numbers. Half from France, a quarter each from Germany and Belgium. Without them, the Luxembourg economy would collapse overnight." }
+        ],
+        links: { studySections: [{ module: "module3", index: 7 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_naturalisation",
+        title: "You want to become Luxembourgish",
+        icon: "🎓",
+        module: 3,
+        relatedChapters: ["ch6"],
+        premise: "You've lived in Luxembourg for seven years. You've passed this exam. You've taken the language test. What's the actual process to naturalise?",
+        beats: [
+            { q: "Route 1: naturalisation by option", a: "The most common route. Requirements: 7 years of legal residence in Luxembourg (at least the last 12 months uninterrupted), pass the Vivre Ensemble exam, pass the Sproochentest (A2 speaking + B1 listening in Luxembourgish), no serious criminal record." },
+            { q: "Route 2: by descent", a: "If you have a Luxembourgish ancestor who was Luxembourgish citizen on 1 January 1900 — even a distant one — you can 'recover' Luxembourgish nationality by option, no residency required. This route ends in December 2025. Many Americans of Luxembourgish descent have used it." },
+            { q: "Route 3: by marriage", a: "3 years of marriage to a Luxembourgish national + 3 years living together in Luxembourg (or 5 years living abroad but reasonable engagement with the country). Same language and civic tests apply." },
+            { q: "The dossier", a: "Compile: birth certificate (legalised or apostilled), proof of residence for 7 years, criminal record extract from every country you've lived in as an adult, Sproochentest certificate, Vivre Ensemble certificate. Submit to your commune. It travels to the Ministry of Justice." },
+            { q: "The waiting", a: "6 to 24 months. During this time your dossier is reviewed by multiple ministries. You may be asked for additional documents." },
+            { q: "The oath", a: "Once approved, you're invited to a ceremony at your commune. You take an oath of fidelity to the Grand Duke and to observe the Constitution and laws. From that moment, you're Luxembourgish. Your existing citizenship stays (dual since 2008) unless your other country strips it." }
+        ],
+        links: { studySections: [{ module: "module3", index: 9 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_euro_changeover",
+        title: "The franc becomes the euro — 1 January 2002",
+        icon: "💶",
+        module: 3,
+        relatedChapters: ["ch5"],
+        premise: "For 158 years, Luxembourg had used the Luxembourgish franc, then in monetary union with the Belgian franc since 1921. One morning in 2002 it was gone. How and why?",
+        beats: [
+            { q: "The Maastricht path", a: "The 1992 Treaty of Maastricht created the euro as a project. Countries had to meet the 'convergence criteria' — inflation, deficit, debt, exchange rate stability. Luxembourg met them easily and was among the first 11 to adopt the euro." },
+            { q: "The electronic euro", a: "1 January 1999: the euro became a real currency electronically. Bank accounts, financial transactions, and Luxembourg's national debt were denominated in euros. But cash was still francs — everyday shopping didn't change yet." },
+            { q: "The cash changeover", a: "1 January 2002: euro banknotes and coins entered circulation. For a few weeks francs and euros were both accepted. By 28 February 2002, francs ceased to be legal tender. Old francs could still be exchanged at the Banque centrale du Luxembourg for years afterwards (some categories indefinitely)." },
+            { q: "The fixed rate", a: "1 euro = 40.3399 Luxembourgish francs (identical to Belgian francs due to the BLEU union). This rate was set irrevocably. Every price and every debt was converted at that rate on 1.1.1999." },
+            { q: "What Luxembourg gave up", a: "Monetary sovereignty. Interest rates are now set by the European Central Bank in Frankfurt for the entire euro area. Luxembourg has one seat among 20 on the ECB Governing Council." },
+            { q: "What Luxembourg gained", a: "Elimination of currency risk for its huge cross-border trade, cheaper transactions, deeper capital markets. For a country whose financial sector is a quarter of GDP and whose workforce is 46% cross-border, the euro was net enormous." }
+        ],
+        links: { studySections: [{ module: "module3", index: 7 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_free_transit",
+        title: "Free public transport nationwide (2020)",
+        icon: "🚌",
+        module: 3,
+        relatedChapters: ["ch6"],
+        premise: "On 29 February 2020, Luxembourg became the first country in the world to make all public transport free. Buses, trains, trams — no fare. Why?",
+        beats: [
+            { q: "The problem", a: "Luxembourg's roads are among the most congested in Europe. Around 46% of the workforce commutes across a border. The 2005-2020 population grew by ~50%. Cars were choking the country." },
+            { q: "The policy", a: "The Bettel government abolished all public transport fares for domestic journeys — regardless of nationality, residency, or age. Cross-border trains still charge to the border, then are free within Luxembourg. Second-class only; first class still costs." },
+            { q: "The cost", a: "About 41 million euros a year in lost ticket revenue — replaced by general taxation. This is a rounding error in a national budget of ~30 billion euros. Ticketing infrastructure was also expensive to run." },
+            { q: "Did it work?", a: "Mixed evidence. It boosted ridership modestly but the bigger impact was on inequality — poorer commuters saved several hundred euros a year. Environmental and congestion effects have been marginal without complementary policies (road pricing, parking limits)." },
+            { q: "How does it fit constitutionally?", a: "The 2023 constitutional revision explicitly recognises 'sustainable development' and environmental protection as constitutional objectives. Free public transport aligns with these — though it wasn't required by them. The policy is easier to reverse than to implement, so it may not last forever." }
+        ],
+        links: { studySections: [{ module: "module3", index: 9 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_schengen_signing",
+        title: "The boat in the middle of a river",
+        icon: "⛴️",
+        module: 3,
+        relatedChapters: ["ch5"],
+        premise: "14 June 1985. Five ministers gather on a small riverboat anchored on the Moselle near the tiny Luxembourg village of Schengen. They sign a treaty. What was so unusual about it?",
+        beats: [
+            { q: "The location", a: "Schengen is a wine village of ~500 people on the Moselle, at the point where France, Germany, and Luxembourg meet. The signing took place on the MS Princesse Marie-Astrid — a boat anchored in the middle of the river where all three countries met. Symbolic and legally clever: no country was 'hosting'." },
+            { q: "The parties", a: "Five countries signed: France, West Germany, Belgium, Netherlands, and Luxembourg. Not all EEC members — the UK and Italy stayed out initially. The treaty was outside the EEC framework — an intergovernmental agreement." },
+            { q: "The idea", a: "Gradual abolition of controls at internal borders. Movement of people would become as free as the movement of goods was becoming inside the EEC. Border checks would eventually vanish and be replaced by coordinated external border controls." },
+            { q: "The delay", a: "Symbolic signing 1985. Actual implementation 1995 — 10 years later. Technical and political questions took that long. The 'Schengen Convention' of 1990 spelled out the details: shared visa policy, coordinated border databases, hot pursuit rules." },
+            { q: "Today", a: "27 countries. About 400 million people. Most EU members plus Iceland, Norway, Switzerland, and Liechtenstein. Ireland stayed out; the UK left with Brexit. Bulgaria and Romania joined progressively in 2024-25. It survived the 2015 migration crisis and COVID, though both saw temporary reintroductions of checks." },
+            { q: "The village today", a: "There's now a European Museum in Schengen. You can see the boat, the signing table, and the borders. The word 'Schengen' is now used metonymically in ~26 languages." }
+        ],
+        links: { studySections: [{ module: "module3", index: 7 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_ecsc_founding",
+        title: "Why Luxembourg City hosts the Court of Justice",
+        icon: "🏛️",
+        module: 3,
+        relatedChapters: ["ch5"],
+        premise: "You visit the Kirchberg plateau on the northeast edge of Luxembourg City. Half of it is EU institutions. Why here? Why not Brussels or Strasbourg?",
+        beats: [
+            { q: "The ECSC founding", a: "In 1951 the Treaty of Paris created the European Coal and Steel Community — the seed of the EU. Six founding members: France, West Germany, Italy, Belgium, Netherlands, Luxembourg. As they set up the institutions in 1952, they had to place them somewhere." },
+            { q: "The provisional decision", a: "The founders couldn't agree on ONE capital. Brussels, Strasbourg, and Luxembourg City all fought for it. As a compromise, Luxembourg City became the seat of the ECSC's High Authority — 'provisionally'. Provisional lasted forever." },
+            { q: "The Court of Justice", a: "The Court of Justice of the ECSC was based in Luxembourg from 1952. When it evolved into the Court of Justice of the EEC (1958) and then the Court of Justice of the EU (2009), it stayed. Today it has about 2,600 staff on Kirchberg." },
+            { q: "The full list of EU institutions in Luxembourg", a: "Court of Justice of the EU (CJEU), General Court, European Court of Auditors, European Investment Bank, Eurostat, Publications Office of the EU, General Secretariat of the European Parliament, European Public Prosecutor's Office, and various agencies. About 15,000 people work for EU institutions here." },
+            { q: "The dispersion problem", a: "The EU famously has three 'capitals' — Brussels (Commission, Council), Strasbourg (Parliament plenaries), Luxembourg City (secretariats, Court, Auditors). This costs about 100 million euros a year in travel, but every treaty change requires unanimity to touch — and none of the three cities will agree to lose its share." },
+            { q: "Kirchberg today", a: "The plateau was developed from 1963 as the 'European quarter'. The Court's building is a striking golden-tinted tower. Nearby: the Philharmonie, the modern art museum MUDAM, and the biggest concentration of glass-and-steel architecture in the country." }
+        ],
+        links: { studySections: [{ module: "module3", index: 7 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    }
+];
+
+const journey = [
+    {
+        id: "j1",
+        title: "The country you're joining",
+        icon: "🗺️",
+        subtitle: "A quick portrait before we dive in",
+        content: [
+            { label: "Official name", value: "Grand Duchy of Luxembourg" },
+            { label: "Area", value: "2,586 km² (smaller than Rhode Island)" },
+            { label: "Population", value: "~672,000 (47% foreign nationals from 160+ countries)" },
+            { label: "Head of state", value: "Grand Duke Henri (since 7 October 2000)" },
+            { label: "Independence", value: "19 April 1839 (Treaty of London)" },
+            { label: "Constitution", value: "1868 (fourth, still in force, heavily amended)" },
+            { label: "Languages", value: "Luxembourgish (national), French (legislation), German (administrative)" },
+            { label: "National Day", value: "23 June" },
+            { label: "Anthem", value: '"Ons Heemecht" (1859)' },
+            { label: "Flag", value: "Red, white, sky-blue (horizontal bands)" }
+        ],
+        followUp: "This is what the exam will test. But the country behind these facts is more interesting — that's what the story mode will show you."
+    },
+    {
+        id: "j2",
+        title: "How they got here",
+        icon: "⏳",
+        subtitle: "1,062 years in one paragraph",
+        content: [
+            "In 963 a count named Siegfried bought a hilltop ruin and called it Lucilinburhuc — 'small castle'. His descendants became emperors. From 1443 the Duchy was passed around Europe (Burgundy, Spain, France, Austria) for 372 years without sovereignty. In 1815 the Congress of Vienna drew Luxembourg onto the map again. 1839 made it independent. 1848 gave it its first constitution. 1867 dismantled its famous fortress and made it permanently neutral. 1890 gave it its own royal family. In 1914 and 1940 Germany invaded. Both times Luxembourg survived. In 1945 it gave up neutrality and became a founding member of the UN, NATO, ECSC, and the EU. Today, more than 47% of its residents are foreign nationals — including you."
+        ],
+        followUp: "The story mode goes chapter by chapter. Six chapters, 1,062 years."
+    },
+    {
+        id: "j3",
+        title: "How it's governed",
+        icon: "🏛️",
+        subtitle: "The institutions that will shape your daily life",
+        content: [
+            "**Grand Duke** — Head of state, inviolable, but every act must be countersigned by a minister.",
+            "**Chamber of Deputies** — 60 MPs, elected every 5 years, from 4 constituencies. Voting is compulsory.",
+            "**Council of State** — 21 members. Advises on all legislation. Has a suspensive veto (can delay, not block).",
+            "**Government** — Prime Minister + ministers. Politically answerable to Parliament.",
+            "**Constitutional Court** — 9 members. Rules on constitutionality — but only when referred by other courts (no direct citizen petitions).",
+            "**Municipalities** — Luxembourg's only political subdivision. ~100 of them. 6-year council terms. Foreigners can vote municipally after 5 years."
+        ],
+        followUp: "Scenario mode walks you through what happens when the government makes a law — or when you want to vote."
+    },
+    {
+        id: "j4",
+        title: "What protects you",
+        icon: "🛡️",
+        subtitle: "The rights framework",
+        content: [
+            "**First-generation rights** (civil & political) — freedom of expression, assembly, religion; right to a fair trial; presumption of innocence.",
+            "**Second-generation rights** (social & economic) — work, social security, health protection, education, housing.",
+            "**Constitutional objectives** — environment, sustainable development, natural resources.",
+            "**Where they come from** — the 1789 Declaration of Rights, the 1948 Universal Declaration, the 1951 European Convention (Council of Europe), the 2000 EU Charter, and Luxembourg's own Constitution.",
+            "**Where you go if violated** — Luxembourg courts first. Then the European Court of Human Rights in Strasbourg (for Convention rights). Or the Court of Justice of the EU in Luxembourg City (for EU-law questions)."
+        ],
+        followUp: "Scenario mode walks through what happens if you're arrested at 3 a.m."
+    }
+];
+
+// Consolidated app content — exposed for the SPA layer.
+const APP_CONTENT = {
+    studyContent,
+    questions,
+    flashcards,
+    timeline,
+    chapters,
+    figures,
+    scenarios,
+    journey,
+    meta: {
+        totalQuestions: questions.length,
+        totalFlashcards: flashcards.length,
+        totalChapters: chapters.length,
+        totalScenarios: scenarios.length,
+        exam: {
+            questionsOnExam: 40,
+            passMark: 28,
+            passPct: 70,
+            durationMinutes: 60,
+            mix: { module1: 10, module2: 20, module3: 10 },
+            venue: "Esch-Belval",
+            cost: "Free"
+        }
+    }
+};

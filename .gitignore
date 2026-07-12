@@ -1,0 +1,11 @@
+# Editor / OS junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*~
+
+# Debug scratch files
+_debug*.html
+_app-inline.js
