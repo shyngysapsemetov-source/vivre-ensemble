@@ -871,7 +871,14 @@ const chapters = [
         title: "Birth of a Fortress",
         era: "963 – 1443",
         subtitle: "How a rock in the woods became a European power",
-        hook: "It began with a swap. In 963 a count named Siegfried traded some land with the Abbey of St Maximin in Trier for a hilltop ruin above the Alzette river — a Roman-era fortification his contemporaries called Lucilinburhuc, 'small castle'. It was strategically useless in the abbey's eyes and cheap to give up. Within four hundred years, Siegfried's descendants would wear the imperial crown, place four emperors on the throne of the Holy Roman Empire, and have their small castle promoted from a County to a full Duchy. Then, in 1443, they lost it all to Burgundy. The name Lucilinburhuc had by then simplified in local speech to Lëtzebuerg — Luxembourg.",
+        hook: `<h4 class="hook-h">The swap of 963</h4>
+<p>In <strong>963</strong> a count named <strong>Siegfried</strong> traded some land with the Abbey of St Maximin in Trier. What he got in return was a hilltop ruin above the Alzette river — a small Roman-era fortification the monks called <em>Lucilinburhuc</em>, "little castle". To the abbey it was worthless. To Siegfried it was the start of a country.</p>
+<h4 class="hook-h">From a tower to an empire</h4>
+<p>Siegfried's descendants kept expanding. In <strong>1308</strong> one of them, <strong>Henry VII</strong>, was elected King of the Romans and crowned Holy Roman Emperor in 1312. Over the next 130 years, the House of Luxembourg put <strong>four emperors</strong> on the throne of the Holy Roman Empire — an astonishing run for a family from a small castle on a rock.</p>
+<h4 class="hook-h">From County to Duchy</h4>
+<p>In <strong>1354</strong>, Emperor Charles IV (himself a Luxembourger) promoted the County of Luxembourg to a full <strong>Duchy</strong>. The name <em>Lucilinburhuc</em> had by then softened in local speech to <em>Lëtzebuerg</em> — Luxembourg.</p>
+<h4 class="hook-h">And then they lost it</h4>
+<p>In <strong>1443</strong>, Philip the Good, Duke of Burgundy, conquered Luxembourg. The dynasty was gone. What followed was 372 years of foreign rule — the story of the next chapter.</p>`,
         arc: [
             "Siegfried's exchange (963) — the Duchy's zero point",
             "The medieval Counts (963 – 1308) — expansion from a single tower",
@@ -894,6 +901,16 @@ const chapters = [
             title: "The legend of Melusina",
             text: "Local legend says Siegfried married a mysterious woman on the condition he would never watch her bathe on Saturdays. Curiosity won. When he peeked, he saw she was half fish. She dove into the Alzette river and was never seen again. The story is a Luxembourgish variant of a widespread European folk motif — but every child in the country grows up with it, and Melusina is the unofficial patron of Luxembourg City. You'll see her statue on the riverbank below the Bock."
         },
+        mustKnow: [
+            "963 — Siegfried acquires Lucilinburhuc from the Abbey of St Maximin of Trier (the founding date)",
+            "The castle sat on the Bock promontory above the Alzette river",
+            "Lucilinburhuc means 'small castle' — the origin of the name Luxembourg (Lëtzebuerg)",
+            "1308 — Count Henry VII elected King of the Romans; crowned Holy Roman Emperor in 1312",
+            "John the Blind — son of Henry VII, King of Bohemia, died at the Battle of Crécy in 1346",
+            "1354 — Emperor Charles IV elevated Luxembourg from a County to a Duchy",
+            "The House of Luxembourg produced 4 Holy Roman Emperors (Henry VII, Charles IV, Wenceslas, Sigismund)",
+            "1443 — Philip the Good, Duke of Burgundy, conquered Luxembourg; end of self-rule"
+        ],
         modules: [3]
     },
     {
@@ -902,7 +919,14 @@ const chapters = [
         title: "Ruled by Foreigners",
         era: "1443 – 1815",
         subtitle: "372 years without sovereignty",
-        hook: "For nearly four centuries no one asked Luxembourgers who should govern them. The Duchy passed through Burgundian, Spanish, French, and Austrian hands like a chess piece on the European board — the price of sitting between France and the German lands. The fortress got bigger with each occupier: Spanish engineers layered onto Burgundian walls, French designers added Vauban's star bastions in 1684, the Austrians reinforced it again after 1714. By 1795, when Revolutionary France dissolved the Duchy and turned it into the 'Département des Forêts', Luxembourg City had become one of the strongest fortresses in Europe — the 'Gibraltar of the North'. Its own people had almost no say in any of it.",
+        hook: `<h4 class="hook-h">A chess piece on the map</h4>
+<p>For nearly four centuries, no one asked Luxembourgers who should govern them. The Duchy passed from ruler to ruler like a chess piece — the price of sitting between France and the German lands.</p>
+<h4 class="hook-h">The four occupiers</h4>
+<p>The order matters: <strong>Burgundians</strong> (1443), <strong>Spanish Habsburgs</strong> (from 1556, after Charles V split his empire), <strong>French</strong> (Louis XIV briefly, 1684–1697), then <strong>Austrian Habsburgs</strong> (from 1714, via the Treaty of Utrecht). Sovereignty passed by inheritance, marriage, and conquest — never by choice.</p>
+<h4 class="hook-h">Each occupier built up the fortress</h4>
+<p>Spanish engineers layered onto Burgundian walls. In <strong>1684</strong>, French architect Vauban added his signature star bastions. The Austrians reinforced it again after 1714. By 1795, Luxembourg City was one of the strongest fortresses in Europe — the "<strong>Gibraltar of the North</strong>": three concentric rings of defence, 24 forts, 23 km of underground casemates.</p>
+<h4 class="hook-h">And then the French Revolution</h4>
+<p>In <strong>1795</strong>, Revolutionary France annexed Luxembourg outright, dissolved the Duchy, and renamed it the <em>Département des Forêts</em>. For 19 years, Luxembourgers were legally French — until Napoleon fell in 1814 and the Congress of Vienna redrew the map.</p>`,
         arc: [
             "Burgundian rule (1443 – 1477) — Philip the Good's conquest",
             "Habsburg inheritance through marriage (1477) — Mary of Burgundy weds Maximilian",
@@ -925,6 +949,18 @@ const chapters = [
             title: "The fortress that outgrew the country",
             text: "Successive occupiers made the Luxembourg City fortress so formidable that by the 18th century it had three concentric rings of defences, 24 forts, and 23 km of underground casemates (tunnels) carved into the sandstone. Those tunnels are now a UNESCO World Heritage site (inscribed 1994). When you tour the Bock casemates today, most of what you see is Spanish, French, or Austrian engineering — not Luxembourgish."
         },
+        mustKnow: [
+            "1443–1477 — Burgundian rule (Philip the Good's conquest)",
+            "1477 — Habsburgs inherit via marriage of Mary of Burgundy to Maximilian",
+            "1556 — Charles V splits the empire; Luxembourg goes to Spanish Habsburgs",
+            "1659 — Treaty of the Pyrenees: southern part (incl. Thionville) ceded to France",
+            "1684 — Louis XIV conquers; Vauban rebuilds the fortress",
+            "1697 — Returned to Spain",
+            "1714 — Passes to Austrian Habsburgs (Treaty of Utrecht)",
+            "1795 — French Republic annexes and abolishes the Duchy; renamed Département des Forêts",
+            "Luxembourg City fortress = the 'Gibraltar of the North'",
+            "Casemates (23 km of tunnels) — UNESCO World Heritage Site since 1994"
+        ],
         modules: [3]
     },
     {
@@ -933,7 +969,14 @@ const chapters = [
         title: "Becoming a Nation",
         era: "1815 – 1890",
         subtitle: "Independence, constitutions, and a dynasty of one's own",
-        hook: "In 1815 the Congress of Vienna drew a new country onto the map — the Grand Duchy of Luxembourg, elevated from a mere Duchy so its Dutch king could match Prussia and Austria in rank. But it was still owned by someone else. Nine years of Belgian revolution followed, then a 1839 Treaty of London that cut two-thirds of the territory to Belgium in exchange for actual independence for what remained. From that shrunken core Luxembourg wrote its first constitutions (1841, 1848, 1856, 1868 — the current one), started building railways and steel mills, dismantled its famous fortress under international pressure in 1867, and finally acquired its own royal family in 1890 when a distant Nassau cousin was called in to succeed a Dutch king who had left no male heir. In 75 years the country went from Dutch province to European steel power with its own monarch.",
+        hook: `<h4 class="hook-h">The Grand Duchy on paper (1815)</h4>
+<p>The Congress of Vienna in <strong>1815</strong> drew Luxembourg back onto the map, but as a "Grand Duchy" — a promotion in rank so its new owner, King <strong>William I of the Netherlands</strong>, could match Prussia and Austria. Luxembourg belonged to the Dutch, sat inside the German Confederation, and hosted a Prussian garrison. Independent in name only.</p>
+<h4 class="hook-h">The birthday: 19 April 1839</h4>
+<p>The Belgian Revolution of 1830 dragged Luxembourg in. The <strong>Treaty of London on 19 April 1839</strong> settled it: Belgium took the western two-thirds (including the French-speaking half). What remained became a genuinely independent Grand Duchy — smaller, but sovereign for the first time in 372 years. This date is Luxembourg's official birthday.</p>
+<h4 class="hook-h">Constitutions and the fortress crisis</h4>
+<p>Freedom brought constitutions: a first charter in <strong>1841</strong>, a liberal Constitution in <strong>1848</strong>, and the current one in <strong>1868</strong> (heavily amended since). Then in <strong>1867</strong> France's Napoleon III tried to buy Luxembourg from the Dutch king. Prussia refused. Europe nearly went to war. The Second Treaty of London (1867) forced Luxembourg to become <strong>permanently neutral</strong>, and its famous fortress was dismantled stone by stone.</p>
+<h4 class="hook-h">Its own dynasty (1890)</h4>
+<p>In 1890, Dutch King-Grand Duke William III died without a male heir. Dutch law and Luxembourg's own law of succession diverged — so a distant Nassau cousin, <strong>Adolphe</strong>, was called in. Luxembourg finally had its own royal family. And thanks to the <strong>Thomas process</strong> (1879), which let engineers extract phosphorus from Luxembourg's iron ore, the steel industry was about to make the country rich.</p>`,
         arc: [
             "Congress of Vienna creates the Grand Duchy (1815) — under Dutch personal union",
             "Belgian Revolution (1830) — most of Luxembourg tries to join Belgium",
@@ -968,6 +1011,22 @@ const chapters = [
             title: "Ons Heemecht — the anthem born in a coffee house",
             text: "In 1859 Michel Lentz, a Luxembourg City bank clerk, wrote the poem 'Ons Heemecht' ('Our Homeland') at a table in a café. Composer Jean-Antoine Zinnen set it to music. It was first performed publicly in 1864 in Ettelbruck, at a music festival meant to celebrate Luxembourgish identity. The song became so beloved that the constitution now recognises it as the national anthem — but only the first and fourth stanzas are sung on official occasions. On National Day (23 June), you'll hear both. The rest is worth reading for the imagery: rivers, oak trees, and vineyards."
         },
+        mustKnow: [
+            "1815 — Congress of Vienna creates the Grand Duchy under Dutch personal union (William I)",
+            "1830 — Belgian Revolution",
+            "19 April 1839 — Treaty of London: Luxembourg's official independence day",
+            "Belgium took the western 2/3; the remaining eastern 1/3 = today's Luxembourg",
+            "1841 — First constitutional charter (granted by the king)",
+            "1842 — Joins the German Zollverein (customs union)",
+            "1848 — First liberal Constitution (modelled on Belgium's)",
+            "1859 — First railway; 'Ons Heemecht' poem written (Michel Lentz)",
+            "1867 — Second Treaty of London: permanent neutrality; fortress dismantled; leaves German Confederation",
+            "1868 — Fourth Constitution adopted (still in force, heavily amended)",
+            "1879 — Emile Metz buys Thomas process licence; Luxembourg steel takes off",
+            "1886 — First integrated steelworks in Dudelange",
+            "1890 — William III dies without a male heir; Adolphe of Nassau starts the national dynasty",
+            "Anthem 'Ons Heemecht': lyrics by Michel Lentz, music by Jean-Antoine Zinnen"
+        ],
         modules: [3, 1, 2]
     },
     {
@@ -976,7 +1035,14 @@ const chapters = [
         title: "Two Wars, Two Invasions",
         era: "1914 – 1945",
         subtitle: "How a neutral country survived being conquered twice in thirty years",
-        hook: "Neutrality — guaranteed by treaty since 1867 — was supposed to keep Luxembourg out of European wars. Instead the country was invaded on the first day of both world wars. In August 1914 Germany rolled through on its way to France; the young Grand Duchess Marie-Adélaïde received the Kaiser at her palace, an act that would eventually cost her the throne. In May 1940 Germany came again, this time to stay — and this time Grand Duchess Charlotte and her government escaped to London, where she broadcast to occupied Luxembourg on the BBC through the entire war. 11,000 young Luxembourgish men were conscripted into the Wehrmacht by force. 800 of the country's Jewish residents were deported and murdered. When the Americans arrived on 9 September 1944, Luxembourg had lost 2% of its total population — and its neutrality was over.",
+        hook: `<h4 class="hook-h">Neutrality that didn't hold</h4>
+<p>Since <strong>1867</strong>, Luxembourg had been guaranteed permanently neutral by treaty. It was supposed to keep the country out of European wars. Instead, Luxembourg was invaded on the <em>first day</em> of both world wars — <strong>2 August 1914</strong> and <strong>10 May 1940</strong>.</p>
+<h4 class="hook-h">WWI and the abdication (1914–1919)</h4>
+<p>In 1914, German armies rolled through on the way to France. The young Grand Duchess <strong>Marie-Adélaïde</strong> received Kaiser Wilhelm II at her palace — an act read as collaboration. After the war, revolutionary movements briefly pushed for a republic. She abdicated in January 1919. Her sister <strong>Charlotte</strong> took the throne. A <strong>referendum on 28 September 1919</strong> asked the country directly: <strong>78%</strong> voted to keep the monarchy. On the same ballot, <strong>80%</strong> chose an economic union with Belgium over France — the seed of the BLEU (1921). The same year, Luxembourg introduced <strong>universal suffrage</strong> — men and women.</p>
+<h4 class="hook-h">WWII and forced conscription (1940–1945)</h4>
+<p>In May 1940 the Germans came again — this time to stay. Grand Duchess Charlotte and her government fled to London, and Charlotte broadcast to occupied Luxembourg on the BBC throughout the war. Under Gauleiter Gustav Simon, Germanisation began. On <strong>30 August 1942</strong>, forced conscription was decreed. The next day, workers launched Western Europe's only <strong>general strike</strong> against Nazi occupation. 21 strikers were shot in reprisal. Around <strong>11,000</strong> young men were drafted into the Wehrmacht; roughly 2,800 died. Around <strong>800 Jews</strong> from Luxembourg were deported and murdered.</p>
+<h4 class="hook-h">Liberation and the end of neutrality</h4>
+<p>American forces liberated Luxembourg on <strong>9 September 1944</strong>. The German counter-offensive of the <strong>Battle of the Bulge</strong> (16 December 1944) pushed back briefly; full liberation came <strong>22 February 1945</strong>. Luxembourg had lost <strong>2% of its population</strong>. In 1948, it formally renounced neutrality — and never went back.</p>`,
         arc: [
             "Germany violates neutrality (2 August 1914) — the Schlieffen Plan through Luxembourg",
             "Marie-Adélaïde meets the Kaiser — the collaboration accusation",
@@ -1013,6 +1079,27 @@ const chapters = [
             title: "The general strike of 1942",
             text: "On 31 August 1942, in response to Nazi Germany's decree conscripting young Luxembourgers into the Wehrmacht, workers and students launched a spontaneous general strike — the only one in occupied Western Europe. Nazi reprisals were severe: 21 strikers were shot, hundreds deported. The strike is commemorated every year and is a foundational memory of the Luxembourgish resistance. If you visit the National Museum of the Resistance in Esch-sur-Alzette, this is the story it centres."
         },
+        mustKnow: [
+            "2 August 1914 — Germany invades, violating Luxembourg's neutrality",
+            "Grand Duchess Marie-Adélaïde met the Kaiser; accused of collaboration; abdicated January 1919",
+            "Charlotte succeeds her sister; reigns 1919–1964",
+            "28 September 1919 — Referendum: 78% keep the monarchy, 80% choose economic union with Belgium",
+            "1919 — Universal suffrage (men AND women vote for the first time); compulsory voting introduced",
+            "1921 — BLEU (Belgium-Luxembourg Economic Union) replaces the German Zollverein",
+            "1929 — Law on holding companies (foundation of the financial sector)",
+            "1937 — 'Muzzle Law' referendum: 50.7% reject banning the Communist Party",
+            "10 May 1940 — Nazi Germany invades",
+            "Charlotte and government flee to London (then Montreal); Charlotte broadcasts on the BBC",
+            "Gauleiter Gustav Simon runs the German civil administration; policy of Germanisation",
+            "30 August 1942 — Forced conscription decreed",
+            "31 August 1942 — General strike (Western Europe's only one under Nazi rule); 21 strikers shot",
+            "~11,000 Luxembourgers forcibly conscripted into the Wehrmacht; ~2,800 died",
+            "~800 Jews from Luxembourg deported and murdered",
+            "9 September 1944 — American forces liberate Luxembourg",
+            "16 December 1944 — Battle of the Bulge (German counter-offensive)",
+            "22 February 1945 — Full liberation",
+            "2% of the total population lost their lives during WWII"
+        ],
         modules: [3]
     },
     {
@@ -1021,7 +1108,14 @@ const chapters = [
         title: "Building Europe",
         era: "1945 – 2000",
         subtitle: "From steel to Schengen: how a small country founded a continent",
-        hook: "In 1945 Luxembourg made two irreversible choices. It gave up the neutrality that had failed to protect it twice. And it decided that a country of half a million people between France and Germany could only be safe inside a larger structure. Over the next fifty years the country founded, or joined at founding, every major European institution: the UN (1945), NATO and the Council of Europe (1949), the ECSC (1951 — with Luxembourg as headquarters), the EEC (1957), Schengen (signed on a Luxembourg riverboat in 1985), and the euro (1999). Along the way its steel industry — 25,000 jobs and a third of GDP in 1970 — collapsed and reinvented itself as a financial centre. By 2000 the country was the world's second-largest investment fund market. Three Luxembourgers had served as presidents of the European Commission.",
+        hook: `<h4 class="hook-h">Two decisions in 1945</h4>
+<p>Luxembourg emerged from the war with two clear conclusions. First: neutrality had failed twice; it had to go. Second: a country of half a million people between France and Germany could only be safe <em>inside</em> a bigger structure. Everything that followed was a consequence.</p>
+<h4 class="hook-h">Founding modern Europe</h4>
+<p>Luxembourg joined at the founding — every time. <strong>UN</strong> (1945). <strong>NATO</strong> and <strong>Council of Europe</strong> (1949). The <strong>ECSC</strong> in 1951 (with Luxembourg City as headquarters). The <strong>EEC</strong> via the Treaties of Rome (1957). The <strong>Schengen Agreement</strong> — signed on a Luxembourg riverboat in <strong>1985</strong>, in force from <strong>1995</strong>. And the <strong>euro</strong> — electronic in 1999, cash in 2002.</p>
+<h4 class="hook-h">The steel-to-finance pivot</h4>
+<p>Steel had made the country rich. In 1970 it was <strong>~30% of GDP</strong> and <strong>~17% of the workforce</strong>. The <strong>1974 steel crisis</strong> shattered it — 25,000 jobs disappeared over two decades. The 1929 holding-company law had already planted the seed of a financial sector. By 2000, Luxembourg was the <strong>world's second-largest investment fund centre</strong> after the United States. The last blast furnace closed in <strong>1997</strong>.</p>
+<h4 class="hook-h">Three Luxembourgers at the top of Europe</h4>
+<p><strong>Gaston Thorn</strong> (1981–1985), <strong>Jacques Santer</strong> (1995–1999), and later <strong>Jean-Claude Juncker</strong> (2014–2019) all served as Presidents of the European Commission. Between them, they ran the EU executive for 14 years. In <strong>1984</strong>, Luxembourg made <strong>Luxembourgish</strong> the national language — a self-confident act by a country that no longer felt small.</p>`,
         arc: [
             "UN founding member (1945)",
             "Neutrality renounced (1948) — Marshall Plan aid follows",
@@ -1058,6 +1152,25 @@ const chapters = [
             title: "Schengen: the village that named a treaty",
             text: "The 1985 Schengen Agreement — the treaty that eventually abolished passport checks across most of continental Europe — was signed on the MS Princesse Marie-Astrid, a boat moored on the Moselle river next to the tiny wine-growing village of Schengen (population ~500). The venue mattered: the boat was in international water where France, Germany, and Luxembourg meet. Today Schengen has a small European Museum where you can see the signing table. The village name is now a metonym for open borders in about 26 languages."
         },
+        mustKnow: [
+            "1945 — UN founding member",
+            "1948 — Neutrality officially renounced; Marshall Plan; OEEC membership",
+            "1949 — NATO founding member; Council of Europe founding member",
+            "1951 — ECSC (European Coal and Steel Community) founding member; Treaty of Paris",
+            "1952 — Luxembourg City chosen as ECSC seat (the seed of the EU quarter on Kirchberg)",
+            "1957 — Treaties of Rome: founding member of EEC and Euratom",
+            "1970s peak steel: ~30% of GDP, ~17% of workforce, 25,000 jobs",
+            "1974 — Steel crisis begins",
+            "1981 — Last coal/iron mine closed",
+            "1984 — Language law: Luxembourgish becomes the national language",
+            "1985 — Schengen Agreement signed on the MS Princesse Marie-Astrid; in force 1995",
+            "1992 — Maastricht Treaty creates the EU",
+            "1997 — Last blast furnace closed",
+            "1999 — Euro introduced electronically; 2002 — banknotes and coins",
+            "EU institutions in Luxembourg (Kirchberg): CJEU, General Court, Court of Auditors, EIB, Eurostat, Publications Office, EPPO, General Secretariat of the European Parliament",
+            "Three Luxembourgish EU Commission Presidents: Gaston Thorn (1981-85), Jacques Santer (1995-99), Jean-Claude Juncker (2014-19)",
+            "ARBED steel giant → Arcelor (2002) → ArcelorMittal (2006)"
+        ],
         modules: [3, 2]
     },
     {
@@ -1066,7 +1179,14 @@ const chapters = [
         title: "Modern Luxembourg",
         era: "2000 – today",
         subtitle: "A country of many nationalities, three languages, and outsize influence",
-        hook: "Today 47% of Luxembourg's residents are foreign nationals — from more than 160 countries — and every working day another 200,000 cross-border commuters arrive from France, Belgium, and Germany. Three languages are official: Luxembourgish (national), French (legislation), and German (administrative and media). The financial sector produces around a quarter of GDP, making Luxembourg the world's second-largest investment fund centre after the United States. A 2023 constitutional revision modernised the fundamental text for the first time in 75 years. Dual citizenship has been permitted since 2008 — meaning you can keep your current passport when you naturalise. In 2024, Grand Duke Henri announced that his son Prince Guillaume will take over as regent, then Grand Duke — the country's next generation of monarchy.",
+        hook: `<h4 class="hook-h">A country half foreign</h4>
+<p>Today <strong>~47%</strong> of Luxembourg's residents are foreign nationals — from more than <strong>160 countries</strong>. Every working day, another <strong>~217,000 cross-border commuters</strong> arrive from France (~half), Germany, and Belgium. About 46% of the workforce lives outside Luxembourg. Without them, the economy stops.</p>
+<h4 class="hook-h">Three languages, one country</h4>
+<p>Three languages are official (since the 1984 law): <strong>Luxembourgish</strong> is the national language, <strong>French</strong> is the language of legislation, and <strong>German</strong> is the administrative and school-literacy language. It's the reason your naturalisation only requires <strong>A2 speaking and B1 listening</strong> in Luxembourgish — not full fluency.</p>
+<h4 class="hook-h">The 2023 constitutional revision</h4>
+<p>In 2023, Luxembourg overhauled the 1868 Constitution for the first time in over 70 years. Environmental protection became a constitutional objective. Fundamental rights were rewritten. Since <strong>2008</strong>, <strong>dual citizenship</strong> has been permitted — you can keep your current passport when you naturalise (subject to your other country's law). And in <strong>2020</strong>, Luxembourg became the first country in the world with <strong>free public transport</strong> nationwide.</p>
+<h4 class="hook-h">Succession in the making</h4>
+<p><strong>Grand Duke Henri</strong> has been on the throne since <strong>7 October 2000</strong>. In 2024, he named his son <strong>Prince Guillaume</strong> lieutenant-representant, then in 2025 confirmed him as heir apparent to take over as Grand Duke — Luxembourg's next generation.</p>`,
         arc: [
             "Grand Duke Henri accedes (7 October 2000)",
             "University of Luxembourg founded (2003) — the country finally has its own university",
@@ -1099,6 +1219,21 @@ const chapters = [
             title: "The country that speaks three languages, badly",
             text: "Luxembourg's trilingual system works surprisingly well but produces strange edge cases. Laws are written only in French — even for laws about the Luxembourgish language. Schools teach in German at first, add French later, and use Luxembourgish for oral instruction. Newspapers print in a mix of all three, sometimes on the same page. Cross-border commuters make everything more complicated: a French speaker from Metz, a German from Trier, and a Belgian from Arlon may all be in the same office, using French as the compromise. This is why you're only being tested on A2 Luxembourgish speaking + B1 listening for naturalisation, not full fluency."
         },
+        mustKnow: [
+            "7 October 2000 — Grand Duke Henri accedes to the throne",
+            "2003 — University of Luxembourg founded",
+            "2008 — Dual citizenship permitted; new nationality law",
+            "December 2008 — Grand Duke Henri refuses to sign euthanasia law; Article 34 amended: he now 'promulgates' laws but no longer 'sanctions' them",
+            "2014 — Same-sex marriage legalised (Luxembourg's PM Xavier Bettel later marries his partner)",
+            "2015 — Referendum: voting rights for foreign residents rejected (~80% against)",
+            "2020 (29 February) — Free public transport nationwide (world first)",
+            "2023 — Major constitutional revision (first in 70+ years)",
+            "2024 — Prince Guillaume named lieutenant-representant (heir apparent taking over duties)",
+            "~47% of residents are foreign nationals (from 160+ countries)",
+            "~217,000 cross-border commuters (~46% of the workforce)",
+            "3 official languages: Luxembourgish (national), French (legislation), German (administrative)",
+            "Naturalisation language requirement: A2 speaking + B1 listening in Luxembourgish"
+        ],
         modules: [3, 2]
     }
 ];
@@ -1595,6 +1730,142 @@ const scenarios = [
             { q: "The village today", a: "There's now a European Museum in Schengen. You can see the boat, the signing table, and the borders. The word 'Schengen' is now used metonymically in ~26 languages." }
         ],
         links: { studySections: [{ module: "module3", index: 7 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_siegfried_963",
+        title: "The deed of 963 that founded a country",
+        icon: "🏯",
+        module: 3,
+        relatedChapters: ["ch1"],
+        premise: "Count Siegfried walks into the abbey of St Maximin of Trier with a proposal. He wants a hilltop ruin in exchange for some flat farmland. The monks agree. Nobody realises they are founding a country.",
+        beats: [
+            { q: "What did Siegfried actually get?", a: "A crumbling Roman-era fortification on the Bock — a rocky promontory jutting out above the Alzette river. The monks called it Lucilinburhuc — 'small castle'. Militarily impressive, agriculturally useless. Trade favoured the abbey on paper." },
+            { q: "Why 963 as the founding date?", a: "That is the year the deed of exchange is dated. There was no formal 'founding of Luxembourg' — historians treat the deed as the earliest documented moment when the place we now call Luxembourg existed as a defined territory under a named lord." },
+            { q: "Where does the name come from?", a: "Lucilinburhuc → Lützelburg → Lëtzebuerg. The Luxembourgish 'Lëtzebuerg', French 'Luxembourg', and German 'Luxemburg' are all descendants of the same word for 'small castle'. The English name uses the French spelling." },
+            { q: "How did a small castle become an empire?", a: "Siegfried's descendants married well and fought smart. In 1308, Count Henry VII was elected King of the Romans; in 1312, crowned Holy Roman Emperor. The House of Luxembourg gave the Empire FOUR emperors — Henry VII, Charles IV, Wenceslas, and Sigismund." },
+            { q: "When did it become a Duchy?", a: "1354. Emperor Charles IV (himself a Luxembourger) elevated the County to a Duchy. The first titular Duke was his half-brother Wenceslas I. This is the rank Luxembourg held until 1815, when the Congress of Vienna promoted it again — to Grand Duchy." },
+            { q: "Why did it end in 1443?", a: "The Duchy passed to weaker heirs. Philip the Good, Duke of Burgundy, conquered Luxembourg by force in 1443. Self-rule ended. What followed was 372 years of Burgundian, then Habsburg, then French, then Austrian rule — the story of chapter 2." }
+        ],
+        links: { studySections: [{ module: "module3", index: 0 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_fortress_of_europe",
+        title: "The Gibraltar of the North (1443–1795)",
+        icon: "🛡️",
+        module: 3,
+        relatedChapters: ["ch2"],
+        premise: "You visit the Bock casemates today and walk 23 km of tunnels carved into sandstone. Most of what you see was built by people who never asked Luxembourgers for permission. Who built what — and why does it matter?",
+        beats: [
+            { q: "Why the fortress kept growing", a: "Whoever ruled Luxembourg was fighting the country ranked opposite it on the map. Spanish Habsburgs feared France. French feared Habsburgs. Austrians feared France. Everyone reinforced the fortress they had inherited — you don't demolish a defence built at someone else's expense." },
+            { q: "The order of owners", a: "Burgundy (1443–1477), Spanish Habsburgs (1556 onwards, after Charles V split his empire), a French interlude under Louis XIV (1684–1697), Austrian Habsburgs (1714 onwards, via the Treaty of Utrecht), and finally the French Republic (1795–1814)." },
+            { q: "The French moment: Vauban 1684", a: "Louis XIV conquered Luxembourg in 1684 in a matter of weeks. His military architect Sébastien Le Prestre de Vauban immediately redesigned the fortress with the star-shaped bastions that were the state of the art. Even after France gave the territory back to Spain in 1697, the Vauban design stayed — and every later occupier built on it." },
+            { q: "How Revolutionary France ended the Duchy", a: "In 1795, French Revolutionary armies annexed Luxembourg and dissolved the Duchy. The territory was reorganised as the Département des Forêts. For 19 years, Luxembourgers were legally French citizens under Napoleonic law — until Napoleon fell in 1814." },
+            { q: "Why did any of this matter later?", a: "The 372 years of foreign rule shaped everything after. The fortress was so strong that in 1867 Europe nearly went to war over who would control it — leading to Luxembourg's forced neutrality and the dismantling of the fortress. And the casemates today (UNESCO 1994) are Luxembourg's biggest tourist site." },
+            { q: "What did Luxembourgers get out of 372 years?", a: "Very little politically. But the trilingual habit — French from the west, German from the east — took root under this parade of foreign administrations. It is one direct line from the fortress era to the trilingual country of today." }
+        ],
+        links: { studySections: [{ module: "module3", index: 1 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_charlotte_exile",
+        title: "The Grand Duchess broadcasts from London",
+        icon: "📻",
+        module: 3,
+        relatedChapters: ["ch4"],
+        premise: "Berlin, May 1940. German troops have crossed the border again. In Luxembourg City, Grand Duchess Charlotte has hours to decide whether to stay or flee. What she does next will define Luxembourgish legitimacy for the whole war.",
+        beats: [
+            { q: "The decision to flee", a: "Charlotte and her government chose to leave the country rather than stay under occupation. They left on 10 May 1940 — the same day of the invasion — heading first to France, then Portugal, then the UK, then Canada, and finally back to London. Staying would have handed the Nazis a puppet head of state." },
+            { q: "Why exile mattered legally", a: "Under international law, a government-in-exile carrying its state's legitimacy abroad prevents the occupier from claiming legal control. This is why Charlotte's flight was strategic, not cowardice. It also let the Allies recognise a continuous Luxembourgish state throughout the war." },
+            { q: "The BBC broadcasts", a: "Charlotte spoke to occupied Luxembourg on the BBC in Luxembourgish. Her voice became the sound of a country that still existed. The general strike of 31 August 1942 was partly triggered by knowing there was a government-in-exile to represent them." },
+            { q: "The 1942 forced conscription", a: "Gauleiter Gustav Simon decreed on 30 August 1942 that Luxembourgers born 1920-1924 would be drafted into the Wehrmacht. This was Germanisation at its worst — treating Luxembourgers as Germans. About 11,000 young men were eventually conscripted; roughly 2,800 died. The next day, workers went on strike." },
+            { q: "The general strike of 31 August 1942", a: "Western Europe's only general strike under Nazi occupation. It began in Wiltz and spread. 21 strikers were shot within days after summary trials. Hundreds deported. It didn't stop the conscription, but it did establish that Luxembourg had NOT consented — a critical fact for post-war recognition as a resistant country." },
+            { q: "Return and reconstruction", a: "Charlotte returned on 14 April 1945. The country had lost 2% of its population. Post-war, 5,006 people were sentenced for collaboration; 12 death sentences, 8 executed. Charlotte reigned until she abdicated in favour of her son Jean in 1964." }
+        ],
+        links: { studySections: [{ module: "module3", index: 6 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_steel_to_finance",
+        title: "How steel workers became a fund industry",
+        icon: "🔥",
+        module: 3,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "In 1970, steel was ~30% of GDP and ~17% of the workforce. Today it is a small fraction of both. Finance is the giant now — ~25% of GDP. How did Luxembourg pull off one of the fastest economic pivots in modern Europe?",
+        beats: [
+            { q: "The steel century", a: "It started in 1842 when Luxembourg joined the German Zollverein and could suddenly sell iron and coal into a huge tariff-free market. In 1879 Emile Metz bought the licence to the Thomas process — which finally let engineers make good steel from Luxembourg's phosphorus-heavy iron ore. First integrated steelworks: Dudelange, 1886. By 1970, ARBED was Luxembourg's economic centre." },
+            { q: "The 1974 crash", a: "The oil crisis of 1973 cratered global steel demand. Luxembourg's steel industry began a slow-motion collapse: 25,000 jobs disappeared over 20 years. The last mine closed in 1981. The last blast furnace closed in 1997. Whole towns in the south (Esch-sur-Alzette, Differdange) had to reinvent themselves." },
+            { q: "The tripartite model", a: "Rather than mass layoffs, the government, unions, and employers negotiated. Workers took early retirement or moved to state jobs. Nobody was left destitute. This 'Luxembourg model' of tripartite social dialogue is still how big economic shocks are handled." },
+            { q: "Where finance came from", a: "The seed was 1929 — a law creating tax-favoured holding companies. Then in the 1960s, London banks started using Luxembourg as a base for Eurodollar and Eurobond issuance to sidestep US Regulation Q and UK taxes. By 1988 Luxembourg had a UCITS law that let it dominate cross-border investment funds. Today it is the world's second-largest fund centre after the United States." },
+            { q: "Then Big Tech and space", a: "Since 2000 Luxembourg has attracted the European HQs of Amazon, eBay, PayPal, iTunes/Apple, and Skype. Separately, SES — one of the world's biggest satellite operators — has grown into a 50+ satellite fleet from a country of 700,000 people. Luxembourg has even legislated on asteroid mining rights (2017)." },
+            { q: "ARBED's afterlife", a: "The steel company itself didn't die. ARBED merged with French Usinor and Spanish Aceralia in 2002 to form Arcelor. In 2006, Arcelor merged with Mittal Steel to form ArcelorMittal — the world's largest steel producer. Headquartered in Luxembourg City. Steel didn't disappear from Luxembourg — it went global." }
+        ],
+        links: { studySections: [{ module: "module3", index: 9 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_three_presidents",
+        title: "Three Luxembourgers ran the EU",
+        icon: "🇪🇺",
+        module: 3,
+        relatedChapters: ["ch5", "ch6"],
+        premise: "Between 1981 and 2019 — a span of 38 years — three Luxembourgers served as President of the European Commission. In a Commission with 27 member states, this is remarkable. Who were they, and why did a small country punch so far above its weight?",
+        beats: [
+            { q: "Gaston Thorn (1981–1985)", a: "Former Prime Minister of Luxembourg (1974–1979). Presided over the Commission during the entry of Greece into the EEC. Best known for pushing for what became the Single European Act — the treaty that turned the common market into a real single market. Died in 2007." },
+            { q: "Jacques Santer (1995–1999)", a: "Also a former Prime Minister of Luxembourg (1984–1995). His Commission introduced the euro on 1 January 1999. But it also resigned en masse in March 1999 after a fraud and mismanagement scandal — the first (and only) Commission ever to do so. Santer stayed until his term formally ended." },
+            { q: "Jean-Claude Juncker (2014–2019)", a: "The longest-serving Prime Minister of Luxembourg (1995–2013) before becoming Commission President. Ran the EU through the Greek debt crisis (as Eurogroup president), Brexit negotiations, and the migration crisis. Known for the 'Juncker Plan' — a €315 billion investment programme." },
+            { q: "Why so many Luxembourgers?", a: "Small country, careful diplomacy. Luxembourg is trusted by everyone precisely because it threatens no one. A Luxembourger at the top can broker deals a French or German president couldn't. Luxembourg also insists that founding members deserve continued visibility — and there's little any big country can do about it." },
+            { q: "Beyond the three", a: "Luxembourgers have also held: Pierre Werner (author of the 1970 'Werner Plan' — the first blueprint for the euro), Robert Schuman (Luxembourg-born, though he served France; the Schuman Declaration of 9 May 1950 launched European integration). The 9th of May is Europe Day precisely because of this." },
+            { q: "What this means for the exam", a: "You need to know the three Commission presidents by name, in order, with their approximate dates. Thorn (early '80s), Santer (mid '90s), Juncker (2014-19). And you should know that Schuman was Luxembourg-born. All appear as exam questions." }
+        ],
+        links: { studySections: [{ module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_chambers_ces",
+        title: "The advisory bodies you've never heard of",
+        icon: "🗂️",
+        module: 2,
+        relatedChapters: ["ch3", "ch6"],
+        premise: "Between the government proposing a law and Parliament voting on it, a network of advisory bodies weighs in. The Council of State is the big one — but there are also six 'Professional Chambers' and the Economic and Social Council. Who are they, and why does the exam care?",
+        beats: [
+            { q: "The six Professional Chambers", a: "Three represent EMPLOYERS: Chamber of Commerce, Chamber of Trades (Chambre des Métiers), Chamber of Agriculture. Three represent WORKERS: Chamber of Private Employees, Chamber of Civil Servants and Public Employees, Chamber of Labour (Chambre des Salariés). Every worker and every employer is represented in one of them — automatically." },
+            { q: "What do they actually do?", a: "They must be consulted on any legislation affecting their members' economic interests. Their opinions are advisory, not binding — but a government that ignores a hostile chamber opinion is asking for social conflict. In practice, they shape labour law, tax law, and social security." },
+            { q: "The Economic and Social Council (CES)", a: "Conseil économique et social. Established 1966, reformed several times. Advisory body on major economic, financial, and social questions. Members from unions, employers, and government-nominated experts. Publishes an annual report on the economic and social situation of the country." },
+            { q: "Not the same as the Council of State", a: "Confusion is common. Council of STATE = 21 constitutional advisers, advises on all legislation, suspensive veto. Council of ECONOMIC AND SOCIAL affairs = tripartite think tank on economics. Different institutions, different roles, different powers. The exam plays on this." },
+            { q: "The tripartite tradition", a: "When there's a big economic shock (steel crisis 1974, COVID 2020, energy crisis 2022), Luxembourg convenes 'the tripartite' — government + employer chambers + worker chambers. Decisions taken there become policy. It is one of the country's core political inventions." },
+            { q: "Why this matters for you", a: "As a resident worker, you are automatically a member of the Chamber of Private Employees or Chamber of Civil Servants — depending on your job. You elect its representatives. That vote is separate from any political election. Most people never realise until they read the payslip." }
+        ],
+        links: { studySections: [{ module: "module2", index: 10 }, { module: "module2", index: 4 }], questionsModule: 2 }
+    },
+    {
+        id: "sc_zollverein_bleu",
+        title: "The customs unions that shaped Luxembourg",
+        icon: "🚂",
+        module: 3,
+        relatedChapters: ["ch3", "ch4", "ch5"],
+        premise: "For 200 years, Luxembourg has always been inside a customs union — but the partner keeps changing. Germany until 1918. Belgium from 1921. All of Europe from 1957. Why do these matter for the country's story?",
+        beats: [
+            { q: "1842 — Joining the Zollverein", a: "In 1842, Luxembourg joined the German Zollverein — the customs union that had been building since 1834 among German states. Suddenly Luxembourg's iron, coal, and later steel could enter Germany duty-free. This is what enabled the steel industry to exist. Luxembourg stayed in the Zollverein until World War I ended it in 1918." },
+            { q: "The end of the Zollverein (1918)", a: "Germany lost the war. The Zollverein collapsed. Luxembourg — which had built its economy around German markets — suddenly needed a new partner. On the 1919 referendum, 80% chose an economic union with Belgium over France. The result was the BLEU (Belgo-Luxembourg Economic Union) in 1921." },
+            { q: "BLEU (1921 onwards)", a: "Belgian franc and Luxembourgish franc pegged 1:1. Shared currency, shared trade policy, coordinated tariffs. This was a genuine union — not just a treaty. BLEU still exists inside the euro. Belgium and Luxembourg still coordinate on some economic matters as a bloc." },
+            { q: "Benelux (1944/1948)", a: "In 1944 (still in exile in London), Belgium, Netherlands, and Luxembourg signed a treaty creating the Benelux Customs Union. It came into force in 1948. Free movement of goods among the three. Benelux was a model — many features later appeared in the EEC. Benelux still exists today as a smaller cooperation body." },
+            { q: "ECSC (1951) and EEC (1957)", a: "The pattern kept going: Luxembourg joined every customs and integration union it was offered. ECSC in 1951 put steel and coal into a common market. EEC in 1957 was a full customs union across six countries — France, West Germany, Italy, Belgium, Netherlands, and Luxembourg." },
+            { q: "Why it matters today", a: "Luxembourg's entire economic strategy is 'always be inside the biggest customs union available'. It has never known what it is to face tariffs on its exports. This is why any threat to the EU single market — Brexit, protectionism — is felt more sharply in Luxembourg than in bigger countries." }
+        ],
+        links: { studySections: [{ module: "module3", index: 5 }, { module: "module3", index: 8 }], questionsModule: 3 }
+    },
+    {
+        id: "sc_constitution_2023",
+        title: "The 2023 constitutional revision",
+        icon: "📖",
+        module: 2,
+        relatedChapters: ["ch6"],
+        premise: "The 1868 Constitution had been amended dozens of times, but never rewritten. In 2023 that changed. Four separate constitutional laws entered into force between 1 July 2023 and 1 January 2024. What actually changed, and what stayed the same?",
+        beats: [
+            { q: "Why now?", a: "The 1868 text had become a patchwork. Amendments piled on for 155 years. A comprehensive revision — proposed in 2009, refined over 14 years — was finally approved. Parliament used the double-vote procedure with a Council of State dispensation." },
+            { q: "The four new chapters (in force 2023–2024)", a: "The revision reorganised the Constitution into four thematic laws: on fundamental rights (July 2023), on the Grand Duke (October 2023), on the Chamber of Deputies + Council of State (October 2023), and on justice (January 2024). Same fundamental text — much clearer structure." },
+            { q: "Fundamental rights: what's new", a: "Explicit recognition of human dignity, sustainable development, animal welfare, and the rights of the child. Right to physical and mental integrity. Right to housing (as a state objective). Explicit protection of personal data. It codifies rights that were already recognised by case law but had no constitutional anchor." },
+            { q: "The Grand Duke: fewer powers, more clarity", a: "The 2008 amendment that removed 'sanctioning' from the Grand Duke's role (after the euthanasia refusal) was consolidated. The Grand Duke now only promulgates laws — no discretion. He remains inviolable. Every act still requires ministerial countersignature. The succession rules are made gender-neutral." },
+            { q: "Chamber and Council of State", a: "The 60-seat Chamber and its 5-year term stay. The Council of State's role is more explicitly written: mandatory opinion on legislation, suspensive veto on the second vote. New: MPs now have an explicit right of inquiry (parliamentary investigations). Rules on incompatibility clarified." },
+            { q: "What did NOT change", a: "Luxembourg is still a parliamentary democracy and a constitutional monarchy. Still 60 MPs, still 4 constituencies (South 23 / Centre 21 / North 9 / East 7), still compulsory voting, still 5-year terms. The Constitutional Court is still 9 members with no direct citizen petition. The revisions modernised the text — they didn't reinvent the state." }
+        ],
+        links: { studySections: [{ module: "module2", index: 0 }, { module: "module1", index: 3 }], questionsModule: 2 }
     },
     {
         id: "sc_ecsc_founding",
