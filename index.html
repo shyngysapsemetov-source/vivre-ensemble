@@ -988,6 +988,18 @@
         .review-stack .practice-tile { width: 100%; }
 
         .quiz-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+        /* During a timed exam the clock must stay visible while you scroll a long
+           question. Stick it just below the app header. */
+        .quiz-header.is-timed {
+            position: sticky;
+            top: calc(var(--header-h) + var(--safe-top));
+            z-index: 20;
+            margin: -1.3rem -1.3rem 0.75rem;
+            padding: 0.6rem 1.3rem;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
         .quiz-meta { font-size: 0.82rem; color: var(--text-muted); font-weight: 700; }
         .progress-bar {
             width: 100%; height: 6px;
@@ -1353,6 +1365,19 @@
         @media (min-width: 1280px) {
             .figure-grid { grid-template-columns: 1fr 1fr; }
         }
+
+        /* Respect the OS "reduce motion" setting. The shimmer, pulses and the
+           blinking exam clock are decorative; the countdown text still updates. */
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.001ms !important;
+            }
+            .progress-fill::after { display: none; }
+            .exam-clock.is-urgent { text-decoration: underline; }
+        }
     </style>
 </head>
 <body>
@@ -1659,8 +1684,13 @@
                 default:           return renderHome();
             }
         })();
-        app.innerHTML = `<div class="view">${html}</div>`;
+        // Only play the enter animation when the view actually changed. Otherwise
+        // every answer tap and card flip would fade-and-slide the whole page.
+        const isNewView = state.view !== lastRenderedView;
+        lastRenderedView = state.view;
+        app.innerHTML = `<div class="${isNewView ? 'view' : ''}">${html}</div>`;
     }
+    let lastRenderedView = null;
 
     // ================== HOME ==================
     function renderHome() {
@@ -2228,7 +2258,7 @@
         const keys = ['1', '2', '3', '4'];
         return `
             <div class="card">
-                <div class="quiz-header">
+                <div class="quiz-header${deadline ? ' is-timed' : ''}">
                     <span class="module-badge module-${q.module}">Module ${q.module}: ${moduleLabels[q.module]}</span>
                     <span class="quiz-meta">
                         ${deadline ? `<span id="exam-clock" class="exam-clock${remainingMs() <= 5 * 60000 ? ' is-urgent' : ''}">${formatRemaining()}</span> · ` : ''}
