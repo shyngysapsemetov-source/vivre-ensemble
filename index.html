@@ -376,6 +376,11 @@
             color: var(--text);
             letter-spacing: -0.02em;
         }
+        /* Best mock exam is the one number that has a pass/fail meaning. */
+        .pstat.is-pass { background: rgba(42, 157, 143, 0.1); border: 1px solid rgba(42, 157, 143, 0.28); }
+        .pstat.is-pass .pval { color: var(--success); }
+        .pstat.is-fail { background: rgba(214, 40, 40, 0.07); border: 1px solid rgba(214, 40, 40, 0.22); }
+        .pstat.is-fail .pval { color: var(--error); }
         .pstat .plbl {
             display: block;
             font-size: 0.68rem;
@@ -400,6 +405,13 @@
         .btn-tiny:hover { color: var(--lux-blue-dark); border-color: var(--lux-blue-dark); }
         .btn-tiny-danger:hover { color: var(--lux-red); border-color: var(--lux-red); }
         .progress-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+        .readiness-hint {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin-top: 0.5rem;
+            padding-left: 0.1rem;
+        }
         .readiness { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); }
         .readiness-head {
             display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem;
@@ -425,6 +437,36 @@
             color: var(--text-secondary);
             margin-top: 0.2rem;
         }
+
+        /* "Pick up where you left off" bar above the chapter list. */
+        .resume-bar {
+            display: flex; align-items: center; gap: 0.75rem;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            color: inherit;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, rgba(33, 158, 188, 0.09), rgba(33, 158, 188, 0.03));
+            border: 1px solid rgba(33, 158, 188, 0.28);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s var(--ease);
+        }
+        .resume-bar.is-done {
+            cursor: default;
+            background: linear-gradient(135deg, rgba(42, 157, 143, 0.1), rgba(42, 157, 143, 0.03));
+            border-color: rgba(42, 157, 143, 0.3);
+        }
+        .resume-bar:not(.is-done):hover, .resume-bar:not(.is-done):focus-visible {
+            border-color: var(--lux-blue);
+            box-shadow: var(--shadow);
+            outline: none;
+        }
+        .resume-body { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; flex: 1; }
+        .resume-label { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+        .resume-title { font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; }
+        .resume-arrow { color: var(--lux-blue-dark); font-size: 1.4rem; flex-shrink: 0; }
 
         .chapter-card.is-read { opacity: 0.8; }
         .chapter-card.is-read::before { opacity: 0.35; }
@@ -951,6 +993,56 @@
             background: linear-gradient(currentColor, currentColor) center/10px 2px no-repeat;
             color: var(--lux-red);
         }
+        /* Reference search. Browser Ctrl+F cannot see inside a closed <details>,
+           so the view needs its own filter. */
+        .ref-search {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-sm);
+            padding: 0 0.75rem;
+            margin-bottom: 0.4rem;
+            transition: border-color 0.15s var(--ease), box-shadow 0.15s var(--ease);
+        }
+        .ref-search:focus-within { border-color: var(--lux-blue); box-shadow: 0 0 0 3px rgba(33, 158, 188, 0.15); }
+        .ref-search-icon { font-size: 0.9rem; opacity: 0.6; flex-shrink: 0; }
+        .ref-search input {
+            flex: 1;
+            min-width: 0;
+            border: none;
+            background: none;
+            font-family: inherit;
+            /* Must stay at 16px: iOS auto-zooms the page on focusing a smaller input. */
+            font-size: 16px;
+            color: var(--text);
+            padding: 0.75rem 0;
+            min-height: 46px;
+            /* iOS gives type=search an inset border and rounded corners by default. */
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        .ref-search input:focus { outline: none; }
+        .ref-search input::-webkit-search-cancel-button { display: none; }
+        .ref-search-clear {
+            border: none; background: none; cursor: pointer;
+            font-size: 1.3rem; line-height: 1;
+            color: var(--text-muted);
+            padding: 0.2rem 0.3rem;
+            flex-shrink: 0;
+        }
+        .ref-search-clear:hover { color: var(--lux-red); }
+        .ref-count { font-size: 0.78rem; color: var(--text-muted); font-weight: 600; min-height: 1.2rem; margin-bottom: 0.8rem; padding-left: 0.25rem; }
+        .ref-sec-count { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; margin-left: auto; }
+        /* The UA default for <mark> is black on yellow, which vanishes in dark mode. */
+        mark {
+            background: rgba(244, 162, 97, 0.35);
+            color: var(--text);
+            border-radius: 3px;
+            padding: 0 0.1em;
+        }
+
         .study-section .content { padding: 0 0 1rem; font-size: 0.9rem; color: var(--text-secondary); }
         .study-section .content ul { margin: 0.4rem 0; padding-left: 1.2rem; }
         .study-section .content h4 { color: var(--text); }
@@ -1024,6 +1116,19 @@
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
+        /* Quiz setup: one row per module, so pool size and accuracy are visible
+           before you commit to a drill. */
+        .quiz-setup-list { display: flex; flex-direction: column; }
+        .quiz-setup-row {
+            display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;
+            padding: 0.7rem 0;
+            border-top: 1px solid var(--border);
+        }
+        .qs-main { display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap; flex: 1 1 12rem; min-width: 0; }
+        .qs-name { font-size: 0.92rem; font-weight: 700; }
+        .qs-meta { font-size: 0.76rem; color: var(--text-muted); font-weight: 600; flex-basis: 100%; }
+        .qs-actions { display: flex; gap: 0.4rem; margin-left: auto; flex-shrink: 0; }
+
         .quiz-question { font-size: 1.05rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.45; letter-spacing: -0.01em; }
         .quiz-options { display: flex; flex-direction: column; gap: 0.55rem; }
         .quiz-option {
@@ -1205,7 +1310,12 @@
             -webkit-tap-highlight-color: transparent;
             box-shadow: var(--shadow);
             user-select: none;
+            /* It is a <button>, so reset the UA styling. */
+            width: 100%;
+            font-family: inherit;
+            color: inherit;
         }
+        .flashcard:focus-visible { outline: 3px solid var(--lux-blue); outline-offset: 3px; }
         .flashcard:hover { border-color: var(--lux-red); }
         .flashcard:active { transform: scale(0.99); box-shadow: var(--shadow-lg); }
         .flashcard-front { font-size: 1.2rem; font-weight: 700; line-height: 1.4; }
@@ -1565,8 +1675,9 @@
         view: 'home',
         chapterId: null,
         scenarioId: null,
-        quiz: { qs: [], current: 0, score: 0, answered: false, selected: null, isExam: false, module: 0, missed: [], deadline: null, timedOut: false },
-        flash: { current: 0, flipped: false, deck: [] }
+        quiz: { qs: [], current: 0, score: 0, answered: false, selected: null, isExam: false, module: 0, missed: [], answeredCount: 0, deadline: null, timedOut: false },
+        flash: { current: 0, flipped: false, deck: [] },
+        refQuery: ''
     };
 
     // ================== PROGRESS HELPERS ==================
@@ -1626,12 +1737,48 @@
     function questionsSeenCount() { return Object.keys(progress.questionStats).length; }
 
     function chapterReadCount() { return Object.keys(progress.chaptersRead).length; }
+
+    // Readiness is about whether you would pass, not how much you have clicked.
+    // Reading is necessary but proves nothing, so it is capped at 20 points; the
+    // other 80 come from demonstrated recall — how much of the pool you have
+    // actually attempted, and how accurately, weighted by each module's exam share.
     function progressPct() {
-        // rough combined score: chapters read × 40 pts, scenarios × 15 pts, best exam pct × 45 pts
-        const chScore = (chapterReadCount() / chapters.length) * 40;
-        const scScore = (Object.keys(progress.scenariosSeen).length / scenarios.length) * 15;
-        const exScore = progress.bestExam ? (progress.bestExam.pct / 100) * 45 : 0;
-        return Math.round(chScore + scScore + exScore);
+        const readScore = (chapterReadCount() / chapters.length) * 12
+                        + (Object.keys(progress.scenariosSeen).length / scenarios.length) * 8;
+
+        let weighted = 0, weightUsed = 0;
+        [1, 2, 3].forEach(m => {
+            const share = meta.exam.mix['module' + m] / meta.exam.questionsOnExam;
+            const pool = questions.filter(q => q.module === m);
+            const seen = pool.filter(q => progress.questionStats[q.id]).length;
+            const acc = moduleAccuracy(m);
+            if (!acc) return;
+            // Coverage caps accuracy: 95% on three questions is not readiness.
+            const coverage = Math.min(1, seen / Math.max(1, pool.length * 0.6));
+            weighted += share * (acc.pct / 100) * coverage;
+            weightUsed += share;
+        });
+        // Untouched modules score zero rather than being averaged away.
+        const recallScore = weighted * 80;
+
+        return Math.min(100, Math.round(readScore + recallScore));
+    }
+
+    // Short plain-language read on what the number means and what to do next.
+    function readinessHint() {
+        const attempted = questionsSeenCount();
+        if (attempted < 20) return 'Answer more questions — readiness is mostly measured by recall, not reading.';
+        const worst = [1, 2, 3]
+            .map(m => ({ m, acc: moduleAccuracy(m) }))
+            .filter(r => r.acc)
+            .sort((a, b) => a.acc.pct - b.acc.pct)[0];
+        const labels = ['', 'Rights', 'Institutions', 'History'];
+        if (worst && worst.acc.pct < meta.exam.passPct) {
+            return `${labels[worst.m]} is your weakest module at ${worst.acc.pct}% — drill it from Practice.`;
+        }
+        const coverage = Math.round(attempted / questions.length * 100);
+        if (coverage < 60) return `You have seen ${coverage}% of the question pool. Keep going for a reliable signal.`;
+        return 'Above the pass mark across all three modules. Run full mock exams under the clock.';
     }
 
     // ================== ROUTER ==================
@@ -1730,7 +1877,7 @@
                     <section class="progress-card">
                         <div class="progress-head">
                             <div>
-                                <div class="progress-label">Your progress</div>
+                                <div class="progress-label">Exam readiness</div>
                                 <div class="progress-title">${pct}% ready</div>
                             </div>
                             <div class="progress-actions">
@@ -1740,11 +1887,12 @@
                             </div>
                         </div>
                         <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+                        <div class="readiness-hint">${readinessHint()}</div>
                         <div class="progress-stats">
                             <div class="pstat"><span class="pval">${chapterReadCount()}/${chapters.length}</span><span class="plbl">Chapters read</span></div>
                             <div class="pstat"><span class="pval">${Object.keys(progress.scenariosSeen).length}/${scenarios.length}</span><span class="plbl">Scenarios seen</span></div>
-                            <div class="pstat"><span class="pval">${progress.bestExam ? progress.bestExam.pct + '%' : '—'}</span><span class="plbl">Best mock exam</span></div>
-                            <div class="pstat"><span class="pval">${progress.quizAttempts.length}</span><span class="plbl">Quizzes taken</span></div>
+                            <div class="pstat${progress.bestExam ? (progress.bestExam.pct >= meta.exam.passPct ? ' is-pass' : ' is-fail') : ''}"><span class="pval">${progress.bestExam ? progress.bestExam.pct + '%' : '—'}</span><span class="plbl">Best mock exam</span></div>
+                            <div class="pstat"><span class="pval">${questionsSeenCount()}/${questions.length}</span><span class="plbl">Pool attempted</span></div>
                         </div>
                         ${(function() {
                             // Per-module accuracy, weighted by how much each module counts on the
@@ -1803,7 +1951,7 @@
 
             <div class="section-label">Jump into practice</div>
             <div class="practice-hub">
-                <button class="practice-tile" onclick="showView('quiz')"><span class="p-icon">🎓</span><span class="p-title">Quick Quiz</span><span class="p-desc">10–20 Qs, any module</span></button>
+                <button class="practice-tile" onclick="showView('quiz')"><span class="p-icon">🎓</span><span class="p-title">Quick Quiz</span><span class="p-desc">20 mixed, or 15 from one module</span></button>
                 <button class="practice-tile" onclick="startFlashcards()"><span class="p-icon">🃏</span><span class="p-title">Flashcards</span><span class="p-desc">${flashcards.length} cards</span></button>
                 <button class="practice-tile" onclick="showView('timeline')"><span class="p-icon">🕰️</span><span class="p-title">Timeline</span><span class="p-desc">${timeline.length} key dates</span></button>
                 <button class="practice-tile" onclick="startExam()"><span class="p-icon">🏆</span><span class="p-title">Mock Exam</span><span class="p-desc">Full 40-question sim</span></button>
@@ -1829,9 +1977,30 @@
 
     // ================== STORY ==================
     function renderStory() {
+        const readCount = chapterReadCount();
+        // Resume where you left off: the first unread chapter, if any.
+        const nextUp = chapters.find(c => !progress.chaptersRead[c.id]);
         return `
             <div class="section-label">The Story of Luxembourg</div>
             <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">Six chapters. 1,062 years. Tap a chapter to open its arc.</p>
+            ${readCount && nextUp ? `
+                <button class="resume-bar" onclick="showView('chapter','${nextUp.id}')">
+                    <span class="resume-body">
+                        <span class="resume-label">${readCount} of ${chapters.length} read &middot; continue with</span>
+                        <span class="resume-title">Chapter ${nextUp.number}: ${nextUp.title}</span>
+                    </span>
+                    <span class="resume-arrow">&rsaquo;</span>
+                </button>
+            ` : ''}
+            ${readCount === chapters.length ? `
+                <div class="resume-bar is-done">
+                    <span class="resume-body">
+                        <span class="resume-label">All ${chapters.length} chapters read</span>
+                        <span class="resume-title">Time to test it — try a mock exam</span>
+                    </span>
+                    <button class="btn btn-primary btn-sm" onclick="startExam()">Mock exam</button>
+                </div>
+            ` : ''}
             ${chapters.map(ch => {
                 const read = !!progress.chaptersRead[ch.id];
                 return `
@@ -2120,19 +2289,33 @@
     }
 
     function renderQuizSetup() {
-        const m1 = questions.filter(q => q.module === 1).length;
-        const m2 = questions.filter(q => q.module === 2).length;
-        const m3 = questions.filter(q => q.module === 3).length;
+        const labels = ['', 'Rights', 'Institutions', 'History'];
+        const rows = [1, 2, 3].map(m => ({
+            m,
+            pool: questions.filter(q => q.module === m).length,
+            acc: moduleAccuracy(m),
+            weak: weakQuestions(m).length
+        }));
         return `
             <button class="btn-back" onclick="showView('practice')">&larr; Practice</button>
             <div class="card">
                 <h2>Practice Quiz</h2>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:0.9rem">Pick a module or mix them all.</p>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem;margin-bottom:0.8rem">
-                    <button class="btn btn-primary" onclick="startQuiz(0)">All modules · 20 Qs</button>
-                    <button class="btn btn-secondary" onclick="startQuiz(1)">Rights (${m1})</button>
-                    <button class="btn btn-secondary" onclick="startQuiz(2)">Institutions (${m2})</button>
-                    <button class="btn btn-secondary" onclick="startQuiz(3)">History (${m3})</button>
+                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:0.9rem">Mixed draws follow the real exam's weighting: ${meta.exam.mix.module1} Rights, ${meta.exam.mix.module2} Institutions, ${meta.exam.mix.module3} History.</p>
+                <button class="btn btn-primary btn-full" onclick="startQuiz(0)" style="margin-bottom:0.75rem">All modules &middot; 20 questions, exam-weighted</button>
+                <div class="quiz-setup-list">
+                    ${rows.map(r => `
+                        <div class="quiz-setup-row">
+                            <div class="qs-main">
+                                <span class="module-badge module-${r.m}">M${r.m}</span>
+                                <span class="qs-name">${labels[r.m]}</span>
+                                <span class="qs-meta">${r.pool} in pool${r.acc ? ` &middot; ${r.acc.pct}% accuracy so far` : ' &middot; not attempted yet'}</span>
+                            </div>
+                            <div class="qs-actions">
+                                ${r.weak ? `<button class="btn btn-secondary btn-sm" onclick="startWeakDrill(${r.m})" title="Drill only the questions you keep getting wrong">Weak ${Math.min(r.weak, 20)}</button>` : ''}
+                                <button class="btn btn-secondary btn-sm" onclick="startQuiz(${r.m})">15 Qs</button>
+                            </div>
+                        </div>
+                    `).join('')}
                 </div>
                 <div class="kbd-hint">Use <kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd> <kbd>4</kbd> to answer · <kbd>Enter</kbd> to advance</div>
             </div>
@@ -2279,7 +2462,7 @@
                     }).join('')}
                 </div>
                 ${answered ? `
-                    <div class="quiz-explanation"><strong>${q.correct === selected ? '✓ Correct.' : '✗ Not quite.'}</strong> ${q.explanation}</div>
+                    <div class="quiz-explanation" role="status"><strong>${q.correct === selected ? '✓ Correct.' : '✗ Not quite.'}</strong> ${q.explanation}</div>
                     <div class="quiz-actions"><button class="btn btn-primary btn-full" onclick="nextQuestion()">${current + 1 === qs.length ? 'See results' : 'Next question'} (Enter)</button></div>
                 ` : `<div class="kbd-hint">Press <kbd>1</kbd>–<kbd>4</kbd> to answer</div>`}
                 <div class="quiz-abandon">
@@ -2434,11 +2617,11 @@
                     ${(stats.right || stats.wrong) ? `<span style="color:var(--text-muted);margin-left:0.5rem">· ${stats.right}✓ ${stats.wrong}✗</span>` : ''}
                 </div>
                 <div class="flashcard-wrap">
-                    <div class="flashcard" onclick="flipCard()">
+                    <button type="button" class="flashcard" onclick="flipCard()" aria-label="${state.flash.flipped ? 'Answer shown. Activate to see the question again.' : 'Activate to reveal the answer.'}">
                         ${state.flash.flipped
                             ? `<div class="flashcard-back">${c.back}</div>`
                             : `<div class="flashcard-front">${c.front}</div>`}
-                    </div>
+                    </button>
                 </div>
                 ${state.flash.flipped ? `
                     <div class="flashcard-controls">
@@ -2485,31 +2668,103 @@
     }
 
     // ================== REFERENCE ==================
-    function renderReference() {
-        let html = `<div class="section-label">Study Reference</div>
-        <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">The three official modules, section by section. Every fact the exam can ask.</p>`;
+    // 26 collapsed accordions across three cards is unsearchable, so the view has
+    // a filter box. Matching sections auto-open with the term highlighted; browser
+    // Ctrl+F can't see inside a closed <details>, which is why this exists.
+    function refSearchInput(e) {
+        state.refQuery = e.target.value;
+        const box = document.getElementById('ref-results');
+        if (box) box.innerHTML = renderRefSections();
+        const count = document.getElementById('ref-count');
+        if (count) count.textContent = refCountLabel();
+        const clear = document.getElementById('ref-clear');
+        if (clear) clear.hidden = !state.refQuery;
+    }
+    function clearRefSearch() {
+        state.refQuery = '';
+        render();
+        const input = document.getElementById('ref-search-input');
+        if (input) input.focus();
+    }
+
+    function refMatches(q) {
+        const needle = q.trim().toLowerCase();
+        if (!needle) return null;
+        const out = [];
+        for (const key of ['module1', 'module2', 'module3']) {
+            studyContent[key].sections.forEach((s, i) => {
+                const inTitle = s.title.toLowerCase().includes(needle);
+                // Strip tags before searching so a query never matches markup.
+                const plain = s.content.replace(/<[^>]+>/g, ' ').toLowerCase();
+                if (inTitle || plain.includes(needle)) out.push({ key, i });
+            });
+        }
+        return out;
+    }
+
+    function refCountLabel() {
+        const hits = refMatches(state.refQuery);
+        if (!hits) return '';
+        return hits.length ? `${hits.length} section${hits.length === 1 ? '' : 's'} match` : 'No sections match — try a shorter term';
+    }
+
+    // Wrap occurrences of the query in <mark>, skipping anything inside a tag.
+    function highlightQuery(html, needle) {
+        if (!needle) return html;
+        const safe = needle.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return html.replace(new RegExp(`(${safe})(?![^<]*>)`, 'gi'), '<mark>$1</mark>');
+    }
+
+    function renderRefSections() {
+        const q = state.refQuery || '';
+        const hits = refMatches(q);
+        const isHit = (key, i) => !hits || hits.some(h => h.key === key && h.i === i);
+        let html = '';
         for (const key of ['module1', 'module2', 'module3']) {
             const m = studyContent[key];
+            const visible = m.sections.map((s, i) => ({ s, i })).filter(({ i }) => isHit(key, i));
+            if (!visible.length) continue;
             html += `<article class="card">
                 <div class="module-header">
                     <span class="module-badge ${m.badge}">${m.badge.replace('module-','Module ')}</span>
+                    <span class="ref-sec-count">${visible.length} of ${m.sections.length} sections</span>
                 </div>
                 <h2>${m.title}</h2>
-                ${m.sections.map(s => `
-                    <details class="study-section">
-                        <summary>${s.title}</summary>
-                        <div class="content">${s.content}</div>
+                ${visible.map(({ s, i }) => `
+                    <details class="study-section"${hits ? ' open' : ''}>
+                        <summary>${highlightQuery(s.title, q)}</summary>
+                        <div class="content">${highlightQuery(s.content, q)}</div>
                     </details>
                 `).join('')}
             </article>`;
         }
-        return html;
+        return html || `<div class="card" style="text-align:center"><p>Nothing found for &ldquo;${q}&rdquo;.</p></div>`;
+    }
+
+    function renderReference() {
+        const q = state.refQuery || '';
+        const totalSections = ['module1', 'module2', 'module3'].reduce((n, k) => n + studyContent[k].sections.length, 0);
+        return `
+            <div class="section-label">Study Reference</div>
+            <p style="color:var(--text-secondary);font-size:0.92rem;margin-bottom:1rem;line-height:1.6">All ${totalSections} sections of the three official modules. Every fact the exam can ask.</p>
+            <div class="ref-search">
+                <span class="ref-search-icon" aria-hidden="true">&#128269;</span>
+                <input type="search" id="ref-search-input" placeholder="Search all sections — e.g. Chamber, panachage, 1839"
+                       value="${q.replace(/"/g, '&quot;')}" oninput="refSearchInput(event)" aria-label="Search the study reference">
+                <button class="ref-search-clear" id="ref-clear" onclick="clearRefSearch()" aria-label="Clear search"${q ? '' : ' hidden'}>&times;</button>
+            </div>
+            <div class="ref-count" id="ref-count">${refCountLabel()}</div>
+            <div id="ref-results">${renderRefSections()}</div>
+        `;
     }
 
     // ================== KEYBOARD ==================
     document.addEventListener('keydown', e => {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
         const k = e.key;
+        // Space/Enter on a focused button is the browser's job — handling it here too
+        // would fire the action twice.
+        if ((k === ' ' || k === 'Enter') && e.target.tagName === 'BUTTON') return;
         // Global nav
         if (!e.ctrlKey && !e.metaKey && !e.altKey) {
             const shortcutMap = { '1': 'home', '2': 'story', '3': 'scenarios', '4': 'practice', '5': 'reference' };
