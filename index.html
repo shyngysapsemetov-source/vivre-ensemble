@@ -400,6 +400,14 @@
         .btn-tiny:hover { color: var(--lux-blue-dark); border-color: var(--lux-blue-dark); }
         .btn-tiny-danger:hover { color: var(--lux-red); border-color: var(--lux-red); }
         .progress-actions { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+        .readiness { margin-top: 0.9rem; padding-top: 0.8rem; border-top: 1px dashed var(--border); }
+        .readiness-head {
+            display: flex; justify-content: space-between; align-items: baseline; gap: 0.5rem;
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 0.3rem;
+        }
+        .readiness-head span { font-weight: 600; letter-spacing: 0; text-transform: none; font-size: 0.7rem; }
+        .mod-weight { font-size: 0.66rem; font-weight: 600; color: var(--text-muted); }
         .progress-note {
             font-size: 0.72rem;
             color: var(--text-muted);
@@ -975,6 +983,9 @@
         .practice-tile .p-icon { font-size: 1.4rem; margin-bottom: 0.4rem; display: block; }
         .practice-tile .p-title { font-size: 0.92rem; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 0.15rem; }
         .practice-tile .p-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+        /* Full-width review tiles stack rather than sit in the 2-up grid. */
+        .review-stack { display: flex; flex-direction: column; gap: 0.7rem; }
+        .review-stack .practice-tile { width: 100%; }
 
         .quiz-header { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
         .quiz-meta { font-size: 0.82rem; color: var(--text-muted); font-weight: 700; }
@@ -1017,7 +1028,14 @@
             transition: all 0.2s var(--ease);
             background: var(--surface);
             -webkit-tap-highlight-color: transparent;
+            /* .quiz-option is a <button>: undo the UA defaults so it reads as a card. */
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            color: inherit;
+            appearance: none;
         }
+        .quiz-option:focus-visible { outline: 3px solid var(--lux-blue); outline-offset: 2px; }
         .quiz-option:hover:not(.disabled) { border-color: var(--lux-blue); background: rgba(33, 158, 188, 0.05); }
         .quiz-option:active { transform: scale(0.99); }
         .quiz-option .key-hint {
@@ -1078,6 +1096,86 @@
         .score-label { color: var(--text-muted); font-size: 1rem; margin-top: 0.4rem; font-weight: 600; }
         .score-verdict { margin-top: 1rem; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
         .score-note { color: var(--text-muted); font-size: 0.83rem; margin-top: 0.3rem; }
+
+        /* Exam countdown — sits in the quiz header, turns red in the last 5 minutes. */
+        .exam-clock {
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-variant-numeric: tabular-nums;
+            font-weight: 800;
+            color: var(--lux-blue-dark);
+        }
+        .exam-clock.is-urgent { color: var(--lux-red); animation: clockPulse 1s ease-in-out infinite; }
+        @keyframes clockPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+
+        .quiz-abandon { margin-top: 1.1rem; padding-top: 0.8rem; border-top: 1px solid var(--border); text-align: center; }
+
+        .timeout-banner {
+            background: rgba(214, 40, 40, 0.08);
+            border: 1px solid rgba(214, 40, 40, 0.25);
+            border-radius: var(--radius-sm);
+            padding: 0.7rem 0.9rem;
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: var(--error);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        /* Per-module breakdown on the results screen. */
+        .mod-bar-row { display: flex; align-items: center; gap: 0.6rem; padding: 0.5rem 0; }
+        .mod-bar-row + .mod-bar-row { border-top: 1px solid var(--border); }
+        .mod-bar-label {
+            flex: 0 0 42%;
+            display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap;
+            font-size: 0.82rem; font-weight: 700;
+        }
+        .mod-bar { flex: 1 1 auto; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+        .mod-bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s var(--ease); }
+        .mod-fill-1 { background: var(--lux-red); }
+        .mod-fill-2 { background: var(--lux-blue); }
+        .mod-fill-3 { background: var(--success); }
+        .mod-bar-val {
+            flex: 0 0 3.2rem; text-align: right;
+            font-family: 'SF Mono', 'JetBrains Mono', 'Menlo', monospace;
+            font-variant-numeric: tabular-nums;
+            font-size: 0.8rem; font-weight: 700; color: var(--text-muted);
+        }
+
+        /* Missed-question review list. */
+        .missed-item { border-bottom: 1px solid var(--border); }
+        .missed-item:last-child { border-bottom: none; }
+        .missed-item > summary {
+            display: flex; align-items: flex-start; gap: 0.5rem;
+            padding: 0.7rem 0.2rem;
+            cursor: pointer;
+            list-style: none;
+            font-size: 0.86rem;
+            line-height: 1.45;
+            text-align: left;
+        }
+        .missed-item > summary::-webkit-details-marker { display: none; }
+        .missed-item > summary::after {
+            content: '+';
+            margin-left: auto;
+            flex-shrink: 0;
+            color: var(--text-muted);
+            font-weight: 800;
+        }
+        .missed-item[open] > summary::after { content: '−'; }
+        .missed-item > summary:hover .missed-q { color: var(--lux-blue-dark); }
+        .missed-q { font-weight: 600; }
+        .missed-body { padding: 0 0.2rem 0.9rem; }
+        .missed-line {
+            font-size: 0.84rem;
+            padding: 0.35rem 0.6rem;
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.35rem;
+            line-height: 1.5;
+        }
+        .missed-yours { background: rgba(214, 40, 40, 0.07); color: var(--error); font-weight: 600; }
+        .missed-right { background: rgba(42, 157, 143, 0.08); color: var(--success); font-weight: 700; }
+        .missed-why { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.6; margin-top: 0.5rem; }
 
         .flashcard-wrap { margin: 0.85rem 0; }
         .flashcard {
@@ -1305,24 +1403,57 @@
     // ================== STATE ==================
     const meta = APP_CONTENT.meta;
 
+    // ---- Stable content IDs -------------------------------------------------
+    // Per-item stats used to be keyed by array index, which silently reassigned
+    // every stat whenever a question or card was inserted or reordered. Keys are
+    // now derived from the item's own text, so they survive edits to the deck.
+    function contentId(prefix, text) {
+        let h = 5381;
+        for (let i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) | 0;
+        return prefix + (h >>> 0).toString(36);
+    }
+    questions.forEach(q => { q.id = contentId('q_', q.q); });
+    flashcards.forEach(c => { c.id = contentId('f_', c.front); });
+
+    const questionById = new Map(questions.map(q => [q.id, q]));
+
     // Persistent progress — stored in localStorage under a single versioned key.
     const PROGRESS_KEY = 'vivre-ensemble-progress-v1';
+    const PROGRESS_VERSION = 2;
     const emptyProgress = () => ({
-        version: 1,
+        version: PROGRESS_VERSION,
         chaptersRead: {},         // { ch1: true, ... }
         scenariosSeen: {},        // { sc_arrest: true, ... }
-        flashStats: {},           // { <cardIndex>: { right: n, wrong: n } }
-        quizAttempts: [],         // [{ ts, module, score, total, isExam }]
+        flashStats: {},           // { <cardId>: { right: n, wrong: n } }
+        questionStats: {},        // { <questionId>: { right: n, wrong: n } }
+        quizAttempts: [],         // [{ ts, module, score, total, pct, isExam }]
         bestByModule: { 0: 0, 1: 0, 2: 0, 3: 0 },  // best pct per module (0 = all)
         bestExam: null            // { ts, score, pct }
     });
+
+    // v1 keyed flashStats by array index. Those keys are no longer meaningful,
+    // so remap them through the deck order they were originally recorded against.
+    function migrateProgress(p) {
+        if (p.version === PROGRESS_VERSION) return { ...emptyProgress(), ...p };
+        if (p.version === 1) {
+            const migrated = { ...emptyProgress(), ...p, version: PROGRESS_VERSION };
+            const remapped = {};
+            Object.entries(p.flashStats || {}).forEach(([key, val]) => {
+                const card = flashcards[Number(key)];
+                if (card) remapped[card.id] = val;
+            });
+            migrated.flashStats = remapped;
+            migrated.questionStats = {};
+            return migrated;
+        }
+        return emptyProgress();
+    }
+
     function loadProgress() {
         try {
             const raw = localStorage.getItem(PROGRESS_KEY);
             if (!raw) return emptyProgress();
-            const p = JSON.parse(raw);
-            if (p.version !== 1) return emptyProgress();
-            return { ...emptyProgress(), ...p };
+            return migrateProgress(JSON.parse(raw));
         } catch (e) { return emptyProgress(); }
     }
     function saveProgress() {
@@ -1360,9 +1491,10 @@
             reader.onload = () => {
                 try {
                     const payload = JSON.parse(reader.result);
-                    const incoming = payload.progress || payload; // accept raw or wrapped
-                    if (!incoming || typeof incoming !== 'object') throw new Error('Invalid file');
-                    if (incoming.version !== 1) throw new Error('Unsupported file version');
+                    const raw = payload.progress || payload; // accept raw or wrapped
+                    if (!raw || typeof raw !== 'object') throw new Error('Invalid file');
+                    if (raw.version !== 1 && raw.version !== PROGRESS_VERSION) throw new Error('Unsupported file version');
+                    const incoming = migrateProgress(raw);
                     const doMerge = confirm('MERGE with existing progress?\n\nOK = Merge (keep the better of each stat)\nCancel = Replace all existing progress');
                     if (doMerge) {
                         progress.chaptersRead = { ...progress.chaptersRead, ...incoming.chaptersRead };
@@ -1371,6 +1503,11 @@
                         Object.entries(incoming.flashStats || {}).forEach(([k, v]) => {
                             const cur = progress.flashStats[k] || { right: 0, wrong: 0 };
                             progress.flashStats[k] = { right: cur.right + (v.right || 0), wrong: cur.wrong + (v.wrong || 0) };
+                        });
+                        // Question stats: sum
+                        Object.entries(incoming.questionStats || {}).forEach(([k, v]) => {
+                            const cur = progress.questionStats[k] || { right: 0, wrong: 0 };
+                            progress.questionStats[k] = { right: cur.right + (v.right || 0), wrong: cur.wrong + (v.wrong || 0) };
                         });
                         // Quiz attempts: concat, keep last 50
                         progress.quizAttempts = [...(progress.quizAttempts || []), ...(incoming.quizAttempts || [])].slice(-50);
@@ -1403,8 +1540,8 @@
         view: 'home',
         chapterId: null,
         scenarioId: null,
-        quiz: { qs: [], current: 0, score: 0, answered: false, selected: null, isExam: false, module: 0 },
-        flash: { current: 0, flipped: false, deck: [], indices: [] }
+        quiz: { qs: [], current: 0, score: 0, answered: false, selected: null, isExam: false, module: 0, missed: [], deadline: null, timedOut: false },
+        flash: { current: 0, flipped: false, deck: [] }
     };
 
     // ================== PROGRESS HELPERS ==================
@@ -1429,12 +1566,40 @@
         if (progress.quizAttempts.length > 50) progress.quizAttempts = progress.quizAttempts.slice(-50);
         saveProgress();
     }
-    function recordFlash(idx, correct) {
-        const s = progress.flashStats[idx] || { right: 0, wrong: 0 };
+    function recordQuestion(qId, correct) {
+        const s = progress.questionStats[qId] || { right: 0, wrong: 0 };
         if (correct) s.right++; else s.wrong++;
-        progress.flashStats[idx] = s;
+        progress.questionStats[qId] = s;
+    }
+    function recordFlash(cardId, correct) {
+        const s = progress.flashStats[cardId] || { right: 0, wrong: 0 };
+        if (correct) s.right++; else s.wrong++;
+        progress.flashStats[cardId] = s;
         saveProgress();
     }
+
+    // Questions you get wrong at least as often as right, weakest first.
+    function weakQuestions(module) {
+        return questions
+            .filter(q => !module || q.module === module)
+            .map(q => ({ q, s: progress.questionStats[q.id] }))
+            .filter(({ s }) => s && s.wrong > 0 && s.wrong >= s.right)
+            .sort((a, b) => (b.s.wrong - b.s.right) - (a.s.wrong - a.s.right))
+            .map(({ q }) => q);
+    }
+
+    // Per-module readiness from question-level accuracy — a truer signal than
+    // best-quiz-score, because it is not skewed by one lucky run.
+    function moduleAccuracy(module) {
+        let right = 0, total = 0;
+        questions.filter(q => q.module === module).forEach(q => {
+            const s = progress.questionStats[q.id];
+            if (s) { right += s.right; total += s.right + s.wrong; }
+        });
+        return total ? { pct: Math.round(right / total * 100), total } : null;
+    }
+    function questionsSeenCount() { return Object.keys(progress.questionStats).length; }
+
     function chapterReadCount() { return Object.keys(progress.chaptersRead).length; }
     function progressPct() {
         // rough combined score: chapters read × 40 pts, scenarios × 15 pts, best exam pct × 45 pts
@@ -1446,6 +1611,13 @@
 
     // ================== ROUTER ==================
     function showView(view, arg) {
+        // Navigating away mid-quiz throws the attempt away, so confirm first. This
+        // guards the sidebar/bottom nav too, not just the explicit "leave" button.
+        if (state.view === 'quizActive' && view !== 'quizActive') {
+            const { current, qs, isExam } = state.quiz;
+            if (current > 0 && !confirm(`Leave this ${isExam ? 'exam' : 'quiz'}? You are on question ${current + 1} of ${qs.length} and this attempt will not be saved.`)) return;
+            stopExamTimer();
+        }
         state.view = view;
         if (view === 'chapter') state.chapterId = arg;
         if (view === 'scenario') {
@@ -1544,6 +1716,25 @@
                             <div class="pstat"><span class="pval">${progress.bestExam ? progress.bestExam.pct + '%' : '—'}</span><span class="plbl">Best mock exam</span></div>
                             <div class="pstat"><span class="pval">${progress.quizAttempts.length}</span><span class="plbl">Quizzes taken</span></div>
                         </div>
+                        ${(function() {
+                            // Per-module accuracy, weighted by how much each module counts on the
+                            // real exam. Institutions is half the paper, so weakness there costs most.
+                            const rows = [1, 2, 3].map(m => ({ m, acc: moduleAccuracy(m) })).filter(r => r.acc);
+                            if (!rows.length) return '';
+                            const labels = ['', 'Rights', 'Institutions', 'History'];
+                            return `
+                                <div class="readiness">
+                                    <div class="readiness-head">Accuracy by module <span>${questionsSeenCount()} of ${questions.length} questions attempted</span></div>
+                                    ${rows.map(r => `
+                                        <div class="mod-bar-row">
+                                            <span class="mod-bar-label"><span class="module-badge module-${r.m}">M${r.m}</span> ${labels[r.m]} <span class="mod-weight">${meta.exam.mix['module' + r.m]} Qs on exam</span></span>
+                                            <div class="mod-bar"><div class="mod-bar-fill mod-fill-${r.m}" style="width:${r.acc.pct}%"></div></div>
+                                            <span class="mod-bar-val">${r.acc.pct}%</span>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            `;
+                        })()}
                         <p class="progress-note">Your progress is saved to this browser only. Export to move it to another device.</p>
                     </section>
                 `;
@@ -1857,6 +2048,7 @@
     // ================== PRACTICE HUB ==================
     function renderPractice() {
         const wrongCount = Object.values(progress.flashStats).filter(s => s.wrong > s.right).length;
+        const weakQs = weakQuestions(0);
         return `
             <div class="section-label">Practice</div>
             <div class="practice-hub">
@@ -1865,13 +2057,24 @@
                 <button class="practice-tile" onclick="showView('timeline')"><span class="p-icon">🕰️</span><span class="p-title">Timeline</span><span class="p-desc">${timeline.length} dates</span></button>
                 <button class="practice-tile" onclick="startExam()"><span class="p-icon">🏆</span><span class="p-title">Mock Exam</span><span class="p-desc">40 Qs, full sim</span></button>
             </div>
-            ${wrongCount ? `
-                <div class="section-label">Review</div>
-                <button class="practice-tile" style="width:100%" onclick="startFlashcards(true)">
-                    <span class="p-icon">🎯</span>
-                    <span class="p-title">Review ${wrongCount} weak card${wrongCount === 1 ? '' : 's'}</span>
-                    <span class="p-desc">Flashcards you've gotten wrong more than right — sorted by weakness first</span>
-                </button>
+            ${(weakQs.length || wrongCount) ? `
+                <div class="section-label">Review your weak spots</div>
+                <div class="review-stack">
+                    ${weakQs.length ? `
+                        <button class="practice-tile" onclick="startWeakDrill(0)">
+                            <span class="p-icon">🩹</span>
+                            <span class="p-title">Drill ${Math.min(weakQs.length, 20)} weak question${weakQs.length === 1 ? '' : 's'}</span>
+                            <span class="p-desc">Questions you've gotten wrong at least as often as right — weakest first. This is the fastest way to move your score.</span>
+                        </button>
+                    ` : ''}
+                    ${wrongCount ? `
+                        <button class="practice-tile" onclick="startFlashcards(true)">
+                            <span class="p-icon">🎯</span>
+                            <span class="p-title">Review ${wrongCount} weak card${wrongCount === 1 ? '' : 's'}</span>
+                            <span class="p-desc">Flashcards you've gotten wrong more than right — sorted by weakness first</span>
+                        </button>
+                    ` : ''}
+                </div>
             ` : ''}
             <div class="section-label">How the real exam works</div>
             <div class="card">
@@ -1906,24 +2109,73 @@
         `;
     }
 
+    // Answer position in the source data is heavily skewed (62% of questions have
+    // the correct answer second). Presenting options in fixed order teaches the
+    // position instead of the fact, so every drawn question gets its own shuffle.
+    function prepareQuestion(q) {
+        const order = q.options.map((text, i) => ({ text, isCorrect: i === q.correct }));
+        shuffle(order);
+        return {
+            id: q.id,
+            module: q.module,
+            q: q.q,
+            explanation: q.explanation,
+            options: order.map(o => o.text),
+            correct: order.findIndex(o => o.isCorrect)
+        };
+    }
+
+    function beginQuiz({ pool, module, isExam, durationMinutes }) {
+        state.quiz = {
+            qs: pool.map(prepareQuestion),
+            current: 0, score: 0, answered: false, selected: null,
+            isExam: !!isExam, module, missed: [], answeredCount: 0,
+            deadline: durationMinutes ? Date.now() + durationMinutes * 60000 : null,
+            timedOut: false
+        };
+        state.view = 'quizActive';
+        updateNav(); render();
+        if (state.quiz.deadline) startExamTimer();
+    }
+
     function startQuiz(module) {
         let qs = module === 0 ? [...questions] : questions.filter(q => q.module === module);
         shuffle(qs);
-        const count = module === 0 ? 20 : Math.min(15, qs.length);
-        state.quiz = { qs: qs.slice(0, count), current: 0, score: 0, answered: false, selected: null, isExam: false, module };
-        state.view = 'quizActive';
-        updateNav(); render();
+        // Module 0 mirrors the real exam's 10/20/10 weighting rather than drawing
+        // uniformly from a pool that is 50% History.
+        if (module === 0) {
+            qs = drawExamMix(20 / meta.exam.questionsOnExam);
+            shuffle(qs);
+        } else {
+            qs = qs.slice(0, Math.min(15, qs.length));
+        }
+        beginQuiz({ pool: qs, module, isExam: false });
+    }
+
+    // Draw questions in the exam's module proportions. `scale` of 1 = full exam.
+    function drawExamMix(scale) {
+        const out = [];
+        [1, 2, 3].forEach(m => {
+            const want = Math.round(meta.exam.mix['module' + m] * scale);
+            const pool = questions.filter(q => q.module === m);
+            shuffle(pool);
+            out.push(...pool.slice(0, want));
+        });
+        return out;
     }
 
     function startExam() {
-        const m1 = questions.filter(q => q.module === 1); shuffle(m1);
-        const m2 = questions.filter(q => q.module === 2); shuffle(m2);
-        const m3 = questions.filter(q => q.module === 3); shuffle(m3);
-        const qs = [...m1.slice(0, meta.exam.mix.module1), ...m2.slice(0, meta.exam.mix.module2), ...m3.slice(0, meta.exam.mix.module3)];
+        const qs = drawExamMix(1);
         shuffle(qs);
-        state.quiz = { qs, current: 0, score: 0, answered: false, selected: null, isExam: true, module: 0 };
-        state.view = 'quizActive';
-        updateNav(); render();
+        beginQuiz({ pool: qs, module: 0, isExam: true, durationMinutes: meta.exam.durationMinutes });
+    }
+
+    // Drill only the questions you keep getting wrong — the single highest-value
+    // study mode once you have a few quizzes of history.
+    function startWeakDrill(module) {
+        const weak = weakQuestions(module).slice(0, 20);
+        if (!weak.length) return;
+        beginQuiz({ pool: weak, module: module || 0, isExam: false });
     }
 
     function shuffle(arr) {
@@ -1933,20 +2185,57 @@
         }
     }
 
+    // ================== EXAM TIMER ==================
+    let examTimerId = null;
+    function startExamTimer() {
+        clearInterval(examTimerId);
+        examTimerId = setInterval(() => {
+            if (state.view !== 'quizActive' || !state.quiz.deadline) { stopExamTimer(); return; }
+            if (Date.now() >= state.quiz.deadline) {
+                stopExamTimer();
+                state.quiz.timedOut = true;
+                // Questions never reached count as wrong, as on the real exam — push
+                // them into `missed` so the breakdown and review list include them.
+                const { qs, current, answered } = state.quiz;
+                const done = current + (answered ? 1 : 0);
+                state.quiz.answeredCount = done;
+                for (let i = done; i < qs.length; i++) {
+                    state.quiz.missed.push({ ...qs[i], chosen: null });
+                }
+                finishQuiz();
+                return;
+            }
+            const el = document.getElementById('exam-clock');
+            if (el) {
+                el.textContent = formatRemaining();
+                el.classList.toggle('is-urgent', remainingMs() <= 5 * 60000);
+            }
+        }, 1000);
+    }
+    function stopExamTimer() { clearInterval(examTimerId); examTimerId = null; }
+    function remainingMs() { return Math.max(0, (state.quiz.deadline || 0) - Date.now()); }
+    function formatRemaining() {
+        const total = Math.ceil(remainingMs() / 1000);
+        return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
+    }
+
     function renderQuiz() {
-        const { qs, current, score, answered, selected, isExam } = state.quiz;
+        const { qs, current, score, answered, selected, isExam, deadline } = state.quiz;
         if (current >= qs.length) return renderResults();
         const q = qs[current];
-        const progress = (current / qs.length * 100).toFixed(0);
+        const pct = (current / qs.length * 100).toFixed(0);
         const moduleLabels = ['', 'Rights', 'Institutions', 'History'];
         const keys = ['1', '2', '3', '4'];
         return `
             <div class="card">
                 <div class="quiz-header">
                     <span class="module-badge module-${q.module}">Module ${q.module}: ${moduleLabels[q.module]}</span>
-                    <span class="quiz-meta">${current + 1} / ${qs.length} · Score: ${score}</span>
+                    <span class="quiz-meta">
+                        ${deadline ? `<span id="exam-clock" class="exam-clock${remainingMs() <= 5 * 60000 ? ' is-urgent' : ''}">${formatRemaining()}</span> · ` : ''}
+                        ${current + 1} / ${qs.length} · Score: ${score}
+                    </span>
                 </div>
-                <div class="progress-bar"><div class="progress-fill" style="width:${progress}%"></div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
                 <p class="quiz-question">${q.q}</p>
                 <div class="quiz-options">
                     ${q.options.map((opt, i) => {
@@ -1956,73 +2245,145 @@
                             if (i === q.correct) cls += ' correct';
                             else if (i === selected && i !== q.correct) cls += ' incorrect';
                         }
-                        return `<div class="${cls}" onclick="selectAnswer(${i})"><span class="key-hint">${keys[i]}</span><span>${opt}</span></div>`;
+                        return `<button type="button" class="${cls}" onclick="selectAnswer(${i})"${answered ? ' disabled' : ''}><span class="key-hint">${keys[i]}</span><span>${opt}</span></button>`;
                     }).join('')}
                 </div>
                 ${answered ? `
                     <div class="quiz-explanation"><strong>${q.correct === selected ? '✓ Correct.' : '✗ Not quite.'}</strong> ${q.explanation}</div>
                     <div class="quiz-actions"><button class="btn btn-primary btn-full" onclick="nextQuestion()">${current + 1 === qs.length ? 'See results' : 'Next question'} (Enter)</button></div>
                 ` : `<div class="kbd-hint">Press <kbd>1</kbd>–<kbd>4</kbd> to answer</div>`}
-                ${isExam ? `<p style="text-align:center;font-size:0.75rem;color:var(--text-muted);margin-top:0.75rem">Mock Exam — 40 questions, no timer in this practice mode</p>` : ''}
-            </div>
-        `;
-    }
-
-    function selectAnswer(i) {
-        if (state.quiz.answered) return;
-        state.quiz.answered = true;
-        state.quiz.selected = i;
-        if (i === state.quiz.qs[state.quiz.current].correct) state.quiz.score++;
-        render();
-    }
-
-    function nextQuestion() {
-        state.quiz.current++;
-        state.quiz.answered = false;
-        state.quiz.selected = null;
-        if (state.quiz.current >= state.quiz.qs.length) {
-            recordQuizResult();
-            state.view = 'quizResults';
-            updateNav();
-        }
-        render();
-    }
-
-    function renderResults() {
-        const { qs, score, isExam } = state.quiz;
-        const pct = Math.round(score / qs.length * 100);
-        const passThreshold = isExam ? meta.exam.passPct : 60;
-        const passed = pct >= passThreshold;
-        return `
-            <div class="card score-card">
-                <h2 style="font-size:1.2rem;margin-bottom:0.75rem">${isExam ? 'Mock Exam Results' : 'Quiz Results'}</h2>
-                <div class="score-num" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${pct}%</div>
-                <div class="score-label">${score} / ${qs.length} correct${isExam ? ` (need ${meta.exam.passMark} of ${meta.exam.questionsOnExam} to pass)` : ''}</div>
-                <div class="score-verdict" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${passed ? '✓ PASSED' : '✗ NEEDS MORE STUDY'}</div>
-                <div class="score-note">Pass mark: ${passThreshold}%</div>
-                <div class="quiz-actions" style="justify-content:center;margin-top:1.5rem">
-                    <button class="btn btn-secondary" onclick="showView('${isExam ? 'practice' : 'quiz'}')">${isExam ? 'Back to practice' : 'Another quiz'}</button>
-                    <button class="btn btn-primary" onclick="${isExam ? 'startExam()' : 'startQuiz(' + state.quiz.module + ')'}">${isExam ? 'Retry exam' : 'Retry'}</button>
+                <div class="quiz-abandon">
+                    <button class="btn-tiny" onclick="abandonQuiz()">${isExam ? 'End exam' : 'Leave quiz'}</button>
                 </div>
             </div>
         `;
     }
 
+    // showView() already asks for confirmation and stops the timer when leaving an
+    // active quiz, so this is just the explicit button for it.
+    function abandonQuiz() { showView('practice'); }
+
+    function selectAnswer(i) {
+        if (state.quiz.answered) return;
+        const q = state.quiz.qs[state.quiz.current];
+        state.quiz.answered = true;
+        state.quiz.selected = i;
+        const correct = i === q.correct;
+        if (correct) state.quiz.score++;
+        else state.quiz.missed.push({ ...q, chosen: i });
+        recordQuestion(q.id, correct);
+        saveProgress();
+        render();
+    }
+
+    function nextQuestion() {
+        if (state.quiz.current + 1 >= state.quiz.qs.length) { finishQuiz(); return; }
+        state.quiz.current++;
+        state.quiz.answered = false;
+        state.quiz.selected = null;
+        render();
+    }
+
+    function finishQuiz() {
+        stopExamTimer();
+        recordQuizResult();
+        state.view = 'quizResults';
+        updateNav();
+        render();
+        window.scrollTo({ top: 0, behavior: 'auto' });
+    }
+
+    function renderResults() {
+        const { qs, score, isExam, missed, timedOut, module, answeredCount } = state.quiz;
+        const answered = timedOut ? (answeredCount || 0) : qs.length;
+        const pct = Math.round(score / qs.length * 100);
+        const passThreshold = isExam ? meta.exam.passPct : 60;
+        const passed = pct >= passThreshold;
+        const moduleLabels = ['All modules', 'Rights', 'Institutions', 'History'];
+
+        // Per-module breakdown of this attempt — tells you where the loss came from.
+        const byModule = [1, 2, 3].map(m => {
+            const total = qs.filter(q => q.module === m).length;
+            if (!total) return null;
+            const wrong = missed.filter(q => q.module === m).length;
+            return { m, total, right: total - wrong, pct: Math.round((total - wrong) / total * 100) };
+        }).filter(Boolean);
+
+        return `
+            <div class="card score-card">
+                <h2 style="font-size:1.2rem;margin-bottom:0.75rem">${isExam ? 'Mock Exam Results' : 'Quiz Results'}</h2>
+                ${timedOut ? `<div class="timeout-banner">⏱ Time ran out — ${answered} of ${qs.length} answered. Unanswered questions count as wrong, exactly as on the real exam.</div>` : ''}
+                <div class="score-num" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${pct}%</div>
+                <div class="score-label">${score} / ${qs.length} correct${isExam ? ` (need ${meta.exam.passMark} of ${meta.exam.questionsOnExam} to pass)` : ''}</div>
+                <div class="score-verdict" style="color:${passed ? 'var(--success)' : 'var(--error)'}">${passed ? '✓ PASSED' : '✗ NEEDS MORE STUDY'}</div>
+                <div class="score-note">Pass mark: ${passThreshold}%</div>
+            </div>
+
+            ${byModule.length > 1 ? `
+                <div class="section-label">Where you lost marks</div>
+                <div class="card">
+                    ${byModule.map(b => `
+                        <div class="mod-bar-row">
+                            <span class="mod-bar-label"><span class="module-badge module-${b.m}">M${b.m}</span> ${moduleLabels[b.m]}</span>
+                            <div class="mod-bar"><div class="mod-bar-fill mod-fill-${b.m}" style="width:${b.pct}%"></div></div>
+                            <span class="mod-bar-val">${b.right}/${b.total}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            ` : ''}
+
+            ${missed.length ? `
+                <div class="section-label">Review the ${missed.length} you missed</div>
+                <div class="card">
+                    ${missed.map(q => `
+                        <details class="missed-item">
+                            <summary>
+                                <span class="module-badge module-${q.module}">M${q.module}</span>
+                                <span class="missed-q">${q.q}</span>
+                            </summary>
+                            <div class="missed-body">
+                                <div class="missed-line missed-yours">Your answer: ${q.options[q.chosen] ?? '<em>not answered</em>'}</div>
+                                <div class="missed-line missed-right">Correct: ${q.options[q.correct]}</div>
+                                <p class="missed-why">${q.explanation}</p>
+                            </div>
+                        </details>
+                    `).join('')}
+                </div>
+            ` : `<div class="card" style="text-align:center"><p style="color:var(--success);font-weight:700">Nothing missed. Clean run.</p></div>`}
+
+            <div class="quiz-actions" style="justify-content:center;margin-top:1.2rem;flex-wrap:wrap">
+                <button class="btn btn-secondary" onclick="showView('${isExam ? 'practice' : 'quiz'}')">${isExam ? 'Back to practice' : 'Another quiz'}</button>
+                ${missed.length ? `<button class="btn btn-secondary" onclick="retryMissed()">Retry these ${missed.length}</button>` : ''}
+                <button class="btn btn-primary" onclick="${isExam ? 'startExam()' : 'startQuiz(' + module + ')'}">${isExam ? 'Retry full exam' : 'New questions'}</button>
+            </div>
+        `;
+    }
+
+    // Re-drill exactly the questions just missed, freshly shuffled.
+    function retryMissed() {
+        const ids = state.quiz.missed.map(m => m.id);
+        const pool = ids.map(id => questionById.get(id)).filter(Boolean);
+        if (!pool.length) return;
+        shuffle(pool);
+        beginQuiz({ pool, module: state.quiz.module, isExam: false });
+    }
+
     // ================== FLASHCARDS ==================
-    // Deck holds { card, originalIndex } — the originalIndex is used to persist per-card stats.
+    // The deck is a plain array of cards. Per-card stats are keyed by card.id
+    // (a hash of the card front), so they survive edits and reordering of data.js.
     function buildFlashDeck(prioritizeWrong) {
-        const indexed = flashcards.map((card, i) => ({ card, originalIndex: i }));
+        const deck = flashcards.slice();
         if (prioritizeWrong) {
             // Sort by (wrong - right) descending so cards you've flunked come first.
-            indexed.sort((a, b) => {
-                const sa = progress.flashStats[a.originalIndex] || { right: 0, wrong: 0 };
-                const sb = progress.flashStats[b.originalIndex] || { right: 0, wrong: 0 };
+            deck.sort((a, b) => {
+                const sa = progress.flashStats[a.id] || { right: 0, wrong: 0 };
+                const sb = progress.flashStats[b.id] || { right: 0, wrong: 0 };
                 return (sb.wrong - sb.right) - (sa.wrong - sa.right);
             });
         } else {
-            shuffle(indexed);
+            shuffle(deck);
         }
-        return indexed;
+        return deck;
     }
     function startFlashcards(prioritizeWrong) {
         state.flash = { current: 0, flipped: false, deck: buildFlashDeck(prioritizeWrong), prioritized: !!prioritizeWrong };
@@ -2032,9 +2393,8 @@
 
     function renderFlashcards() {
         if (!state.flash.deck.length) return startFlashcards(false), '';
-        const entry = state.flash.deck[state.flash.current];
-        const c = entry.card;
-        const stats = progress.flashStats[entry.originalIndex] || { right: 0, wrong: 0 };
+        const c = state.flash.deck[state.flash.current];
+        const stats = progress.flashStats[c.id] || { right: 0, wrong: 0 };
         return `
             <button class="btn-back" onclick="showView('practice')">&larr; Practice</button>
             <div class="card">
@@ -2071,9 +2431,9 @@
     function prevCard() { state.flash.current = (state.flash.current - 1 + state.flash.deck.length) % state.flash.deck.length; state.flash.flipped = false; render(); }
     function shuffleCards() { shuffle(state.flash.deck); state.flash.current = 0; state.flash.flipped = false; render(); }
     function rateCard(correct) {
-        const entry = state.flash.deck[state.flash.current];
-        if (!entry) return;
-        recordFlash(entry.originalIndex, correct);
+        const card = state.flash.deck[state.flash.current];
+        if (!card) return;
+        recordFlash(card.id, correct);
         // Auto-advance
         state.flash.flipped = false;
         state.flash.current = (state.flash.current + 1) % state.flash.deck.length;
@@ -2143,6 +2503,15 @@
             } else {
                 if (k === 'Enter' || k === 'n' || k === ' ') { e.preventDefault(); nextQuestion(); }
             }
+        }
+    });
+
+    // Closing the tab or hitting Back mid-quiz loses the attempt (there is no
+    // history routing). Ask the browser to warn while a quiz is in flight.
+    window.addEventListener('beforeunload', e => {
+        if (state.view === 'quizActive' && state.quiz.current > 0) {
+            e.preventDefault();
+            e.returnValue = '';
         }
     });
 

@@ -67,7 +67,7 @@ const studyContent = {
 <li><strong>Official name:</strong> Grand Duchy of Luxembourg</li>
 <li><strong>Area:</strong> 2,586 km&sup2;</li>
 <li><strong>Form of government:</strong> Parliamentary democracy, constitutional monarchy</li>
-<li><strong>Head of state:</strong> Grand Duke Henri (since 7 October 2000)</li>
+<li><strong>Head of state:</strong> Grand Duke Guillaume V (since 3 October 2025; Henri reigned 2000&ndash;2025)</li>
 <li><strong>Independence:</strong> Treaty of London, 19 April 1839</li>
 <li><strong>Constitution:</strong> 1868 (fourth, still in force, heavily amended)</li>
 <li><strong>Languages:</strong> Luxembourgish (national), French (legislation), German (administrative)</li>
@@ -93,7 +93,7 @@ const studyContent = {
 <li>Every measure must be countersigned by a government member</li>
 <li>Formally appoints/dismisses government, dissolves parliament</li>
 <li>In practice: appoints formateur based on election results; formateur becomes PM</li>
-<li>Sanctions and promulgates laws</li>
+<li><strong>Promulgates</strong> laws &mdash; since the 2008 reform of Article 34 he no longer &quot;sanctions&quot; them (see the euthanasia-law scenario)</li>
 </ul>`
             },
             {
@@ -166,7 +166,7 @@ const studyContent = {
 <li>Only political subdivision (no provinces or departments)</li>
 <li>~100 municipalities (formerly 116, consolidated over time)</li>
 <li>Elected municipal council (6-year term)</li>
-<li>Day-to-day management by mayor + municipal executives (college echevinal)</li>
+<li>Day-to-day management by mayor + municipal executives (collège échevinal)</li>
 <li>Proportional representation if population > 3,000; otherwise relative majority</li>
 <li>Foreign nationals vote in municipal elections if domiciled 5+ years</li>
 </ul>`
@@ -180,8 +180,8 @@ const studyContent = {
 <li>Parliamentary committee examines the bill</li>
 <li>First vote in Parliament</li>
 <li>Second vote required after 3+ months, UNLESS Council of State grants dispensation</li>
-<li>Grand Duke sanctions and promulgates the law</li>
-<li>Published in the <strong>Memorial</strong> (official gazette) to take effect</li>
+<li>Grand Duke <strong>promulgates</strong> the law (no longer &quot;sanctions&quot; it, since the 2008 Article 34 reform)</li>
+<li>Published in the <strong>M&eacute;morial</strong> (official gazette) to take effect</li>
 </ul>`
             },
             {
@@ -236,7 +236,7 @@ const studyContent = {
 <li>1684: Entirely conquered by Louis XIV</li>
 <li>1697: Returned to Spain</li>
 <li>1714: Passes to Austrian Habsburgs</li>
-<li>1795: Conquered by French Republic; abolished as a duchy; becomes "Departement des Forets"</li>
+<li>1795: Conquered by French Republic; abolished as a duchy; becomes "Département des Forêts"</li>
 </ul>`
             },
             {
@@ -266,11 +266,11 @@ const studyContent = {
                 title: "World War I & Political Crisis",
                 content: `<ul>
 <li><strong>1914:</strong> Germany invades Luxembourg, violating neutrality</li>
-<li>Grand Duchess Marie-Adelaide met with Emperor William II (later accused of collaboration)</li>
+<li>Grand Duchess Marie-Adélaïde met with Emperor William II (later accused of collaboration)</li>
 <li>136 Allied bombing raids (53 civilian deaths)</li>
 <li>1,000+ Luxembourgers served in French Foreign Legion</li>
 <li><strong>January 1919:</strong> Attempt to proclaim republic; prevented by French troops</li>
-<li>Marie-Adelaide abdicates; sister <strong>Charlotte</strong> becomes Grand Duchess</li>
+<li>Marie-Adélaïde abdicates; sister <strong>Charlotte</strong> becomes Grand Duchess</li>
 <li><strong>September 1919:</strong> Referendum - 78% voted for constitutional monarchy</li>
 <li><strong>1919:</strong> Universal suffrage introduced</li>
 </ul>`
@@ -389,7 +389,7 @@ const questions = [
     {module: 1, q: "Which right is restricted based on nationality?", options: ["Freedom of religion", "Right to vote in national elections", "Freedom of movement within the country", "Right to a fair trial"], correct: 1, explanation: "The right to vote in national elections is restricted to Luxembourg nationals. Nationality also affects access to certain professions."},
     {module: 1, q: "The right to vote is limited by which factor?", options: ["Income level", "Education level", "Age (minimum 18)", "Property ownership"], correct: 2, explanation: "The right to vote requires being at least 18 years old, being a Luxembourg national, and enjoying civic/political rights."},
     {module: 1, q: "Second-generation rights include the right to:", options: ["Vote", "Free speech", "Work and social security", "Bear arms"], correct: 2, explanation: "Second-generation social and economic rights include the right to work, social security, health protection, and education."},
-    {module: 1, q: "The European Convention on Human Rights entered into force in:", options: ["1948", "1951", "1953", "1957"], correct: 1, explanation: "The European Convention was adopted in 1951 by the Council of Europe in Strasbourg."},
+    {module: 1, q: "The European Convention on Human Rights entered into force in:", options: ["1948", "1951", "1953", "1957"], correct: 2, explanation: "Adopted by the Council of Europe in Strasbourg in 1951, the Convention entered into force in 1953. Watch the two dates: 1951 = adoption, 1953 = entry into force."},
     {module: 1, q: "What is the hierarchy of Luxembourg's legal system regarding rights?", options: ["Constitution above all", "International treaties can override national laws", "EU law has no effect", "Only national law matters"], correct: 1, explanation: "In Luxembourg, ordinary judges can set aside national laws that conflict with international treaties, placing treaty obligations above ordinary legislation."},
     {module: 1, q: "Which is a second-generation social right?", options: ["Freedom of assembly", "Right to education", "Right to a fair trial", "Freedom of the press"], correct: 1, explanation: "The right to education is a second-generation social right, guaranteeing services provided by the community."},
     {module: 1, q: "The Constitutional Court can rule on:", options: ["International treaties", "Constitutionality of laws only", "Criminal cases", "Municipal regulations only"], correct: 1, explanation: "The Constitutional Court rules only on the constitutionality of laws. It cannot rule on treaties."},
@@ -402,7 +402,7 @@ const questions = [
     {module: 1, q: "Which institution is NOT involved in protecting fundamental rights in Luxembourg?", options: ["Constitutional Court", "Ordinary judges", "The army", "European Court of Human Rights"], correct: 2, explanation: "The protection of fundamental rights involves the Constitutional Court, ordinary judges, the ECHR, and the CJEU - not the military."},
     {module: 1, q: "Freedom of assembly is a:", options: ["Social right", "Economic right", "Civil and political right", "Environmental right"], correct: 2, explanation: "Freedom of assembly is a first-generation civil and political right guaranteeing participation in public affairs."},
     {module: 1, q: "The right to property is protected under which generation of rights?", options: ["First generation (civil rights)", "Second generation (social rights)", "Third generation (environmental)", "Not protected at all"], correct: 0, explanation: "The right to property is a first-generation right that protects individuals from arbitrary state action."},
-    {module: 1, q: "What year was the European Convention on Human Rights signed?", options: ["1948", "1950", "1951", "1953"], correct: 2, explanation: "The European Convention for the Protection of Human Rights and Fundamental Freedoms was signed in 1951 by the Council of Europe."},
+    {module: 1, q: "Which body adopted the European Convention on Human Rights, and where?", options: ["The United Nations, in Paris", "The Council of Europe, in Strasbourg", "The European Union, in Brussels", "NATO, in Washington"], correct: 1, explanation: "The Council of Europe, in Strasbourg — not the EU and not the UN. This is the most common trap in Module 1: the Convention and the ECHR belong to the Council of Europe, while the Charter of Fundamental Rights and the CJEU belong to the EU."},
     {module: 1, q: "How does a case reach the Constitutional Court?", options: ["Direct petition by citizens", "Referral by a court hearing a case", "Request by the Grand Duke", "Vote by Parliament"], correct: 1, explanation: "Cases reach the Constitutional Court only through referral by a court that is already hearing a case and encounters a constitutional question."},
     {module: 1, q: "The right to health protection is classified as:", options: ["First-generation right", "Second-generation social right", "Constitutional objective", "Not in Luxembourg's Constitution"], correct: 1, explanation: "The right to health protection is a second-generation social and economic right in Luxembourg's Constitution."},
 
@@ -413,14 +413,14 @@ const questions = [
     {module: 2, q: "How many electoral constituencies does Luxembourg have?", options: ["3", "4", "5", "12"], correct: 1, explanation: "Luxembourg has 4 electoral constituencies: South (23 seats), Centre (21), North (9), East (7)."},
     {module: 2, q: "Which constituency has the most seats?", options: ["Centre", "South", "North", "East"], correct: 1, explanation: "The South constituency (cantons Esch-sur-Alzette and Capellen) has the most with 23 seats."},
     {module: 2, q: "What is the minimum age to vote in Luxembourg?", options: ["16", "18", "21", "25"], correct: 1, explanation: "You must be at least 18 years old, a Luxembourg national, and enjoy civic/political rights to vote."},
-    {module: 2, q: "Who is the current head of state of Luxembourg?", options: ["Grand Duke Jean", "Grand Duke Henri", "Grand Duchess Charlotte", "The Prime Minister"], correct: 1, explanation: "Grand Duke Henri acceded to the throne on 7 October 2000."},
+    {module: 2, q: "Who is the current head of state of Luxembourg?", options: ["Grand Duke Guillaume", "Grand Duke Henri", "Grand Duke Jean", "The Prime Minister"], correct: 0, explanation: "Grand Duke Guillaume (Guillaume V) — he acceded on 3 October 2025, when his father Henri abdicated. Henri reigned from 7 October 2000 to 3 October 2025. Older study material still names Henri, so know both, and know which is current."},
     {module: 2, q: "What does 'inviolable' mean regarding the Grand Duke?", options: ["He cannot be removed from office", "He cannot be charged or prosecuted", "He has absolute power", "He cannot leave the country"], correct: 1, explanation: "The Grand Duke is inviolable, meaning he cannot be charged or prosecuted. He has complete political immunity."},
     {module: 2, q: "How many district courts does Luxembourg have?", options: ["1", "2", "3", "4"], correct: 1, explanation: "Luxembourg has 2 district courts: one in Luxembourg City and one in Diekirch."},
     {module: 2, q: "How long is a municipal council term?", options: ["4 years", "5 years", "6 years", "7 years"], correct: 2, explanation: "Municipal councils are elected for 6-year terms."},
     {module: 2, q: "What is a 'projet de loi'?", options: ["A bill proposed by an MP", "A government-initiated draft law", "A constitutional amendment", "A municipal regulation"], correct: 1, explanation: "A 'projet de loi' is a government-initiated draft law. An MP-initiated bill is called a 'proposition de loi'."},
     {module: 2, q: "How many professional chambers exist in Luxembourg?", options: ["4", "5", "6", "8"], correct: 2, explanation: "There are 6 professional chambers: 3 for employers (Commerce, Trades, Agriculture) and 3 for workers (Private Employees, Civil Servants, Labour)."},
     {module: 2, q: "What happens after the first parliamentary vote on a law?", options: ["It goes to the Grand Duke", "A second vote is required after 3 months (unless Council of State waives)", "It becomes law immediately", "It goes to referendum"], correct: 1, explanation: "A second constitutional vote is required at least 3 months after the first, unless the Council of State grants a dispensation (waiver)."},
-    {module: 2, q: "Where are laws published to take legal effect?", options: ["The Journal Officiel", "The Memorial", "The Gazette", "The Parliamentary Record"], correct: 1, explanation: "Laws are published in the Memorial (official gazette/compendium of legislation) to acquire legal status."},
+    {module: 2, q: "Where are laws published to take legal effect?", options: ["The Journal Officiel", "The Mémorial", "The Gazette", "The Parliamentary Record"], correct: 1, explanation: "Laws are published in the Mémorial (official gazette/compendium of legislation) to acquire legal status."},
     {module: 2, q: "Can an MP simultaneously be a government minister?", options: ["Yes", "No, it's incompatible", "Only the Prime Minister", "Only with Council of State approval"], correct: 1, explanation: "The office of MP is incompatible with being a government member, judge, or member of the Council of State."},
     {module: 2, q: "How long must a foreign national reside in Luxembourg to vote in municipal elections?", options: ["1 year", "3 years", "5 years", "7 years"], correct: 2, explanation: "Foreign nationals can vote in municipal elections if domiciled in Luxembourg for at least 5 years."},
     {module: 2, q: "How many MEPs does Luxembourg have in the European Parliament?", options: ["4", "6", "8", "10"], correct: 1, explanation: "Luxembourg has 6 representatives in the European Parliament."},
@@ -445,11 +445,11 @@ const questions = [
     {module: 2, q: "Where are the magistrates' courts located?", options: ["Luxembourg and Diekirch only", "Luxembourg, Esch-sur-Alzette, and Diekirch", "One in each canton", "Luxembourg City only"], correct: 1, explanation: "There are 3 magistrates' courts (justices de paix) located in Luxembourg, Esch-sur-Alzette, and Diekirch."},
     {module: 2, q: "What type of court handles appeals against administrative decisions?", options: ["District Court", "Constitutional Court", "Administrative Tribunal and Administrative Court", "Court of Cassation"], correct: 2, explanation: "The Administrative Tribunal (first instance) and Administrative Court (appeal) handle challenges to administrative decisions."},
     {module: 2, q: "What happens if the population of a municipality is under 3,000?", options: ["It must merge with another", "Elections use relative majority system", "It has no council", "It uses proportional representation"], correct: 1, explanation: "Municipalities under 3,000 population use a relative majority system for elections. Those over 3,000 use proportional representation."},
-    {module: 2, q: "Who manages a municipality day-to-day?", options: ["The Grand Duke", "The mayor and municipal executives (college echevinal)", "A government-appointed prefect", "The district court"], correct: 1, explanation: "Day-to-day management of a municipality is handled by the mayor and the municipal executives (college echevinal)."},
-    {module: 2, q: "The Grand Duke acceded to the throne on:", options: ["23 June 1999", "7 October 2000", "1 January 2001", "15 March 1998"], correct: 1, explanation: "Grand Duke Henri acceded to the throne on 7 October 2000."},
+    {module: 2, q: "Who manages a municipality day-to-day?", options: ["The Grand Duke", "The mayor and municipal executives (collège échevinal)", "A government-appointed prefect", "The district court"], correct: 1, explanation: "Day-to-day management of a municipality is handled by the mayor and the municipal executives (collège échevinal)."},
+    {module: 2, q: "Grand Duke Henri acceded to the throne on:", options: ["23 June 1999", "7 October 2000", "1 January 2001", "3 October 2025"], correct: 1, explanation: "Henri acceded on 7 October 2000 and reigned until 3 October 2025, when he abdicated in favour of his son Guillaume."},
     {module: 2, q: "Which dynasty currently rules Luxembourg?", options: ["Habsburg", "Bourbon", "Nassau", "Windsor"], correct: 2, explanation: "The House of Nassau has ruled Luxembourg since 1890 when Adolphe of Nassau became Grand Duke."},
     {module: 2, q: "The Council of State's veto power is:", options: ["Absolute - it can permanently block laws", "Suspensive only - it can delay but not block", "It has no veto power", "Only for constitutional amendments"], correct: 1, explanation: "The Council of State has only a suspensive veto: it can refuse the waiver of the second vote, delaying a law by at least 3 months, but cannot permanently block it."},
-    {module: 2, q: "What role does the Grand Duke play in legislation?", options: ["He writes the laws", "He sanctions and promulgates laws", "He has no role", "He can veto any law permanently"], correct: 1, explanation: "The Grand Duke sanctions (formally approves) and promulgates (officially publishes) laws, but this is a formal role, not a political one."},
+    {module: 2, q: "What role does the Grand Duke play in legislation today?", options: ["He writes the laws", "He promulgates laws, but no longer sanctions them", "He has no role at all", "He can veto any law permanently"], correct: 1, explanation: "Since the 2008 amendment to Article 34 — provoked by Henri's refusal to sign the euthanasia law — the Grand Duke only promulgates (officially announces) laws. The 'sanctioning' step, which implied approval, was removed. Older textbooks still say 'sanctions and promulgates': that is now wrong, and it is a favourite trick question."},
     {module: 2, q: "Which cantons make up the South constituency?", options: ["Luxembourg and Mersch", "Esch-sur-Alzette and Capellen", "Diekirch and Redange", "Grevenmacher and Remich"], correct: 1, explanation: "The South constituency consists of the cantons of Esch-sur-Alzette and Capellen, with 23 seats."},
     {module: 2, q: "Can voters distribute votes across multiple party lists?", options: ["No, they must vote for one list only", "Yes, they can give preferential votes across lists", "Only in municipal elections", "Only in European elections"], correct: 1, explanation: "Voters have as many votes as seats to fill and can distribute preferential votes across multiple party lists (panachage)."},
     {module: 2, q: "What ensures fair representation of small parties?", options: ["First-past-the-post system", "Principle of smallest electoral quotient", "Reserved seats for minorities", "Government appointment"], correct: 1, explanation: "The principle of the smallest electoral quotient ensures fair representation of small parties in Luxembourg's proportional system."},
@@ -466,6 +466,21 @@ const questions = [
     {module: 2, q: "How many judicial districts does Luxembourg have?", options: ["1", "2", "3", "4"], correct: 1, explanation: "Luxembourg has 2 judicial districts: Luxembourg and Diekirch."},
     {module: 2, q: "What is the relationship between state and municipalities?", options: ["Municipalities are fully independent", "The state supervises municipalities (tutelle)", "Municipalities control the state", "There is no relationship"], correct: 1, explanation: "There is an interaction (tutelle/supervision) between state and municipalities, where the state oversees municipal governance."},
     {module: 2, q: "Who can dissolve Parliament?", options: ["The Prime Minister alone", "The Grand Duke (on advice of government)", "The Council of State", "Parliament itself by majority vote"], correct: 1, explanation: "The Grand Duke has the formal right to dissolve Parliament, though this is done on the advice of the government."},
+    {module: 2, q: "Approximately how many municipalities (communes) does Luxembourg have?", options: ["12", "About 100", "250", "Over 500"], correct: 1, explanation: "About 100 municipalities — the number has fallen over the years through voluntary mergers. Don't confuse this with the 12 cantons (administrative divisions with no political power) or the 4 electoral constituencies."},
+    {module: 2, q: "What is the term for distributing your preferential votes across several party lists?", options: ["Panachage", "Cumul", "Tutelle", "Dispensation"], correct: 0, explanation: "Panachage. You have as many votes as there are seats in your constituency and may spread them across different lists. Giving two votes to the same candidate is 'cumul'."},
+    {module: 2, q: "Who presides over the Chamber of Deputies?", options: ["The Grand Duke", "The Prime Minister", "The President of the Chamber, elected by the MPs", "The President of the Council of State"], correct: 2, explanation: "The MPs elect their own President of the Chamber, who chairs sittings. The Grand Duke and the Prime Minister have no role in running parliamentary business — a useful check that you understand the separation of legislature from executive."},
+    {module: 2, q: "What is a 'formateur'?", options: ["A senior civil servant who drafts laws", "The person tasked with forming a government after elections", "The chair of a parliamentary committee", "A judge of the Constitutional Court"], correct: 1, explanation: "After an election the Grand Duke appoints a formateur — in practice the leader who can assemble a majority coalition — who then becomes Prime Minister. The step before this is the 'informateur', who explores which coalitions are possible."},
+    {module: 2, q: "Which body audits the State's finances and reports to Parliament?", options: ["The Council of State", "The Court of Auditors (Cour des comptes)", "The Constitutional Court", "The Economic and Social Council"], correct: 1, explanation: "The Court of Auditors (Cour des comptes) checks how public money is spent and reports to the Chamber of Deputies. Don't confuse it with the European Court of Auditors, which is an EU institution that also happens to sit in Luxembourg."},
+    {module: 2, q: "What is the role of the Ombudsman (Médiateur)?", options: ["To prosecute criminal offences", "To handle citizens' complaints about the public administration", "To rule on the constitutionality of laws", "To represent Luxembourg at the EU"], correct: 1, explanation: "The Ombudsman (Médiateur) is an independent office that investigates complaints from citizens who feel wronged by a public administration. It can recommend, but not overturn, decisions."},
+    {module: 2, q: "Who votes the State budget each year?", options: ["The Grand Duke", "The Chamber of Deputies", "The Council of State", "The Government alone"], correct: 1, explanation: "The Chamber of Deputies votes the annual budget law. Control of public money is one of parliament's core powers over the government — no budget, no spending."},
+    {module: 2, q: "Is the Council of State's opinion (avis) on a bill mandatory?", options: ["No, the government may skip it", "Yes, it must be sought on every bill", "Only for constitutional amendments", "Only if Parliament requests it"], correct: 1, explanation: "The Council of State must give its opinion on every bill and every draft regulation. The opinion is compulsory to obtain but not binding — Parliament can legislate against it."},
+    {module: 2, q: "Which court hears disputes between an employee and an employer?", options: ["The labour tribunal (tribunal du travail)", "The Constitutional Court", "The Administrative Court", "The Court of Cassation"], correct: 0, explanation: "The labour tribunal (tribunal du travail) handles individual employment disputes — dismissals, unpaid wages, contract terms. Administrative courts deal with the State's decisions, not private employment."},
+    {module: 2, q: "Who heads the public prosecution service in Luxembourg?", options: ["The Minister of Justice", "The Procureur général d'État", "The President of the Supreme Court", "The Ombudsman"], correct: 1, explanation: "The Procureur général d'État heads the parquet (public prosecution service). Prosecutors bring criminal cases; judges decide them — a distinction the exam likes to test."},
+    {module: 2, q: "Which voters are exempt from Luxembourg's compulsory voting obligation?", options: ["Voters under 25", "Voters over 75, and those living abroad or far from their polling station", "Anyone who registers an objection", "Nobody — there are no exemptions"], correct: 1, explanation: "Voting is compulsory, but voters over 75 and those resident abroad or living far from their polling station are excused. So 'compulsory' has real exceptions — read the question wording carefully."},
+    {module: 2, q: "What is 'tutelle' in the relationship between the State and the municipalities?", options: ["Municipal control over the State budget", "State supervision of municipal decisions", "The merger of small municipalities", "Direct election of mayors"], correct: 1, explanation: "Tutelle is administrative supervision: municipalities govern themselves, but certain decisions (budgets, major works, some appointments) need State approval. Municipalities are autonomous, not independent."},
+    {module: 2, q: "The 2023 constitutional revision made the rules of succession to the throne:", options: ["Male-only", "Gender-neutral", "Decided by referendum", "Decided by Parliament each time"], correct: 1, explanation: "The succession was made gender-neutral — the eldest child inherits regardless of sex. In the same revision the Grand Duke's role was further clarified and environmental protection was confirmed as a constitutional objective."},
+    {module: 2, q: "Which of these is NOT a political subdivision with an elected council?", options: ["A municipality (commune)", "A canton", "Neither has a council", "Both have councils"], correct: 1, explanation: "Cantons are purely administrative and statistical divisions with no council and no political power. Municipalities are Luxembourg's only political subdivision, each with an elected council."},
+    {module: 2, q: "How many members sit on a municipal college of aldermen (collège échevinal)?", options: ["Always exactly three", "The mayor plus a number of aldermen that varies with the size of the municipality", "All members of the municipal council", "Twenty-one, as in the Council of State"], correct: 1, explanation: "The collège échevinal is the mayor (bourgmestre) plus aldermen (échevins), with the number scaled to the municipality's population. It is the executive; the full municipal council is the deliberative body."},
 
     // ===== MODULE 3 - History & European Integration (60 questions) =====
     {module: 3, q: "In what year did Count Siegfried acquire Lucilinburhuc?", options: ["800", "963", "1050", "1143"], correct: 1, explanation: "In 963, Count Siegfried acquired the small fort 'Lucilinburhuc' (small castle) from the Abbey of St Maximin of Trier."},
@@ -476,7 +491,7 @@ const questions = [
     {module: 3, q: "Who was Adolphe of Nassau?", options: ["The last Dutch king over Luxembourg", "The first Grand Duke of Luxembourg's own dynasty", "The architect of the fortress", "The first Prime Minister"], correct: 1, explanation: "Adolphe of Nassau became Grand Duke in 1890 when William III died without a male heir, ending the personal union with the Netherlands and establishing Luxembourg's own dynasty."},
     {module: 3, q: "What year was the current Luxembourg Constitution adopted?", options: ["1839", "1848", "1867", "1868"], correct: 3, explanation: "The current (fourth) Constitution was adopted in 1868, a compromise between the liberal 1848 and reactionary 1856 versions. It has been heavily amended since."},
     {module: 3, q: "When did Germany invade Luxembourg in WWII?", options: ["1 September 1939", "10 May 1940", "7 December 1941", "6 June 1944"], correct: 1, explanation: "Nazi Germany invaded Luxembourg on 10 May 1940."},
-    {module: 3, q: "Who went into exile during WWII?", options: ["Grand Duke Henri", "Grand Duchess Marie-Adelaide", "Grand Duchess Charlotte and the government", "The entire population"], correct: 2, explanation: "Grand Duchess Charlotte and the government went into exile during WWII."},
+    {module: 3, q: "Who went into exile during WWII?", options: ["Grand Duke Henri", "Grand Duchess Marie-Adélaïde", "Grand Duchess Charlotte and the government", "The entire population"], correct: 2, explanation: "Grand Duchess Charlotte and the government went into exile during WWII."},
     {module: 3, q: "What was the ECSC?", options: ["European Court for Social Cooperation", "European Coal and Steel Community", "European Council for State Commerce", "Economic Community for Steel and Coal"], correct: 1, explanation: "The European Coal and Steel Community was founded in 1951. Luxembourg was a founding member and Luxembourg City became its headquarters."},
     {module: 3, q: "Luxembourg is a founding member of which organizations?", options: ["UN, NATO, EU (ECSC)", "Only the EU", "NATO and UN only", "EU and Council of Europe only"], correct: 0, explanation: "Luxembourg is a founding member of the UN (1945), NATO (1949), Council of Europe (1949), and the ECSC/EEC/EU (1951/1957)."},
     {module: 3, q: "When was the Schengen Agreement signed?", options: ["1957", "1985", "1992", "1999"], correct: 1, explanation: "The Schengen Agreement was signed in 1985 (named after a Luxembourg village) and came into force in 1995."},
@@ -484,13 +499,13 @@ const questions = [
     {module: 3, q: "When was the University of Luxembourg founded?", options: ["1957", "1985", "2003", "2010"], correct: 2, explanation: "The University of Luxembourg was founded in 2003 (law of 12 August 2003, academic year 2003/2004)."},
     {module: 3, q: "What triggered Luxembourg's transition from steel to finance?", options: ["EU regulation", "Steel crisis starting 1974", "WWII destruction", "Discovery of oil"], correct: 1, explanation: "The steel crisis beginning in 1974 forced economic diversification. The 1929 holding company law had already planted seeds for the financial sector, which boomed from the 1960s."},
     {module: 3, q: "When did Luxembourg renounce its neutrality?", options: ["1918", "1939", "1948", "1957"], correct: 2, explanation: "Luxembourg officially renounced its neutrality in 1948, joining NATO the following year in 1949."},
-    {module: 3, q: "What was the result of the 1919 referendum?", options: ["Republic established", "78% voted for monarchy", "Union with France", "Union with Belgium"], correct: 1, explanation: "In September 1919, 78% voted in favour of keeping the constitutional monarchy after Grand Duchess Charlotte replaced Marie-Adelaide."},
+    {module: 3, q: "What was the result of the 1919 referendum?", options: ["Republic established", "78% voted for monarchy", "Union with France", "Union with Belgium"], correct: 1, explanation: "In September 1919, 78% voted in favour of keeping the constitutional monarchy after Grand Duchess Charlotte replaced Marie-Adélaïde."},
     {module: 3, q: "When was dual citizenship permitted in Luxembourg?", options: ["1999", "2003", "2008", "2015"], correct: 2, explanation: "Dual citizenship was permitted in Luxembourg from 2008 onwards."},
     {module: 3, q: "The 'Muzzle Law' referendum of 1937 concerned:", options: ["Press censorship", "Prohibition of the Communist Party", "Language rights", "Military service"], correct: 1, explanation: "The 1937 referendum asked whether to prohibit the Communist Party. 50.7% voted AGAINST the prohibition, so it failed."},
     {module: 3, q: "Who was Henry VII of Luxembourg?", options: ["The first Grand Duke", "A medieval count elected King/Emperor of the Holy Roman Empire", "A 19th century Prime Minister", "The founder of the steel industry"], correct: 1, explanation: "Count Henry VII was elected King of the Holy Roman Empire in 1308 and crowned Emperor in Rome in 1312."},
     {module: 3, q: "Which treaty created the European Union?", options: ["Treaty of Rome (1957)", "Treaty of Maastricht (1992)", "Treaty of Lisbon (2007)", "Treaty of Amsterdam (1997)"], correct: 1, explanation: "The Treaty of Maastricht (1992) formally created the European Union and decided on the common currency."},
     {module: 3, q: "The national anthem 'Ons Heemecht' was written in:", options: ["1815", "1839", "1859", "1890"], correct: 2, explanation: "'Ons Heemecht' (Our Homeland) was written in 1859 by Michel Lentz (lyrics) and Jean-Antoine Zinnen (music). First performed publicly in Ettelbruck in 1864."},
-    {module: 3, q: "What is the Law of 24 February 1984 about?", options: ["Citizenship requirements", "Language status - making Letzebuergesch the national language", "European integration", "Municipal elections"], correct: 1, explanation: "The Law of 24 February 1984 established the linguistic status of Luxembourg's three languages and made Letzebuergesch the national language."},
+    {module: 3, q: "What is the Law of 24 February 1984 about?", options: ["Citizenship requirements", "Language status - making Lëtzebuergesch the national language", "European integration", "Municipal elections"], correct: 1, explanation: "The Law of 24 February 1984 established the linguistic status of Luxembourg's three languages and made Lëtzebuergesch the national language."},
     {module: 3, q: "How many Luxembourgers were Presidents of the European Commission?", options: ["1", "2", "3", "4"], correct: 2, explanation: "Three: Gaston Thorn (1981-85), Jacques Santer (1995-99), and Jean-Claude Juncker (2014-19)."},
     {module: 3, q: "Luxembourg's national day is on:", options: ["19 April", "10 May", "23 June", "23 January"], correct: 2, explanation: "National Day is 23 June (set by decree of 23 December 1961). It's officially the 'day of public celebration of the Grand Duke's birthday'."},
     {module: 3, q: "What is the BLEU/UEBL?", options: ["Belgium-Luxembourg Economic Union (1921)", "Benelux League of European Unity", "Belgian-Luxembourg Education Unit", "Brussels-Luxembourg Express Union"], correct: 0, explanation: "The Belgium-Luxembourg Economic Union (BLEU/UEBL) was founded in 1921 after the Zollverein collapsed following WWI."},
@@ -503,7 +518,7 @@ const questions = [
     {module: 3, q: "How did Luxembourg pass to the Habsburgs?", options: ["Military conquest", "Marriage inheritance from Burgundy (1477)", "Purchase", "Treaty with France"], correct: 1, explanation: "The Burgundian possessions, including Luxembourg, fell to the Habsburgs by marriage in 1477."},
     {module: 3, q: "What happened in the Treaty of the Pyrenees (1659)?", options: ["Luxembourg became independent", "Southern lands of the Duchy (including Thionville) were ceded to France", "Luxembourg joined Germany", "The fortress was built"], correct: 1, explanation: "The Treaty of the Pyrenees in 1659 saw Philip IV cede the southern lands of the Duchy, including Thionville, to France."},
     {module: 3, q: "Who conquered the entire Duchy in 1684?", options: ["Prussia", "Spain", "Louis XIV's France", "England"], correct: 2, explanation: "In 1684, the entire Duchy was conquered by Louis XIV's France, though it was returned in 1697."},
-    {module: 3, q: "What happened to Luxembourg in 1795?", options: ["It became independent", "Conquered by France, abolished as duchy, became Departement des Forets", "Joined Prussia", "Remained neutral"], correct: 1, explanation: "In 1795, the Duchy was conquered and abolished by the French Republic and divided into departments including the Departement des Forets."},
+    {module: 3, q: "What happened to Luxembourg in 1795?", options: ["It became independent", "Conquered by France, abolished as duchy, became Département des Forêts", "Joined Prussia", "Remained neutral"], correct: 1, explanation: "In 1795, the Duchy was conquered and abolished by the French Republic and divided into departments including the Département des Forêts."},
     {module: 3, q: "The Congress of Vienna (1815) made Luxembourg a:", options: ["Republic", "Grand Duchy in personal union with Netherlands", "Province of Belgium", "Part of Prussia"], correct: 1, explanation: "The Congress of Vienna created the Grand Duchy of Luxembourg in personal union with the King of the Netherlands (William I of Orange-Nassau)."},
     {module: 3, q: "What military presence was in Luxembourg after 1815?", options: ["French garrison", "British garrison", "Prussian garrison", "Austrian garrison"], correct: 2, explanation: "After 1815, a Prussian garrison guarded the fortress of Luxembourg as part of the German Confederation arrangements."},
     {module: 3, q: "What happened during the Belgian Revolution of 1830?", options: ["Luxembourg declared a republic", "Luxembourg joined the Belgian revolt but the fortress stayed Dutch", "Luxembourg stayed loyal to Netherlands", "Luxembourg invaded Belgium"], correct: 1, explanation: "During the Belgian Revolution of 1830, Luxembourg joined the revolt, but the fortress remained under Dutch/Prussian control."},
@@ -514,11 +529,11 @@ const questions = [
     {module: 3, q: "Where was the first integrated steelworks built (1886)?", options: ["Luxembourg City", "Esch-sur-Alzette", "Dudelange", "Diekirch"], correct: 2, explanation: "The first integrated steelworks was built in Dudelange in 1886."},
     {module: 3, q: "What ended the personal union with the Netherlands in 1890?", options: ["A revolution", "William III died without male heir", "A referendum", "A war"], correct: 1, explanation: "King-Grand Duke William III died in 1890 without a male heir, ending the personal union with the Netherlands. Adolphe of Nassau became the first Grand Duke of Luxembourg's own dynasty."},
     {module: 3, q: "When was the first railway line in Luxembourg opened?", options: ["1842", "1859", "1867", "1879"], correct: 1, explanation: "The first railway line in Luxembourg was opened in 1859."},
-    {module: 3, q: "Which Grand Duchess reigned during World War I?", options: ["Charlotte", "Marie-Adelaide", "Elisabeth", "Josephine"], correct: 1, explanation: "Grand Duchess Marie-Adelaide reigned during WWI and was later accused of collaboration for meeting with Emperor William II."},
-    {module: 3, q: "Who replaced Marie-Adelaide as Grand Duchess?", options: ["Charlotte (her sister)", "Elisabeth (her daughter)", "Josephine (her mother)", "Henri (her brother)"], correct: 0, explanation: "Marie-Adelaide abdicated in January 1919 in favour of her sister Charlotte, who reigned until 1964."},
+    {module: 3, q: "Which Grand Duchess reigned during World War I?", options: ["Charlotte", "Marie-Adélaïde", "Elisabeth", "Josephine"], correct: 1, explanation: "Grand Duchess Marie-Adélaïde reigned during WWI and was later accused of collaboration for meeting with Emperor William II."},
+    {module: 3, q: "Who replaced Marie-Adélaïde as Grand Duchess?", options: ["Charlotte (her sister)", "Elisabeth (her daughter)", "Josephine (her mother)", "Henri (her brother)"], correct: 0, explanation: "Marie-Adélaïde abdicated in January 1919 in favour of her sister Charlotte, who reigned until 1964."},
     {module: 3, q: "How many Luxembourgers served in the French Foreign Legion during WWI?", options: ["100+", "500+", "1,000+", "5,000+"], correct: 2, explanation: "Over 1,000 Luxembourgers served in the French Foreign Legion during World War I."},
     {module: 3, q: "What was the result of the 2005 European Constitution referendum?", options: ["80% for", "56% for, 44% against", "51% against", "Boycotted"], correct: 1, explanation: "In the 2005 referendum on the European Constitution, Luxembourg voted 56% for and 44% against."},
-    {module: 3, q: "When was ARBED created?", options: ["1879", "1886", "1911", "1929"], correct: 2, explanation: "ARBED (Acieries Reunies de Burbach-Eich-Dudelange) was created in 1911, becoming Luxembourg's leading steel group."},
+    {module: 3, q: "When was ARBED created?", options: ["1879", "1886", "1911", "1929"], correct: 2, explanation: "ARBED (Aciéries Réunies de Burbach-Eich-Dudelange) was created in 1911, becoming Luxembourg's leading steel group."},
     {module: 3, q: "What is the evolution of ARBED?", options: ["ARBED > Mittal > Arcelor", "ARBED > Arcelor (2002) > ArcelorMittal (2006)", "ARBED > SES > RTL", "ARBED still exists today"], correct: 1, explanation: "ARBED merged into Arcelor in 2002, which then merged with Mittal Steel in 2006 to form ArcelorMittal, the world's leading steel producer."},
     {module: 3, q: "When did the last mine close in Luxembourg?", options: ["1974", "1981", "1997", "2002"], correct: 1, explanation: "Luxembourg closed its last mine in 1981. The last blast furnace closed in 1997."},
     {module: 3, q: "When did the last blast furnace close?", options: ["1981", "1992", "1997", "2006"], correct: 2, explanation: "The last blast furnace closed in 1997. After that, steel was only produced using electricity."},
@@ -526,8 +541,8 @@ const questions = [
     {module: 3, q: "Luxembourg is the world's ___ largest investment fund centre:", options: ["Largest", "2nd largest (after US)", "3rd largest", "5th largest"], correct: 1, explanation: "Luxembourg is the 2nd largest investment fund centre in the world, after the United States."},
     {module: 3, q: "When did Goodyear establish operations in Luxembourg?", options: ["1929", "1949", "1962", "1985"], correct: 1, explanation: "Goodyear arrived in Luxembourg in 1949, one of the first major US companies to establish operations there."},
     {module: 3, q: "What is RTL Group?", options: ["A steel company", "Leading European TV/radio broadcaster based in Luxembourg", "A bank", "A satellite company"], correct: 1, explanation: "RTL Group is the leading European TV and radio broadcaster. It received its radio concession in 1929 and TV in 1955."},
-    {module: 3, q: "What is SES?", options: ["A banking group", "World's leading satellite operator", "A steel company", "A political party"], correct: 1, explanation: "SES (Societe Europeenne des Satellites) is the world's leading satellite operator, with 50+ satellites. It was granted Luxembourg orbital positions in 1988."},
-    {module: 3, q: "When was the Schengen Agreement's entry into force?", options: ["1985", "1990", "1992", "1995"], correct: 3, explanation: "The Schengen Agreement was signed in 1985 but only came into force in 1995."},
+    {module: 3, q: "What is SES?", options: ["A banking group", "World's leading satellite operator", "A steel company", "A political party"], correct: 1, explanation: "SES (Société Européenne des Satellites) is the world's leading satellite operator, with 50+ satellites. It was granted Luxembourg orbital positions in 1988."},
+    {module: 3, q: "The Schengen Agreement was signed in 1985. When did it actually come into force?", options: ["1985", "1990", "1992", "1995"], correct: 3, explanation: "Signed 1985, in force 1995 — a ten-year gap. The 1990 Schengen Convention in between spelled out the practical details (shared visa policy, border databases)."},
     {module: 3, q: "What happened in the 2015 referendum?", options: ["Approved EU constitution", "Rejected voting rights for foreign residents (80% against)", "Approved dual citizenship", "Rejected same-sex marriage"], correct: 1, explanation: "In 2015, a referendum on extending voting rights to foreign residents was rejected by approximately 80% of voters."},
     {module: 3, q: "When did Luxembourg's Parliament vote for same-sex marriage?", options: ["2008", "2013", "2014", "2017"], correct: 2, explanation: "The Chamber of Deputies voted in favour of same-sex marriage in 2014."},
     {module: 3, q: "How many young men were forcibly conscripted by Nazi Germany?", options: ["~5,000", "~8,000", "~11,000", "~20,000"], correct: 2, explanation: "Approximately 11,000 young Luxembourgers were forcibly conscripted into the German military during WWII."},
@@ -540,7 +555,7 @@ const questions = [
     {module: 3, q: "Luxembourg joined the European Space Agency in:", options: ["1985", "1995", "2003", "2005"], correct: 3, explanation: "Luxembourg joined the European Space Agency in 2005."},
     {module: 3, q: "The Euro was introduced as banknotes/coins in:", options: ["1999", "2000", "2001", "2002"], correct: 3, explanation: "The Euro was introduced electronically in 1999 and as physical banknotes and coins in 2002."},
     {module: 3, q: "What is the area of Luxembourg?", options: ["998 km²", "2,586 km²", "5,200 km²", "10,400 km²"], correct: 1, explanation: "Luxembourg has an area of 2,586 km², making it one of Europe's smallest countries."},
-    {module: 3, q: "What is Luxembourg's highest point?", options: ["The Bock (300m)", "Buurgplaatz (559m)", "Wilwerdange (560m)", "Kneiff (547m)"], correct: 2, explanation: "Luxembourg's highest point is 560m at Wilwerdange in the Oesling region."},
+    {module: 3, q: "What is Luxembourg's highest point?", options: ["The Bock (300m)", "Buurgplaatz (559m)", "Kneiff (560m)", "Esch-sur-Sûre (320m)"], correct: 2, explanation: "The Kneiff at Huldange/Wilwerdange reaches 560m — the highest point in the country, in the Oesling. The Buurgplaatz nearby is 559m, just one metre lower, which is why the two are so often confused."},
     {module: 3, q: "What are Luxembourg's two natural regions?", options: ["North and South", "Oesling (north, 32%) and Gutland (south, 68%)", "Moselle and Ardennes", "Minett and Kirchberg"], correct: 1, explanation: "Luxembourg has two natural regions: the Oesling (north, 32% of territory, part of the Ardennes) and the Gutland (south/centre, 68%)."},
     {module: 3, q: "Which country borders Luxembourg to the east?", options: ["Belgium", "France", "Germany", "Netherlands"], correct: 2, explanation: "Luxembourg is bordered by Belgium (west), Germany (east), and France (south)."},
     {module: 3, q: "What is the 'Minett' region?", options: ["The financial district", "The former iron ore mining region in the south", "The wine region", "The Ardennes forest"], correct: 1, explanation: "The Minett (also called Terres Rouges/Red Lands) is the former iron ore mining region in the south, including towns like Esch-sur-Alzette, Differdange, and Dudelange."},
@@ -573,7 +588,7 @@ const flashcards = [
     // --- MODULE 1: Fundamental Rights ---
     {front: "Declaration of the Rights of Man and of the Citizen?", back: "France, 1789"},
     {front: "Universal Declaration of Human Rights?", back: "1948, United Nations, Paris"},
-    {front: "European Convention on Human Rights?", back: "1951, Council of Europe, Strasbourg"},
+    {front: "European Convention on Human Rights?", back: "Adopted 1951, Council of Europe, Strasbourg (in force 1953)"},
     {front: "Charter of Fundamental Rights of the EU?", back: "2000, European Union"},
     {front: "Luxembourg's first Constitution?", back: "1848 (liberal, modeled on Belgian)"},
     {front: "Current Constitution?", back: "1868 (fourth constitution, heavily amended)"},
@@ -595,7 +610,7 @@ const flashcards = [
     {front: "Council of State members?", back: "21 members, appointed by Grand Duke"},
     {front: "Electoral constituencies?", back: "4: South (23), Centre (21), North (9), East (7)"},
     {front: "Is voting compulsory?", back: "Yes, for all registered voters"},
-    {front: "Head of State?", back: "Grand Duke Henri (since 7 October 2000)"},
+    {front: "Head of State?", back: "Grand Duke Guillaume (Guillaume V), since 3 October 2025 — Henri reigned 2000–2025"},
     {front: "Form of government?", back: "Parliamentary democracy, constitutional monarchy"},
     {front: "Grand Duke's inviolability?", back: "Cannot be charged or prosecuted; all acts need minister's countersignature"},
     {front: "Who leads the government?", back: "Prime Minister (formateur appointed by Grand Duke)"},
@@ -603,7 +618,7 @@ const flashcards = [
     {front: "What is a 'proposition de loi'?", back: "MP-initiated bill"},
     {front: "Legislative second vote rule?", back: "Second vote required after 3+ months, unless Council of State waives"},
     {front: "Council of State's veto?", back: "Suspensive only — can delay but not permanently block"},
-    {front: "Where are laws published?", back: "In the Memorial (official gazette)"},
+    {front: "Where are laws published?", back: "In the Mémorial (official gazette)"},
     {front: "Grand Duke's role in legislation?", back: "Sanctions (approves) and promulgates (publishes) — formal, not political"},
     {front: "Motion of censure?", back: "Negative vote by Parliament forcing government to resign"},
     {front: "MP incompatibilities?", back: "Cannot be simultaneously: minister, judge, or Council of State member"},
@@ -657,8 +672,8 @@ const flashcards = [
     {front: "First integrated steelworks?", back: "1886, Dudelange"},
     {front: "Own dynasty (1890)?", back: "Adolphe of Nassau — William III died without male heir, end of union with Netherlands"},
     {front: "ARBED created?", back: "1911"},
-    {front: "WWI?", back: "1914-18: Germany invades; Grand Duchess Marie-Adelaide"},
-    {front: "1919 referendum?", back: "78% voted for monarchy; Charlotte replaces Marie-Adelaide; universal suffrage introduced"},
+    {front: "WWI?", back: "1914-18: Germany invades; Grand Duchess Marie-Adélaïde"},
+    {front: "1919 referendum?", back: "78% voted for monarchy; Charlotte replaces Marie-Adélaïde; universal suffrage introduced"},
     {front: "BLEU/UEBL?", back: "1921 — Belgium-Luxembourg Economic Union"},
     {front: "1929 holding companies law?", back: "Seeds of financial sector"},
     {front: "1937 referendum?", back: "50.7% voted AGAINST prohibiting Communist Party ('Muzzle Law' failed)"},
@@ -689,10 +704,10 @@ const flashcards = [
     {front: "Flag colours (top to bottom)?", back: "Red, white, sky blue (differs from Netherlands by using sky blue)"},
     {front: "Coat of arms?", back: "Red lion on blue/white stripes — established ~1235 by Count Henry V"},
     {front: "Three official languages?", back: "Luxembourgish (national), French (legislation), German (administrative)"},
-    {front: "Language law?", back: "24 February 1984 — Letzebuergesch = national language"},
+    {front: "Language law?", back: "24 February 1984 — Lëtzebuergesch = national language"},
     {front: "Legislation language?", back: "French exclusively"},
     {front: "Area of Luxembourg?", back: "2,586 km²"},
-    {front: "Highest point?", back: "560m at Wilwerdange (Oesling)"},
+    {front: "Highest point?", back: "Kneiff, 560m, at Huldange/Wilwerdange (Oesling) — Buurgplaatz is 559m"},
     {front: "Two natural regions?", back: "Oesling (north, 32%, Ardennes) and Gutland (south, 68%)"},
     {front: "Neighbouring countries?", back: "Belgium (west), Germany (east), France (south)"},
     {front: "Capital population?", back: "Luxembourg City — ~107,200 inhabitants"},
@@ -700,7 +715,7 @@ const flashcards = [
     {front: "Minett region?", back: "Former iron ore mining area in south (Esch, Differdange, Dudelange)"},
     {front: "Foreign residents percentage?", back: "~47% (2021) — 160+ nationalities"},
     {front: "Largest foreign community?", back: "Portuguese (~36% of foreigners, ~15% of total population)"},
-    {front: "Cross-border commuters?", back: "200,000+ (2019); ~46% of workforce"},
+    {front: "Cross-border commuters?", back: "200,000+ (2019), ~217,000 (2024) — ~46% of the workforce"},
     {front: "Residence for naturalisation?", back: "7 consecutive years"},
     {front: "Luxembourg EC Presidents?", back: "Thorn (1981-85), Santer (1995-99), Juncker (2014-19)"},
     {front: "EU institutions in Luxembourg?", back: "CJEU, Court of Auditors, EIB, Eurostat, Gen. Secretariat of EP, Publications Office"},
@@ -744,13 +759,20 @@ const timeline = [
     {year: "1951", event: "ECSC founded - Luxembourg = HQ"},
     {year: "1957", event: "Treaties of Rome (EEC) - founding member"},
     {year: "1974", event: "Steel crisis begins"},
-    {year: "1984", event: "Language law: Letzebuergesch = national language"},
+    {year: "1984", event: "Language law: Lëtzebuergesch = national language"},
     {year: "1985", event: "Schengen Agreement signed"},
     {year: "1992", event: "Maastricht Treaty - EU created"},
     {year: "1999", event: "Euro introduced (electronic)"},
     {year: "2000", event: "Grand Duke Henri accedes to throne (7 Oct)"},
+    {year: "2002", event: "Euro banknotes and coins enter circulation"},
     {year: "2003", event: "University of Luxembourg founded"},
-    {year: "2008", event: "Dual citizenship permitted"},
+    {year: "2005", event: "Referendum on EU Constitution: 56% in favour"},
+    {year: "2008", event: "Dual citizenship permitted; Art. 34 reformed after euthanasia law"},
+    {year: "2014", event: "Same-sex marriage legalised"},
+    {year: "2015", event: "Referendum rejects voting rights for foreign residents (~80% against)"},
+    {year: "2020", event: "First country in the world with free nationwide public transport"},
+    {year: "2023", event: "Major constitutional revision of the 1868 Constitution"},
+    {year: "2025", event: "Guillaume V accedes; Henri abdicates (3 Oct)"},
 ];
 
 // ==========================================================================
@@ -802,9 +824,16 @@ const figures = {
     henri: {
         name: "Grand Duke Henri",
         years: "1955 – present",
-        role: "Grand Duke since 2000",
-        summary: "Son of Grand Duke Jean. Acceded to the throne on 7 October 2000. Married to María Teresa Mestre (Cuban-born). Announced in 2024 that Prince Guillaume will take over.",
-        matters: "The Grand Duke you'll sing the anthem for. Inviolable — cannot be prosecuted — but every act must be countersigned by a minister."
+        role: "Grand Duke 2000–2025",
+        summary: "Son of Grand Duke Jean. Acceded on 7 October 2000. Married to María Teresa Mestre (Cuban-born). In December 2024 he announced his abdication, and on 3 October 2025 he handed the throne to his son Guillaume.",
+        matters: "His 2008 refusal to sign the euthanasia law triggered the constitutional reform that stripped the monarch's power to 'sanction' legislation. Know Henri as the reign that ended in 2025 — and as the reason Article 34 reads the way it does."
+    },
+    guillaume: {
+        name: "Grand Duke Guillaume (Guillaume V)",
+        years: "1981 – present",
+        role: "Grand Duke since 3 October 2025",
+        summary: "Son of Henri and María Teresa. Named lieutenant-représentant in 2024 as a transition step, then acceded on 3 October 2025. Married to Countess Stéphanie de Lannoy.",
+        matters: "The current head of state — the single most likely 'who is it now?' question on the exam. Inviolable, cannot be prosecuted, but every act must be countersigned by a minister."
     },
     juncker: {
         name: "Jean-Claude Juncker",
@@ -1180,30 +1209,30 @@ const chapters = [
         era: "2000 – today",
         subtitle: "A country of many nationalities, three languages, and outsize influence",
         hook: `<h4 class="hook-h">A country half foreign</h4>
-<p>Today <strong>~47%</strong> of Luxembourg's residents are foreign nationals — from more than <strong>160 countries</strong>. Every working day, another <strong>~217,000 cross-border commuters</strong> arrive from France (~half), Germany, and Belgium. About 46% of the workforce lives outside Luxembourg. Without them, the economy stops.</p>
+<p>Today <strong>~47%</strong> of Luxembourg's residents are foreign nationals — from more than <strong>160 countries</strong>. Every working day, another <strong>~217,000 cross-border commuters</strong> (2024) arrive from France (~half), Germany, and Belgium. About 46% of the workforce lives outside Luxembourg. Without them, the economy stops.</p>
 <h4 class="hook-h">Three languages, one country</h4>
 <p>Three languages are official (since the 1984 law): <strong>Luxembourgish</strong> is the national language, <strong>French</strong> is the language of legislation, and <strong>German</strong> is the administrative and school-literacy language. It's the reason your naturalisation only requires <strong>A2 speaking and B1 listening</strong> in Luxembourgish — not full fluency.</p>
 <h4 class="hook-h">The 2023 constitutional revision</h4>
 <p>In 2023, Luxembourg overhauled the 1868 Constitution for the first time in over 70 years. Environmental protection became a constitutional objective. Fundamental rights were rewritten. Since <strong>2008</strong>, <strong>dual citizenship</strong> has been permitted — you can keep your current passport when you naturalise (subject to your other country's law). And in <strong>2020</strong>, Luxembourg became the first country in the world with <strong>free public transport</strong> nationwide.</p>
-<h4 class="hook-h">Succession in the making</h4>
-<p><strong>Grand Duke Henri</strong> has been on the throne since <strong>7 October 2000</strong>. In 2024, he named his son <strong>Prince Guillaume</strong> lieutenant-representant, then in 2025 confirmed him as heir apparent to take over as Grand Duke — Luxembourg's next generation.</p>`,
+<h4 class="hook-h">A throne changes hands</h4>
+<p><strong>Grand Duke Henri</strong> reigned from <strong>7 October 2000</strong>. In 2024 he named his son <strong>Guillaume</strong> lieutenant-représentant as a transition step, and on <strong>3 October 2025</strong> he abdicated. Guillaume became Grand Duke as <strong>Guillaume V</strong> — the current head of state. Expect the exam to ask who the Grand Duke is; expect older study material to still say Henri.</p>`,
         arc: [
             "Grand Duke Henri accedes (7 October 2000)",
             "University of Luxembourg founded (2003) — the country finally has its own university",
             "Nationality law reformed (2008) — dual citizenship permitted",
             "Same-sex marriage legalised (2014) — PM Xavier Bettel later marries his partner",
             "2015 referendum: voting rights for foreign residents rejected (~80% against)",
-            "Constitutional revision (2023) — first major overhaul of the 1868 Constitution",
             "Free public transport nationwide (2020) — first country in the world",
-            "Guillaume named regent (2024) — heir apparent takes over official duties",
+            "Constitutional revision (2023) — first major overhaul of the 1868 Constitution",
+            "Guillaume V accedes (3 October 2025) — Henri abdicates after 25 years",
             "47% foreign residents today — over 160 nationalities"
         ],
         studySections: [
             { module: "module2", index: 0 },
             { module: "module3", index: 9 }
         ],
-        timelineYears: ["2000", "2003", "2008"],
-        figures: ["henri"],
+        timelineYears: ["2000", "2003", "2008", "2020", "2023", "2025"],
+        figures: ["henri", "guillaume"],
         rightsUnlocked: [
             "Dual citizenship (2008)",
             "Same-sex marriage and adoption (2014)",
@@ -1228,9 +1257,10 @@ const chapters = [
             "2015 — Referendum: voting rights for foreign residents rejected (~80% against)",
             "2020 (29 February) — Free public transport nationwide (world first)",
             "2023 — Major constitutional revision (first in 70+ years)",
-            "2024 — Prince Guillaume named lieutenant-representant (heir apparent taking over duties)",
+            "2024 — Prince Guillaume named lieutenant-représentant (transition step)",
+            "3 October 2025 — Henri abdicates; Guillaume becomes Grand Duke as Guillaume V (current head of state)",
             "~47% of residents are foreign nationals (from 160+ countries)",
-            "~217,000 cross-border commuters (~46% of the workforce)",
+            "~217,000 cross-border commuters (2024) — ~46% of the workforce; 200,000+ already by 2019",
             "3 official languages: Luxembourgish (national), French (legislation), German (administrative)",
             "Naturalisation language requirement: A2 speaking + B1 listening in Luxembourgish"
         ],
@@ -1291,7 +1321,7 @@ const scenarios = [
             },
             {
                 q: "How does it become law?",
-                a: "The Grand Duke sanctions and promulgates the law. It is then published in the Mémorial (official gazette). Only after publication does it take legal effect."
+                a: "The Grand Duke promulgates the law — since the 2008 reform of Article 34 he no longer 'sanctions' it. It is then published in the Mémorial (official gazette). Only after publication does it take legal effect."
             },
             {
                 q: "Can citizens block it?",
@@ -1896,7 +1926,7 @@ const journey = [
             { label: "Official name", value: "Grand Duchy of Luxembourg" },
             { label: "Area", value: "2,586 km² (smaller than Rhode Island)" },
             { label: "Population", value: "~672,000 (47% foreign nationals from 160+ countries)" },
-            { label: "Head of state", value: "Grand Duke Henri (since 7 October 2000)" },
+            { label: "Head of state", value: "Grand Duke Guillaume V (since 3 October 2025)" },
             { label: "Independence", value: "19 April 1839 (Treaty of London)" },
             { label: "Constitution", value: "1868 (fourth, still in force, heavily amended)" },
             { label: "Languages", value: "Luxembourgish (national), French (legislation), German (administrative)" },

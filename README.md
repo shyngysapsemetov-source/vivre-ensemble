@@ -15,13 +15,21 @@ your exam.
 
 - **Story mode** — six chronological chapters from 963 to today, with
   hooks, key figures, and cultural notes.
-- **Scenario mode** — 26 case-based walk-throughs across the three modules
+- **Scenario mode** — 34 case-based walk-throughs across the three modules
   (arrest, protest, running for office, dual citizenship, and more).
 - **Reference mode** — the classic module-by-module study material.
-- **Practice** — quiz (module-selectable), 40-question mock exam,
-  flashcards with weak-card review, timeline.
+- **Practice** — quiz (module-selectable, drawn in the real exam's module
+  proportions), 40-question mock exam with a live 60-minute countdown and
+  auto-submit, flashcards with weak-card review, timeline.
+- **Weak-spot drills** — every answer is tracked per question, so the app can
+  re-serve exactly the questions you keep getting wrong, weakest first.
+- **Results that teach** — per-module breakdown of where you lost marks, plus
+  a review of every question you missed with the correct answer and why.
 - **Progress tracking** — chapters read, scenarios seen, quiz history,
-  flashcard performance.
+  per-module accuracy, flashcard performance.
+
+Answer options are shuffled on every question, so you learn the facts rather
+than the position of the correct answer.
 
 ## Running locally
 
