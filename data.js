@@ -478,7 +478,7 @@ const studyContent = {
 <li>Germanisation policy; ~11,000 young men forcibly conscripted</li>
 <li>~4,000 Luxembourgers joined Nazi party; some volunteered for SS</li>
 <li>~4,000 Jews in Luxembourg; half fled day of invasion; 800+ deported and murdered</li>
-<li><strong>9 September 1944:</strong> First American divisions liberate Luxembourg</li>
+<li><strong>9–10 September 1944:</strong> American troops enter Luxembourg (9 Sept) and liberate the capital (10 Sept)</li>
 <li><strong>16 December 1944:</strong> Battle of the Bulge (German counter-offensive)</li>
 <li><strong>22 February 1945:</strong> Luxembourg completely liberated</li>
 <li>2% of total population lost their lives</li>
@@ -1093,7 +1093,7 @@ const flashcards = [
     {module: 3, front: "WWII invasion?", back: "10 May 1940 — Nazi Germany"},
     {module: 3, front: "WWII exile?", back: "Grand Duchess Charlotte + government went into exile"},
     {module: 3, front: "Forced conscription in WWII?", back: "~11,000 young men forcibly conscripted by Nazis"},
-    {module: 3, front: "WWII liberation?", back: "9 Sept 1944 (Americans); Battle of Bulge 16 Dec 1944; fully 22 Feb 1945"},
+    {module: 3, front: "WWII liberation?", back: "10 Sept 1944 capital liberated (US troops entered 9 Sept); Battle of Bulge 16 Dec 1944; fully 22 Feb 1945"},
     {module: 3, front: "WWII deaths?", back: "2% of total population lost their lives"},
     {module: 3, front: "Neutrality renounced?", back: "1948; joined NATO 1949"},
     {module: 3, front: "Marshall Plan?", back: "1948 — US economic aid for post-war reconstruction"},
@@ -1180,7 +1180,7 @@ const timeline = [
     {year: "1929", event: "Law on holding companies (financial sector seeds)"},
     {year: "1937", event: "Referendum rejects Communist Party prohibition"},
     {year: "1940", event: "10 May: Nazi Germany invades"},
-    {year: "1944", event: "9 Sept: Liberation begins; 16 Dec: Battle of the Bulge"},
+    {year: "1944", event: "9 Sept: US troops enter; 10 Sept: capital liberated; 16 Dec: Battle of the Bulge"},
     {year: "1945", event: "22 Feb: Full liberation; UN founding member"},
     {year: "1948", event: "Neutrality renounced; Marshall Plan"},
     {year: "1949", event: "NATO and Council of Europe founding member"},
@@ -1500,7 +1500,7 @@ const chapters = [
 <h4 class="hook-h">WWII and forced conscription (1940–1945)</h4>
 <p>In May 1940 the Germans came again — this time to stay. Grand Duchess Charlotte and her government fled to London, and Charlotte broadcast to occupied Luxembourg on the BBC throughout the war. Under Gauleiter Gustav Simon, Germanisation began. On <strong>30 August 1942</strong>, forced conscription was decreed. The next day, workers launched Western Europe's only <strong>general strike</strong> against Nazi occupation. 21 strikers were shot in reprisal. Around <strong>11,000</strong> young men were drafted into the Wehrmacht; roughly 2,800 died. Around <strong>800 Jews</strong> from Luxembourg were deported and murdered.</p>
 <h4 class="hook-h">Liberation and the end of neutrality</h4>
-<p>American forces liberated Luxembourg on <strong>9 September 1944</strong>. The German counter-offensive of the <strong>Battle of the Bulge</strong> (16 December 1944) pushed back briefly; full liberation came <strong>22 February 1945</strong>. Luxembourg had lost <strong>2% of its population</strong>. In 1948, it formally renounced neutrality — and never went back.</p>`,
+<p>American forces entered Luxembourg on 9 September 1944 and liberated the capital on <strong>10 September 1944</strong>. The German counter-offensive of the <strong>Battle of the Bulge</strong> (16 December 1944) pushed back briefly; full liberation came <strong>22 February 1945</strong>. Luxembourg had lost <strong>2% of its population</strong>. In 1948, it formally renounced neutrality — and never went back.</p>`,
         arc: [
             "Germany violates neutrality (2 August 1914) — the Schlieffen Plan through Luxembourg",
             "Marie-Adélaïde meets the Kaiser — the collaboration accusation",
@@ -1514,7 +1514,7 @@ const chapters = [
             "Charlotte and government in exile in London, then Montreal; radio broadcasts to the resistance",
             "Forced conscription: ~11,000 young men drafted into the Wehrmacht",
             "General strike (August 1942) against Germanisation policies",
-            "Liberation (9 September 1944) & Battle of the Bulge (December 1944)",
+            "Liberation (10 September 1944) & Battle of the Bulge (December 1944)",
             "Full liberation (22 February 1945)"
         ],
         studySections: [
@@ -1553,7 +1553,7 @@ const chapters = [
             "31 August 1942 — General strike (Western Europe's only one under Nazi rule); 21 strikers shot",
             "~11,000 Luxembourgers forcibly conscripted into the Wehrmacht; ~2,800 died",
             "~800 Jews from Luxembourg deported and murdered",
-            "9 September 1944 — American forces liberate Luxembourg",
+            "10 September 1944 — American forces liberate the capital (they crossed the border on 9 September)",
             "16 December 1944 — Battle of the Bulge (German counter-offensive)",
             "22 February 1945 — Full liberation",
             "2% of the total population lost their lives during WWII"
@@ -2560,7 +2560,7 @@ const APP_CONTENT = {
         { value: "31 August 1942", label: "General strike against forced conscription", module: 3, hint: "...strike the next day" },
         { value: "11,000", label: "Young Luxembourgers forcibly conscripted", module: 3, hint: "About 11,000 drafted" },
         { value: "21 strikers", label: "Strikers executed after the 1942 general strike", module: 3, hint: "21 shot" },
-        { value: "9 September 1944", label: "American troops liberate Luxembourg", module: 3, hint: "Early autumn 1944" },
+        { value: "10 September 1944", label: "American troops liberate Luxembourg City", module: 3, hint: "Early autumn 1944: cross the border on the 9th, free the capital on the 10th" },
         { value: "16 December 1944", label: "Battle of the Bulge begins", module: 3, hint: "Before Christmas" },
         { value: "22 February 1945", label: "Luxembourg completely liberated", module: 3, hint: "22.2.45" },
         { value: "2%", label: "Share of the population killed in WWII", module: 3, hint: "About 1 in 50" },
