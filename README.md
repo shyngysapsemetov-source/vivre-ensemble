@@ -1,35 +1,43 @@
 # Vivre Ensemble — Luxembourg Citizenship Exam Prep
 
 A free, unofficial study app for the Luxembourg citizenship exam
-("Vivre Ensemble au Grand-Duché de Luxembourg"). Covers all three modules:
-Fundamental Rights, State and Municipal Institutions, and History &
+("Vivre ensemble au Grand-Duché de Luxembourg"). Covers all three modules:
+Fundamental Rights, State and Municipal Institutions, and History and
 European Integration.
 
-**Not affiliated with the Zentrum fir politesch Bildung, MENJE, or any
-Luxembourg government body.** Content is based on publicly available
-study material and may not fully reflect the most recent official
-curriculum. Verify important facts against the official source before
-your exam.
+**Not affiliated with the Service de la formation des adultes, MENJE, the
+Zentrum fir politesch Bildung, or any Luxembourg government body.** Content
+is based on publicly available sources (the official syllabus, the revised
+Constitution, guichet.lu, legilux.lu, justice.public.lu and the government's
+information publications). Verify important facts against the official
+sources before your exam.
 
 ## What's in it
 
 - **Story mode** — six chronological chapters from 963 to today, with
-  hooks, key figures, and cultural notes.
-- **Scenario mode** — 34 case-based walk-throughs across the three modules
-  (arrest, protest, running for office, dual citizenship, and more).
-- **Reference mode** — the classic module-by-module study material.
-- **Practice** — quiz (module-selectable, drawn in the real exam's module
-  proportions), 40-question mock exam with a live 60-minute countdown and
-  auto-submit, flashcards with weak-card review, timeline.
-- **Weak-spot drills** — every answer is tracked per question, so the app can
-  re-serve exactly the questions you keep getting wrong, weakest first.
-- **Results that teach** — per-module breakdown of where you lost marks, plus
-  a review of every question you missed with the correct answer and why.
-- **Progress tracking** — chapters read, scenarios seen, quiz history,
-  per-module accuracy, flashcard performance.
-
-Answer options are shuffled on every question, so you learn the facts rather
-than the position of the correct answer.
+  hooks, key figures, cultural notes and an "exam-critical facts" box.
+- **Scenario mode** — 38 case-based walk-throughs across the three modules
+  (arrest, protest, registering to vote, a state of crisis, running for
+  office, naturalisation, and more).
+- **Reference mode** — 36 searchable, printable study sections following the
+  official syllabus, including the 2023 Constitution.
+- **Question bank** — 327 exam-style questions (75 Rights, 132 Institutions,
+  120 History), many with a memory hook. Options are shuffled every time.
+- **Mock exam** — 40 questions in the real module mix with a 60-minute
+  clock; flag questions, jump between them, review before you submit, then
+  review every miss with the explanation.
+- **Spaced-repetition review** — questions, 193 flashcards and number facts
+  come back just before you would forget them.
+- **Study plan** — set your exam date and get a daily plan: new items,
+  reviews, reading, drills and scheduled mock exams.
+- **Numbers & dates drill** — 94 number facts plus the timeline, drilled
+  against their confusable neighbours (60 MPs vs 21 Council of State vs 9
+  judges...).
+- **Exam technique** — 11 tips: logistics, time budget, NOT/EXCEPT
+  questions, elimination, and the outdated-fact traps.
+- **Cheat sheet** — every key number and date on one printable page.
+- **Weak-spot drills** — re-serve exactly the questions you keep missing.
+- **Profiles** — several learners on one device, each with their own progress.
 
 ## Running locally
 
@@ -52,22 +60,30 @@ device. To move progress to another browser or device, use the
 
 ## Real exam facts
 
-- 40 multiple-choice questions in 60 minutes
+- 40 multiple-choice questions (one correct answer each) in 60 minutes
 - Mix: 10 Rights + 20 Institutions + 10 History
-- Pass mark: 28/40 (70%)
-- Computer-based at Esch-Belval
-- Free of charge
+- Pass mark: 28/40 overall — there is no separate minimum per module
+- Computer-based, at the Université populaire in Esch-Belval
+- Sessions in English, French or German; free of charge
+- Bring the ID you registered with and your Luxembourg social security (CNS) card
+- If you fail or miss a session, you can register again 30 days later
+- Register on the official portal: https://ssl.education.lu/ve-portal/
 
-You also need to pass the **Sproochentest** (Luxembourgish language exam:
-A2 speaking, B1 listening) and complete 7 years of legal residence to
-naturalise.
+Instead of the exam you can attend the 24-hour "Vivre ensemble" course.
+To naturalise you also need the **Sproochentest** (Luxembourgish: A2
+speaking, B1 listening) and at least **5 years** of legal residence, the last
+year uninterrupted (nationality law of 8 March 2017; the old 7-year rule no
+longer applies).
 
 ## About the content
 
-Facts are based on materials from the ZpB (Zentrum fir politesch Bildung)
-and MENJE. The 2023 constitutional revision changed some details of
-Module 1 and 2 — this app has been updated to reflect those changes as
-best as possible, but if you spot something out of date, please
+The official reference brochures linked from the syllabus partly date from
+2006, and several facts in them are out of date (the "Mémorial" gazette, six
+professional chambers, the Grand Duke dissolving the Chamber, 5 years of
+residence for foreigners to vote in municipal elections, and so on). This
+app teaches the current rules, including the revised Constitution in force
+since 1 July 2023, and flags where older material says something different.
+If you spot something out of date, please
 [open an issue](https://github.com/shyngysapsemetov-source/vivre-ensemble/issues).
 
 ## License
